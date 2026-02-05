@@ -1,41 +1,43 @@
-import { Canvas, useFrame as useFrameExport } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { NeuralNetwork } from './NeuralNetwork';
-import { useEffect, useRef } from 'react';
-
-function AnimationStarter() {
-  const started = useRef(false);
-
-  useFrameExport((state) => {
-    if (!started.current) {
-      started.current = true;
-      // Force a few renders to ensure visibility
-      state.gl.render(state.scene, state.camera);
-    }
-  });
-
-  return null;
-}
+import { useLayoutEffect, useRef, useState } from 'react';
 
 export function Scene() {
-  const canvasRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ width: 800, height: 600 });
 
-  useEffect(() => {
-    // Force a repaint on mount
-    if (canvasRef.current) {
-      const canvas = canvasRef.current.querySelector('canvas');
-      if (canvas) {
-        canvas.style.opacity = '0.99';
-        setTimeout(() => {
-          canvas.style.opacity = '1';
-        }, 10);
+  useLayoutEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0) {
+          setSize({ width: rect.width, height: rect.height });
+        }
       }
+    };
+
+    // Get size immediately before paint
+    updateSize();
+
+    // Update on resize
+    const resizeObserver = new ResizeObserver(updateSize);
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
     }
+
+    // Also listen to window resize
+    window.addEventListener('resize', updateSize);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', updateSize);
+    };
   }, []);
 
   return (
     <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 0 }}>
       <div
-        ref={canvasRef}
+        ref={containerRef}
         style={{
           width: '70vw',
           height: '70vh',
@@ -49,20 +51,23 @@ export function Scene() {
           camera={{ position: [0, 0, 10], fov: 50 }}
           dpr={[1, 2]}
           frameloop="always"
-          flat
           gl={{
             antialias: true,
             alpha: true,
             powerPreference: 'high-performance',
           }}
+          resize={{ scroll: false, debounce: 0 }}
           style={{
             display: 'block',
             width: '100%',
             height: '100%',
             touchAction: 'none',
           }}
+          onCreated={({ gl, size }) => {
+            // Force canvas to use container dimensions
+            gl.setSize(size.width, size.height);
+          }}
         >
-          <AnimationStarter />
           <ambientLight intensity={0.8} />
           <pointLight position={[10, 10, 10]} intensity={0.5} />
           <pointLight position={[-10, -10, -10]} intensity={0.3} color="#00c5f5" />
