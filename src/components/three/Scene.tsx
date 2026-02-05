@@ -39,12 +39,12 @@ export function Scene() {
       <div
         ref={containerRef}
         style={{
-          width: '70vw',
-          height: '70vh',
-          maxWidth: '800px',
-          maxHeight: '800px',
-          minWidth: '400px',
-          minHeight: '400px',
+          width: '100vw',
+          height: '100vh',
+          // maxWidth: '800px',
+          // maxHeight: '800px',
+          // minWidth: '400px',
+          // minHeight: '400px',
         }}
       >
         <Canvas

@@ -9,7 +9,7 @@ export function NeuralNetwork() {
   const groupRef = useRef<THREE.Group>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
 
-  const nodeCount = isMobile ? 15 : isTablet ? 20 : 30;
+  const nodeCount = isMobile ? 15 : isTablet ? 20 : 40;
 
   // Create nodes in a more structured spherical pattern
   const { nodes, connections } = useMemo(() => {
@@ -21,9 +21,9 @@ export function NeuralNetwork() {
       const phi = Math.acos(-1 + (2 * i) / nodeCount);
       const theta = Math.sqrt(nodeCount * Math.PI) * phi;
 
-      const x = radius * Math.cos(theta) * Math.sin(phi);
-      const y = radius / 1.2 * Math.sin(theta) * Math.sin(phi);
-      const z = radius * Math.cos(phi);
+      const x = 1.2 * radius * Math.cos(theta) * Math.sin(phi);
+      const y = radius / 1.1 * Math.sin(theta) * Math.sin(phi);
+      const z = 1.2 * radius * Math.cos(phi);
 
       nodePositions.push(new THREE.Vector3(x, y, z));
     }
@@ -90,7 +90,8 @@ export function NeuralNetwork() {
       // Create gradient from purple to cyan based on connection index
       const t = i / connections.length;
       // const hue = 0.75 - t * 0.45; // Purple (0.75) to Cyan (0.5) to Blue (0.6)
-      const color = new THREE.Color().setHSL(0.7, 0.8, 0.6);
+      const lum = 0.6 - t * 0.65; // Luminosity (was 0.6)
+      const color = new THREE.Color().setHSL(0.7, 0.95, lum);
 
       colors[i * 8] = color.r;
       colors[i * 8 + 1] = color.g;
