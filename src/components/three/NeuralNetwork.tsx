@@ -9,7 +9,7 @@ export function NeuralNetwork() {
   const groupRef = useRef<THREE.Group>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
 
-  const nodeCount = isMobile ? 12 : isTablet ? 15 : 20;
+  const nodeCount = isMobile ? 15 : isTablet ? 20 : 30;
 
   // Create nodes in a more structured spherical pattern
   const { nodes, connections } = useMemo(() => {
@@ -22,7 +22,7 @@ export function NeuralNetwork() {
       const theta = Math.sqrt(nodeCount * Math.PI) * phi;
 
       const x = radius * Math.cos(theta) * Math.sin(phi);
-      const y = radius * Math.sin(theta) * Math.sin(phi);
+      const y = radius / 1.2 * Math.sin(theta) * Math.sin(phi);
       const z = radius * Math.cos(phi);
 
       nodePositions.push(new THREE.Vector3(x, y, z));
@@ -30,9 +30,10 @@ export function NeuralNetwork() {
 
     // Connect EVERY node to EVERY other node
     const connectionsList: [number, number][] = [];
+    const npLen = nodePositions.length;
 
-    for (let i = 0; i < nodePositions.length; i++) {
-      for (let j = i + 1; j < nodePositions.length; j++) {
+    for (let i = 0; i < npLen; i++) {
+      for (let j = i + 1; j < npLen; j++) {
         connectionsList.push([i, j]);
       }
     }
@@ -41,7 +42,7 @@ export function NeuralNetwork() {
   }, [nodeCount]);
 
   useFrame((state) => {
-    if (!groupRef.current || !linesRef.current) return;
+    if (!groupRef.current) return;
 
     const time = state.clock.elapsedTime;
 
@@ -52,24 +53,6 @@ export function NeuralNetwork() {
 
     // Gentle floating motion
     groupRef.current.position.y = Math.sin(time * 0.3) * 0.5;
-
-    // Update line colors with animated gradient
-    const lineColors: number[] = [];
-    connections.forEach((connection, idx) => {
-      const hue = (time * 0.05 + idx * 0.01) % 1;
-      const color = new THREE.Color().setHSL(hue, 0.8, 0.6);
-
-      lineColors.push(color.r, color.g, color.b, 0.3);
-      lineColors.push(color.r, color.g, color.b, 0.3);
-    });
-
-    if (linesRef.current.geometry.attributes.color) {
-      const colorAttribute = linesRef.current.geometry.attributes.color;
-      for (let i = 0; i < lineColors.length; i++) {
-        colorAttribute.array[i] = lineColors[i];
-      }
-      colorAttribute.needsUpdate = true;
-    }
   });
 
   const particlePositions = useMemo(() => {
@@ -86,28 +69,37 @@ export function NeuralNetwork() {
     const positions = new Float32Array(connections.length * 6);
     connections.forEach((connection, i) => {
       const [start, end] = connection;
-      positions[i * 6] = nodes[start].x;
-      positions[i * 6 + 1] = nodes[start].y;
-      positions[i * 6 + 2] = nodes[start].z;
-      positions[i * 6 + 3] = nodes[end].x;
-      positions[i * 6 + 4] = nodes[end].y;
-      positions[i * 6 + 5] = nodes[end].z;
+      const startNode = nodes[start];
+      const endNode = nodes[end];
+
+      if (!startNode || !endNode) return;
+
+      positions[i * 6] = startNode.x;
+      positions[i * 6 + 1] = startNode.y;
+      positions[i * 6 + 2] = startNode.z;
+      positions[i * 6 + 3] = endNode.x;
+      positions[i * 6 + 4] = endNode.y;
+      positions[i * 6 + 5] = endNode.z;
     });
     return positions;
   }, [connections, nodes]);
 
   const lineColors = useMemo(() => {
     const colors = new Float32Array(connections.length * 8);
-    connections.forEach((_, i) => {
-      const color = new THREE.Color().setHSL(i * 0.01, 0.8, 0.6);
+    connections.forEach((_connection, i) => {
+      // Create gradient from purple to cyan based on connection index
+      const t = i / connections.length;
+      // const hue = 0.75 - t * 0.45; // Purple (0.75) to Cyan (0.5) to Blue (0.6)
+      const color = new THREE.Color().setHSL(0.7, 0.8, 0.6);
+
       colors[i * 8] = color.r;
       colors[i * 8 + 1] = color.g;
       colors[i * 8 + 2] = color.b;
-      colors[i * 8 + 3] = 0.3;
+      colors[i * 8 + 3] = 0.4;
       colors[i * 8 + 4] = color.r;
       colors[i * 8 + 5] = color.g;
       colors[i * 8 + 6] = color.b;
-      colors[i * 8 + 7] = 0.3;
+      colors[i * 8 + 7] = 0.4;
     });
     return colors;
   }, [connections]);
@@ -118,6 +110,7 @@ export function NeuralNetwork() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
+            args={[particlePositions, 3]}
             count={nodeCount}
             array={particlePositions}
             itemSize={3}
@@ -135,12 +128,14 @@ export function NeuralNetwork() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
+            args={[linePositions, 3]}
             count={connections.length * 2}
             array={linePositions}
             itemSize={3}
           />
           <bufferAttribute
             attach="attributes-color"
+            args={[lineColors, 4]}
             count={connections.length * 2}
             array={lineColors}
             itemSize={4}
