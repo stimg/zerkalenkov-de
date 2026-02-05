@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 
 export function Scene() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [setSize] = useState({ width: 800, height: 600 });
+  const [size, setSize] = useState({ width: 800, height: 600 });
 
   useLayoutEffect(() => {
     const updateSize = () => {
