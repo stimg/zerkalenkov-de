@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(bash)",
+      "Bash(~/.bun/bin/bun create:*)",
+      "Bash(~/.bun/bin/bun init:*)",
+      "Bash(~/.bun/bin/bun add:*)",
+      "Bash(~/.bun/bin/bun run:*)",
+      "Bash(~/.bun/bin/bun remove:*)",
+      "Bash(~/.bun/bin/bunx tailwindcss:*)"
+    ]
+  }
+}

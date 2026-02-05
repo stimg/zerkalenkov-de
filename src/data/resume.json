@@ -1,0 +1,229 @@
+{
+  "personal": {
+    "name": "Alexey",
+    "surname": "Zerkalenkov",
+    "title": "Senior Fullstack AI Engineer",
+    "tagline": "Transforming ideas into intelligent, scalable solutions with 20+ years of full-stack expertise",
+    "email": "alexey@example.com",
+    "linkedin": "https://linkedin.com/in/alexey-zerkalenkov",
+    "github": "https://github.com/zerkalenkov",
+    "location": "Remote / Europe",
+    "availability": "available"
+  },
+  "about": {
+    "summary": "Senior Fullstack AI Engineer with 20+ years of experience building intelligent, scalable applications. Specialized in GenAI integration, conversational AI, and modern web architectures. Proven track record delivering production-ready solutions for Fortune 500 companies and innovative startups.",
+    "services": [
+      {
+        "icon": "Brain",
+        "title": "AI/GenAI Development",
+        "points": [
+          "LLM integration & prompt engineering",
+          "RAG systems & vector databases",
+          "Custom AI agents & workflows",
+          "Voice assistants & conversational AI"
+        ]
+      },
+      {
+        "icon": "Code",
+        "title": "Fullstack Web Applications",
+        "points": [
+          "React, Next.js, TypeScript ecosystems",
+          "Node.js, Python backend services",
+          "RESTful & GraphQL APIs",
+          "Cloud architecture (AWS, Azure, GCP)"
+        ]
+      },
+      {
+        "icon": "Mic",
+        "title": "Voice & Conversational AI",
+        "points": [
+          "Real-time voice processing",
+          "Speech-to-text & text-to-speech",
+          "Multi-turn conversation design",
+          "Intent recognition & NLU"
+        ]
+      }
+    ]
+  },
+  "skills": [
+    {
+      "category": "Languages",
+      "items": [
+        { "name": "TypeScript", "level": "expert" },
+        { "name": "JavaScript", "level": "expert" },
+        { "name": "Python", "level": "advanced" },
+        { "name": "Go", "level": "intermediate" },
+        { "name": "SQL", "level": "advanced" }
+      ]
+    },
+    {
+      "category": "Frontend",
+      "items": [
+        { "name": "React", "level": "expert" },
+        { "name": "Next.js", "level": "expert" },
+        { "name": "Vue.js", "level": "advanced" },
+        { "name": "Tailwind CSS", "level": "expert" },
+        { "name": "Three.js", "level": "advanced" }
+      ]
+    },
+    {
+      "category": "Backend",
+      "items": [
+        { "name": "Node.js", "level": "expert" },
+        { "name": "Express", "level": "expert" },
+        { "name": "NestJS", "level": "advanced" },
+        { "name": "FastAPI", "level": "advanced" },
+        { "name": "GraphQL", "level": "advanced" }
+      ]
+    },
+    {
+      "category": "AI/ML",
+      "items": [
+        { "name": "OpenAI API", "level": "expert" },
+        { "name": "LangChain", "level": "expert" },
+        { "name": "Pinecone", "level": "advanced" },
+        { "name": "Hugging Face", "level": "advanced" },
+        { "name": "TensorFlow", "level": "intermediate" }
+      ]
+    },
+    {
+      "category": "DevOps",
+      "items": [
+        { "name": "Docker", "level": "expert" },
+        { "name": "Kubernetes", "level": "advanced" },
+        { "name": "GitHub Actions", "level": "expert" },
+        { "name": "AWS", "level": "advanced" },
+        { "name": "Terraform", "level": "intermediate" }
+      ]
+    },
+    {
+      "category": "Databases",
+      "items": [
+        { "name": "PostgreSQL", "level": "expert" },
+        { "name": "MongoDB", "level": "advanced" },
+        { "name": "Redis", "level": "advanced" },
+        { "name": "Pinecone", "level": "advanced" },
+        { "name": "Supabase", "level": "advanced" }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "samsung-harman",
+      "title": "AI Voice Assistant Platform",
+      "company": "Samsung / Harman",
+      "role": "Lead AI Engineer",
+      "period": "2022 - 2024",
+      "description": "Enterprise voice assistant with real-time NLU and multi-device orchestration",
+      "fullDescription": "Led development of a sophisticated AI voice assistant platform for automotive and smart home integration. Implemented real-time speech processing, natural language understanding, and multi-turn conversation management. Architected scalable microservices handling 10M+ daily interactions.",
+      "technologies": ["Python", "FastAPI", "OpenAI", "WebRTC", "Kubernetes", "PostgreSQL", "Redis"],
+      "images": ["/projects/samsung-1.jpg"],
+      "links": {
+        "caseStudy": "#"
+      },
+      "featured": true
+    },
+    {
+      "id": "man-truck",
+      "title": "Fleet Management AI",
+      "company": "MAN Truck & Bus",
+      "role": "Fullstack Engineer",
+      "period": "2021 - 2022",
+      "description": "Predictive maintenance and route optimization system for commercial vehicles",
+      "fullDescription": "Built intelligent fleet management system with predictive maintenance alerts, route optimization using ML models, and real-time telemetry processing. Reduced maintenance costs by 30% through early fault detection.",
+      "technologies": ["React", "TypeScript", "Node.js", "TensorFlow", "AWS", "DynamoDB"],
+      "images": ["/projects/man-1.jpg"],
+      "links": {},
+      "featured": true
+    },
+    {
+      "id": "igus",
+      "title": "Product Configuration AI",
+      "company": "Igus",
+      "role": "Senior Developer",
+      "period": "2020 - 2021",
+      "description": "Intelligent product recommendation engine for industrial components",
+      "fullDescription": "Developed AI-powered product configuration system helping engineers select optimal industrial components. Implemented recommendation engine processing 100K+ SKUs, 3D visualization, and automated quote generation.",
+      "technologies": ["Vue.js", "Python", "Django", "Three.js", "PostgreSQL", "Elasticsearch"],
+      "images": ["/projects/igus-1.jpg"],
+      "links": {
+        "live": "https://igus.com"
+      },
+      "featured": true
+    },
+    {
+      "id": "impact-flow",
+      "title": "GenAI Content Platform",
+      "company": "Impact Flow",
+      "role": "AI Solutions Architect",
+      "period": "2023 - 2024",
+      "description": "Multi-modal content generation with custom LLM workflows",
+      "fullDescription": "Architected GenAI platform for automated content creation using GPT-4, DALL-E, and custom fine-tuned models. Implemented RAG system, prompt templates, and workflow orchestration. Scaled to 50K monthly users.",
+      "technologies": ["Next.js", "OpenAI", "LangChain", "Pinecone", "Vercel", "Supabase"],
+      "images": ["/projects/impact-flow-1.jpg"],
+      "links": {},
+      "featured": true
+    },
+    {
+      "id": "allplan",
+      "title": "BIM Collaboration Suite",
+      "company": "Allplan",
+      "role": "Technical Lead",
+      "period": "2019 - 2020",
+      "description": "Real-time collaboration tools for construction planning",
+      "fullDescription": "Led development of real-time collaboration features for BIM software used by architects and engineers worldwide. Implemented WebSocket-based sync, conflict resolution, and 3D model streaming.",
+      "technologies": ["React", "TypeScript", "WebSocket", "C++", "Azure", "CosmosDB"],
+      "images": ["/projects/allplan-1.jpg"],
+      "links": {
+        "live": "https://allplan.com"
+      },
+      "featured": true
+    }
+  ],
+  "techStack": [
+    { "name": "React", "icon": "⚛️" },
+    { "name": "TypeScript", "icon": "📘" },
+    { "name": "Next.js", "icon": "▲" },
+    { "name": "Node.js", "icon": "🟢" },
+    { "name": "Python", "icon": "🐍" },
+    { "name": "OpenAI", "icon": "🤖" },
+    { "name": "LangChain", "icon": "🦜" },
+    { "name": "AWS", "icon": "☁️" },
+    { "name": "Docker", "icon": "🐳" },
+    { "name": "PostgreSQL", "icon": "🐘" },
+    { "name": "MongoDB", "icon": "🍃" },
+    { "name": "Redis", "icon": "🔴" }
+  ],
+  "experience": [
+    {
+      "company": "Samsung / Harman",
+      "role": "Lead AI Engineer",
+      "period": "2022 - 2024",
+      "highlights": [
+        "Led AI voice assistant platform serving 10M+ daily interactions",
+        "Architected real-time NLU pipeline with 95% intent accuracy",
+        "Reduced response latency from 2s to 300ms through optimization"
+      ]
+    },
+    {
+      "company": "MAN Truck & Bus",
+      "role": "Fullstack Engineer",
+      "period": "2021 - 2022",
+      "highlights": [
+        "Built predictive maintenance system reducing costs by 30%",
+        "Implemented ML-powered route optimization",
+        "Processed 50M+ telemetry events daily"
+      ]
+    },
+    {
+      "company": "Impact Flow",
+      "role": "AI Solutions Architect",
+      "period": "2023 - 2024",
+      "highlights": [
+        "Designed GenAI platform with 50K monthly users",
+        "Implemented RAG system with custom embeddings",
+        "Built workflow orchestration for multi-modal content"
+      ]
+    }
+  ]
+}
