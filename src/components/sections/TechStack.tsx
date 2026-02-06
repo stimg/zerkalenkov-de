@@ -1,5 +1,34 @@
 import { useEffect, useRef } from 'react';
 import resumeData from '@/data/resume.json';
+import {
+  ReactLogo,
+  TypeScriptLogo,
+  NextJsLogo,
+  NodeJsLogo,
+  PythonLogo,
+  OpenAILogo,
+  LangChainLogo,
+  AWSLogo,
+  DockerLogo,
+  PostgreSQLLogo,
+  MongoDBLogo,
+  RedisLogo,
+} from '@/components/icons/TechLogos';
+
+const logoMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  'React': ReactLogo,
+  'TypeScript': TypeScriptLogo,
+  'Next.js': NextJsLogo,
+  'Node.js': NodeJsLogo,
+  'Python': PythonLogo,
+  'OpenAI': OpenAILogo,
+  'LangChain': LangChainLogo,
+  'AWS': AWSLogo,
+  'Docker': DockerLogo,
+  'PostgreSQL': PostgreSQLLogo,
+  'MongoDB': MongoDBLogo,
+  'Redis': RedisLogo,
+};
 
 export function TechStack() {
   const { techStack } = resumeData;
@@ -50,17 +79,24 @@ export function TechStack() {
       className="flex gap-16 overflow-hidden"
       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     >
-      {duplicatedStack.map((tech, index) => (
-        <div
-          key={`${tech.name}-${index}`}
-          className="flex flex-col items-center justify-center gap-3 shrink-0 transition-opacity hover:opacity-70"
-        >
-          <span className="text-4xl" role="img" aria-label={tech.name}>
-            {tech.icon}
-          </span>
-          <span className="font-bold text-sm whitespace-nowrap">{tech.name}</span>
-        </div>
-      ))}
+      {duplicatedStack.map((tech, index) => {
+        const LogoComponent = logoMap[tech.name];
+        return (
+          <div
+            key={`${tech.name}-${index}`}
+            className="flex flex-col items-center justify-center gap-3 shrink-0 transition-opacity hover:opacity-70"
+          >
+            {LogoComponent ? (
+              <LogoComponent className="w-12 h-12" />
+            ) : (
+              <span className="text-4xl" role="img" aria-label={tech.name}>
+                {tech.icon}
+              </span>
+            )}
+            <span className="font-bold text-sm whitespace-nowrap">{tech.name}</span>
+          </div>
+        );
+      })}
     </div>
   );
 }

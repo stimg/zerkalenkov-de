@@ -20,8 +20,8 @@ export function NeuralNetwork() {
   const nextSignalId = useRef(0);
   const lastSignalTime = useRef(0);
 
-  const nodeCount = isMobile ? 15 : isTablet ? 20 : 45;
-  const baseColor = new THREE.Color('#5d00d3');
+  const nodeCount = isMobile ? 15 : isTablet ? 20 : 50;
+  const baseColor = new THREE.Color('#6700e9');
   const brightColor = new THREE.Color('#ccc0ff');
 
   // Create nodes in a more structured spherical pattern

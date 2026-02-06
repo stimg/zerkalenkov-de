@@ -3,17 +3,25 @@
 @tailwind utilities;
 
 :root {
-  --primary-50: #ffccff;
-  --primary-100: #e5a8ff;
-  --primary-200: #b585ff;
-  --primary-300: #7061ff;
-  --primary-400: #3d65ff;
-  --primary-500: #1a8dff;
-  --primary-600: #00c5f5;
-  --primary-700: #00d1bb;
-  --primary-800: #00ad67;
-  --primary-900: #008a29;
-  --primary-950: #006600;
+  --primary-50: #f2efff,
+  --primary-100: #e3dcff;
+  --primary-150: #ccc0ff;
+  --primary-200: #b9a6ff;
+  --primary-250: #b09aff;
+  --primary-300: #a589ff;
+  --primary-350: #9875ff;
+  --primary-400: #8b5dff;
+  --primary-450: #7e3fff;
+  --primary-500: #7200fe;
+  --primary-550: #6700e9;
+  --primary-600: #5d00d3;
+  --primary-650: #5300be;
+  --primary-700: #4900a9;
+  --primary-750: #3f0094;
+  --primary-800: #35007f;
+  --primary-850: #2b006a;
+  --primary-900: #210056;
+  --primary-950: #170040;
 }
 
 @layer base {
