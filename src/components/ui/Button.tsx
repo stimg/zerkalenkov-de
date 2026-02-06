@@ -17,7 +17,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
           'disabled:pointer-events-none disabled:opacity-50',
           {
-            'bg-secondary-200 text-secondary-700 hover:bg-secondary-300 shadow-sm shadow-secondary-500/25  border-secondary-100':
+            'bg-gradient-to-r from-secondary-400 via-secondary-250 to-secondary-400  text-white hover:bg-secondary-300 shadow-sm border border-secondary-200':
               variant === 'primary',
             'bg-gray-300 text-gray-900 hover:bg-gray-300 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700':
               variant === 'secondary',

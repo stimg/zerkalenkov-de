@@ -21,6 +21,8 @@ export function NeuralNetwork() {
   const lastSignalTime = useRef(0);
 
   const nodeCount = isMobile ? 15 : isTablet ? 20 : 45;
+  const baseColor = new THREE.Color('#5d00d3');
+  const brightColor = new THREE.Color('#ccc0ff');
 
   // Create nodes in a more structured spherical pattern
   const { nodes, connections } = useMemo(() => {
@@ -72,7 +74,7 @@ export function NeuralNetwork() {
       const newSignal: Signal = {
         connectionIndex,
         progress: 0,
-        speed: 0.5 + Math.random() * 1.0,
+        speed: 0.5 + Math.random() * 1.2,
         id: nextSignalId.current++,
       };
       setSignals((prev) => [...prev, newSignal]);
@@ -96,16 +98,15 @@ export function NeuralNetwork() {
 
       // Reset all colors to base
       for (let i = 0; i < connections.length; i++) {
-        const lum = 0.5;
-        const color = new THREE.Color().setHSL(0.68, 0.95, lum);
+        const color = new THREE.Color(baseColor)
         colors[i * 8] = color.r;
         colors[i * 8 + 1] = color.g;
         colors[i * 8 + 2] = color.b;
-        colors[i * 8 + 3] = 0.4;
+        colors[i * 8 + 3] = 0.6;
         colors[i * 8 + 4] = color.r;
         colors[i * 8 + 5] = color.g;
         colors[i * 8 + 6] = color.b;
-        colors[i * 8 + 7] = 0.4;
+        colors[i * 8 + 7] = 0.6;
       }
 
       // Highlight connections with active signals
@@ -113,7 +114,6 @@ export function NeuralNetwork() {
         const i = signal.connectionIndex;
         if (i >= 0 && i < connections.length) {
           const intensity = Math.sin(signal.progress * Math.PI); // Fade in/out
-          const brightColor = new THREE.Color().setHSL(0.65, 1.0, 0.7);
 
           const baseIdx = i * 8;
           // Start point
@@ -146,7 +146,6 @@ export function NeuralNetwork() {
       const colors = colorAttr.array as Float32Array;
 
       // Reset all colors to base (purple)
-      const baseColor = new THREE.Color('#5300be');
       const baseR = baseColor.r;
       const baseG = baseColor.g;
       const baseB = baseColor.b;
@@ -164,7 +163,6 @@ export function NeuralNetwork() {
         if (connection) {
           const [startIdx, endIdx] = connection;
           const intensity = Math.sin(signal.progress * Math.PI);
-          const brightColor = new THREE.Color('#ccc0ff');
 
           // Highlight start node when signal is near start
           if (signal.progress < 0.3) {
@@ -204,7 +202,6 @@ export function NeuralNetwork() {
 
     // Colors
     const colors = new Float32Array(nodeCount * 3);
-    const baseColor = new THREE.Color('#5300be');
     for (let i = 0; i < nodeCount; i++) {
       colors[i * 3] = baseColor.r;
       colors[i * 3 + 1] = baseColor.g;
@@ -237,10 +234,7 @@ export function NeuralNetwork() {
   const lineColors = useMemo(() => {
     const colors = new Float32Array(connections.length * 8);
     connections.forEach((_connection, i) => {
-      // Create luminosity gradient based on connection index
-      // const t = i / connections.length;
-      const lum = 0.5 // - t * 0.65; // Luminosity (org 0.6)
-      const color = new THREE.Color().setHSL(0.68, 0.95, lum);
+      const color = new THREE.Color(baseColor)
 
       colors[i * 8] = color.r;
       colors[i * 8 + 1] = color.g;

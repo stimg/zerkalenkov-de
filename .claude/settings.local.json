@@ -10,7 +10,9 @@
       "Bash(~/.bun/bin/bun remove:*)",
       "Bash(~/.bun/bin/bunx tailwindcss:*)",
       "Bash(bunx tsc:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "WebFetch(domain:reactbits.dev)",
+      "WebSearch"
     ]
   }
 }

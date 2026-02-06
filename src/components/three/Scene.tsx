@@ -35,7 +35,7 @@ export function Scene() {
   }, []);
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 0 }}>
+    <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 1 }}>
       <div
         ref={containerRef}
         style={{
@@ -70,7 +70,7 @@ export function Scene() {
           <NeuralNetwork />
         </Canvas>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/90 dark:to-[#0a0a0f]/90 pointer-events-none" style={{ zIndex: 1 }} />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/90 dark:to-[#0a0a0f]/90 pointer-events-none" style={{ zIndex: 2 }} />
     </div>
   );
 }

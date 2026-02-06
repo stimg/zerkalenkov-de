@@ -13,7 +13,7 @@ export function TechStack() {
     let scrollPos = 0;
 
     const animate = () => {
-      scrollPos += 0.5;
+      scrollPos += 0.3;
       if (scrollPos >= scroll.scrollWidth / 2) {
         scrollPos = 0;
       }
@@ -45,24 +45,22 @@ export function TechStack() {
   const duplicatedStack = [...techStack, ...techStack];
 
   return (
-    <section id="tech-stack" className="py-12 bg-gray-50 dark:bg-[#12121a] border-y border-gray-200 dark:border-gray-800">
-      <div
-        ref={scrollRef}
-        className="flex gap-8 overflow-hidden"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
-        {duplicatedStack.map((tech, index) => (
-          <div
-            key={`${tech.name}-${index}`}
-            className="flex items-center gap-3 px-6 py-3 bg-white dark:bg-[#1e1e2e] rounded-full border border-gray-200 dark:border-gray-800 whitespace-nowrap shrink-0 hover:border-primary-500 transition-colors"
-          >
-            <span className="text-2xl" role="img" aria-label={tech.name}>
-              {tech.icon}
-            </span>
-            <span className="font-medium">{tech.name}</span>
-          </div>
-        ))}
-      </div>
-    </section>
+    <div
+      ref={scrollRef}
+      className="flex gap-16 overflow-hidden"
+      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+    >
+      {duplicatedStack.map((tech, index) => (
+        <div
+          key={`${tech.name}-${index}`}
+          className="flex flex-col items-center justify-center gap-3 shrink-0 transition-opacity hover:opacity-70"
+        >
+          <span className="text-4xl" role="img" aria-label={tech.name}>
+            {tech.icon}
+          </span>
+          <span className="font-bold text-sm whitespace-nowrap">{tech.name}</span>
+        </div>
+      ))}
+    </div>
   );
 }

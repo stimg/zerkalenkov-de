@@ -2,6 +2,8 @@ import { ChevronDown, MessageSquare, FileSearch } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { scrollToSection } from '@/lib/utils';
 import { Scene } from '@/components/three/Scene';
+import { DarkVeil } from '@/components/backgrounds/DarkVeil.tsx';
+import { TechStack } from '@/components/sections/TechStack';
 import resumeData from '@/data/resume.json';
 
 interface HeroProps {
@@ -14,6 +16,17 @@ export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className={ 'absolute inset-0 z-0'}>
+        <DarkVeil
+            hueShift={352}
+            noiseIntensity={0.3}
+            scanlineIntensity={0.7}
+            speed={0.5}
+            scanlineFrequency={1}
+            warpAmount={1.6}
+        />
+      </div>
+
       <Scene />
 
       <div className="relative z-10 container-custom text-center px-4 py-20">
@@ -22,7 +35,7 @@ export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
             Hi, I'm
           </p>
 
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary-500 via-primary-300 to-primary-500 bg-clip-text text-transparent pb-3">
+          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary-400 via-primary-100 to-primary-400 bg-clip-text text-transparent pb-3">
             {personal.name} {personal.surname}
           </h1>
 
@@ -56,8 +69,12 @@ export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
           </div>
         </div>
 
+        <div className="mt-24 mb-24 w-full max-w-6xl mx-auto">
+          <TechStack />
+        </div>
+
         <button
-          onClick={() => scrollToSection('#tech-stack')}
+          onClick={() => scrollToSection('#about')}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block"
           aria-label="Scroll to next section"
         >
