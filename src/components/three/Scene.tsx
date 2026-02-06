@@ -40,15 +40,11 @@ export function Scene() {
         ref={containerRef}
         style={{
           width: '100vw',
-          height: '100vh',
-          // maxWidth: '800px',
-          // maxHeight: '800px',
-          // minWidth: '400px',
-          // minHeight: '400px',
+          height: '100vh'
         }}
       >
         <Canvas
-          camera={{ position: [0, 0, 10], fov: 50 }}
+          camera={{ position: [0, 0, 10], fov: 55 }}
           dpr={[1, 2]}
           frameloop="always"
           gl={{

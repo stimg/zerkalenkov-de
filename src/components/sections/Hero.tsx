@@ -35,19 +35,19 @@ export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-            <Button variant="primary" size="lg" onClick={onChatOpen}>
+            <Button variant="primary" size="md" onClick={onChatOpen}>
               <MessageSquare className="w-5 h-5" />
               Chat with My Resume
             </Button>
 
-            <Button variant="outline" size="lg" onClick={onJDMatchOpen}>
+            <Button variant="secondary" size="md" onClick={onJDMatchOpen}>
               <FileSearch className="w-5 h-5" />
               Check JD Match
             </Button>
 
             <Button
               variant="ghost"
-              size="lg"
+              size="md"
               onClick={() => scrollToSection('#projects')}
               className="hidden sm:inline-flex"
             >

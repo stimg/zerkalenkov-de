@@ -8,7 +8,7 @@ A contemporary, professional portfolio website for a Senior Fullstack AI Enginee
 - **Build**: Vite
 - **Framework**: React 19 with TypeScript
 - **State/Routing**: TanStack Router + TanStack Query
-- **Styling**: Tailwind CSS 4
+- **Styling**: Tailwind CSS 3.4.1
 - **3D Graphics**: Three.js + React Three Fiber
 - **Icons**: Lucide React
 - **AI Features**: OpenAI API (GPT-4o)

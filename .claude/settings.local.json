@@ -8,7 +8,9 @@
       "Bash(~/.bun/bin/bun add:*)",
       "Bash(~/.bun/bin/bun run:*)",
       "Bash(~/.bun/bin/bun remove:*)",
-      "Bash(~/.bun/bin/bunx tailwindcss:*)"
+      "Bash(~/.bun/bin/bunx tailwindcss:*)",
+      "Bash(bunx tsc:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

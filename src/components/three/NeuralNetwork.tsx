@@ -21,9 +21,9 @@ export function NeuralNetwork() {
       const phi = Math.acos(-1 + (2 * i) / nodeCount);
       const theta = Math.sqrt(nodeCount * Math.PI) * phi;
 
-      const x = 1.2 * radius * Math.cos(theta) * Math.sin(phi);
+      const x = radius * Math.cos(theta) * Math.sin(phi);
       const y = radius / 1.1 * Math.sin(theta) * Math.sin(phi);
-      const z = 1.2 * radius * Math.cos(phi);
+      const z = radius * Math.cos(phi);
 
       nodePositions.push(new THREE.Vector3(x, y, z));
     }
@@ -87,10 +87,9 @@ export function NeuralNetwork() {
   const lineColors = useMemo(() => {
     const colors = new Float32Array(connections.length * 8);
     connections.forEach((_connection, i) => {
-      // Create gradient from purple to cyan based on connection index
+      // Create luminosity gradient based on connection index
       const t = i / connections.length;
-      // const hue = 0.75 - t * 0.45; // Purple (0.75) to Cyan (0.5) to Blue (0.6)
-      const lum = 0.6 - t * 0.65; // Luminosity (was 0.6)
+      const lum = 0.6 - t * 0.65; // Luminosity (org 0.6)
       const color = new THREE.Color().setHSL(0.7, 0.95, lum);
 
       colors[i * 8] = color.r;
@@ -118,7 +117,7 @@ export function NeuralNetwork() {
           />
         </bufferGeometry>
         <pointsMaterial
-          size={isMobile ? 0.25 : 0.2}
+          size={isMobile ? 0.1 : 0.1}
           color="#7061ff"
           transparent
           opacity={0.95}
