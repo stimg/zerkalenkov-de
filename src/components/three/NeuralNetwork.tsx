@@ -9,7 +9,7 @@ export function NeuralNetwork() {
   const groupRef = useRef<THREE.Group>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
 
-  const nodeCount = isMobile ? 15 : isTablet ? 20 : 40;
+  const nodeCount = isMobile ? 15 : isTablet ? 20 : 45;
 
   // Create nodes in a more structured spherical pattern
   const { nodes, connections } = useMemo(() => {
@@ -88,9 +88,9 @@ export function NeuralNetwork() {
     const colors = new Float32Array(connections.length * 8);
     connections.forEach((_connection, i) => {
       // Create luminosity gradient based on connection index
-      const t = i / connections.length;
-      const lum = 0.6 - t * 0.65; // Luminosity (org 0.6)
-      const color = new THREE.Color().setHSL(0.7, 0.95, lum);
+      // const t = i / connections.length;
+      const lum = 0.5 // - t * 0.65; // Luminosity (org 0.6)
+      const color = new THREE.Color().setHSL(0.68, 0.95, lum);
 
       colors[i * 8] = color.r;
       colors[i * 8 + 1] = color.g;
@@ -118,7 +118,7 @@ export function NeuralNetwork() {
         </bufferGeometry>
         <pointsMaterial
           size={isMobile ? 0.1 : 0.1}
-          color="#7061ff"
+          color="#5300be"
           transparent
           opacity={0.95}
           sizeAttenuation

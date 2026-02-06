@@ -18,11 +18,11 @@ export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
 
       <div className="relative z-10 container-custom text-center px-4 py-20">
         <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 font-medium">
+          <p className="text-5xl md:text-2xl text-black dark:text-white font-medium">
             Hi, I'm
           </p>
 
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary-300 via-primary-500 to-primary-700 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary-500 via-primary-300 to-primary-500 bg-clip-text text-transparent pb-3">
             {personal.name} {personal.surname}
           </h1>
 
@@ -30,7 +30,7 @@ export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
             {personal.title}
           </p>
 
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-primary-600 dark:text-primary-200 max-w-2xl mx-auto">
             {personal.tagline}
           </p>
 
@@ -40,13 +40,13 @@ export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
               Chat with My Resume
             </Button>
 
-            <Button variant="secondary" size="md" onClick={onJDMatchOpen}>
+            <Button variant="primary" size="md" onClick={onJDMatchOpen}>
               <FileSearch className="w-5 h-5" />
               Check JD Match
             </Button>
 
             <Button
-              variant="ghost"
+              variant="primary"
               size="md"
               onClick={() => scrollToSection('#projects')}
               className="hidden sm:inline-flex"

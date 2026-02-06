@@ -66,7 +66,7 @@ export function Scene() {
         >
           <ambientLight intensity={0.8} />
           <pointLight position={[10, 10, 10]} intensity={0.5} />
-          <pointLight position={[-10, -10, -10]} intensity={0.3} color="#00c5f5" />
+          <pointLight position={[-10, 10, -10]} intensity={0.3} />
           <NeuralNetwork />
         </Canvas>
       </div>
