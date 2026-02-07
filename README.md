@@ -15,13 +15,13 @@ A contemporary, professional portfolio website for a Senior Fullstack AI Enginee
 
 ## Features
 
-- 🎨 Dual-theme (light/dark) with system preference detection
-- 📱 Fully responsive design (mobile, tablet, desktop)
-- 🎭 3D animated neural network hero background
-- 🤖 AI-powered resume chat assistant
-- 📊 Job description match analyzer for recruiters
-- ♿ WCAG 2.1 AA+ accessibility compliant
-- ⚡ Optimized for performance (90+ Lighthouse scores)
+- Dual-theme (light/dark) with system preference detection
+- Fully responsive design (mobile, tablet, desktop)
+- 3D animated neural network hero background
+- AI-powered resume chat assistant
+- Job description match analyzer for recruiters
+- WCAG 2.1 AA+ accessibility compliant
+- Optimized for performance (90+ Lighthouse scores)
 
 ## Getting Started
 
@@ -106,4 +106,4 @@ To customize the portfolio for your own use:
 
 MIT License - feel free to use this as a template for your own portfolio!
 
-Built with ❤️ using React, TypeScript, and Bun.
+Built with React, TypeScript, and Bun.

@@ -93,7 +93,7 @@ export function TechStack() {
                 {tech.icon}
               </span>
             )}
-            <span className="font-bold text-sm whitespace-nowrap">{tech.name}</span>
+            {/*<span className="font-bold text-sm whitespace-nowrap">{tech.name}</span>*/}
           </div>
         );
       })}

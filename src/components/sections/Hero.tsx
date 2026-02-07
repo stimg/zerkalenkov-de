@@ -69,7 +69,7 @@ export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
           </div>
         </div>
 
-        <div className="mt-24 mb-24 w-full max-w-6xl mx-auto">
+        <div className="mt-20 mb-10 w-full max-w-6xl mx-auto">
           <TechStack />
         </div>
 
