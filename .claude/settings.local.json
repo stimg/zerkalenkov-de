@@ -12,7 +12,12 @@
       "Bash(bunx tsc:*)",
       "Bash(npx tsc:*)",
       "WebFetch(domain:reactbits.dev)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd professional SVG tech logos and enhance Hero section visuals\n\n- Create TechLogos component with SVG logos for all 12 technologies \\(React, TypeScript, Next.js, Node.js, Python, OpenAI, LangChain, AWS, Docker, PostgreSQL, MongoDB, Redis\\)\n- Replace emoji icons with scalable SVG logos in TechStack\n- Implement moving signal animations in NeuralNetwork showing sparks traveling along connections\n- Add dynamic node and connection highlighting with color transitions\n- Fix Button hover effects to properly work with gradient backgrounds\n- Adjust TechStack spacing and slow down animation speed\n- Update primary color palette with purple theme variations\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(bun:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
