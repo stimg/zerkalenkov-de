@@ -6,7 +6,10 @@ import {
   NextJsLogo,
   NodeJsLogo,
   PythonLogo,
+  ClaudeLogo,
+  GeminiLogo,
   OpenAILogo,
+  OllamaLogo,
   LangChainLogo,
   AWSLogo,
   DockerLogo,
@@ -15,23 +18,24 @@ import {
   RedisLogo,
 } from '@/components/icons/TechLogos';
 
-const logoMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  'React': ReactLogo,
-  'TypeScript': TypeScriptLogo,
-  'Next.js': NextJsLogo,
-  'Node.js': NodeJsLogo,
-  'Python': PythonLogo,
-  'OpenAI': OpenAILogo,
-  'LangChain': LangChainLogo,
-  'AWS': AWSLogo,
-  'Docker': DockerLogo,
-  'PostgreSQL': PostgreSQLLogo,
-  'MongoDB': MongoDBLogo,
-  'Redis': RedisLogo,
-};
-
+const logos = [
+  ReactLogo,
+  TypeScriptLogo,
+  NextJsLogo,
+  NodeJsLogo,
+  PythonLogo,
+  ClaudeLogo,
+  GeminiLogo,
+  OpenAILogo,
+  OllamaLogo,
+  LangChainLogo,
+  AWSLogo,
+  DockerLogo,
+  PostgreSQLLogo,
+  MongoDBLogo,
+  RedisLogo,
+]
 export function TechStack() {
-  const { techStack } = resumeData;
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -71,29 +75,25 @@ export function TechStack() {
     };
   }, []);
 
-  const duplicatedStack = [...techStack, ...techStack];
-
   return (
     <div
       ref={scrollRef}
       className="flex gap-16 overflow-hidden"
       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     >
-      {duplicatedStack.map((tech, index) => {
-        const LogoComponent = logoMap[tech.name];
+      {/* Render logos twice for seamless infinite scroll */}
+      {[...logos, ...logos].map((logo, index)=> {
+        const logoIcon = logo();
         return (
           <div
-            key={`${tech.name}-${index}`}
+            key={`tech-icon-${index}`}
             className="flex flex-col items-center justify-center gap-3 shrink-0 transition-opacity hover:opacity-70"
           >
-            {LogoComponent ? (
-              <LogoComponent className="w-12 h-12" />
-            ) : (
-              <span className="text-4xl" role="img" aria-label={tech.name}>
-                {tech.icon}
+            {logoIcon &&
+              <span className="text-4xl" role="img">
+                {logo()}
               </span>
-            )}
-            {/*<span className="font-bold text-sm whitespace-nowrap">{tech.name}</span>*/}
+            }
           </div>
         );
       })}

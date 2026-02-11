@@ -19,7 +19,7 @@ export function About() {
       <div className="container-custom">
         <div
           className={cn(
-            'text-center max-w-3xl mx-auto mb-16 transition-all duration-700',
+            'text-justify max-w-3xl mx-auto mb-16 transition-all duration-700',
             hasIntersected ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           )}
         >
