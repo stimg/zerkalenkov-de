@@ -24,7 +24,7 @@ export function Projects() {
               hasIntersected ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             )}
           >
-            <h2 className="text-3xl md:text-5xl font-bold">Featured Work</h2>
+            <h2 className="text-3xl md:text-5xl font-bold">Featured Projects</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -130,7 +130,11 @@ export function Projects() {
 
             <div>
               <h3 className="text-lg font-bold mb-2">Achievements</h3>
-              <p className="text-gray-600 dark:text-gray-400">{selectedProject.achievements}</p>
+              <ul className="list-disc list-outside ml-4 space-y-2 text-gray-800 dark:text-gray-200">
+                {selectedProject.achievements.map((achievement, index) => (
+                  <li key={index}>{achievement}</li>
+                ))}
+              </ul>
             </div>
 
             <div>

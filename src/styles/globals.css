@@ -161,25 +161,47 @@ html {
   background-color: #3a3a4e;
 }
 
-/* Carousel slide animations */
+/* Carousel slide animations with 3D rotation */
 @keyframes slideInFromRight {
-  from {
-    transform: translateX(100%);
+  0% {
+    transform: perspective(1200px) rotateY(45deg) translate3d(100%, 0, 0);
     opacity: 0;
   }
-  to {
-    transform: translateX(0);
+  100% {
+    transform: perspective(1200px) rotateY(0deg) translate3d(0, 0, 0);
     opacity: 1;
   }
 }
 
 @keyframes slideInFromLeft {
-  from {
-    transform: translateX(-100%);
+  0% {
+    transform: perspective(1200px) rotateY(-45deg) translate3d(-100%, 0, 0);
     opacity: 0;
   }
-  to {
-    transform: translateX(0);
+  100% {
+    transform: perspective(1200px) rotateY(0deg) translate3d(0, 0, 0);
     opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  0% {
+    transform: perspective(1200px) rotateY(0deg) translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(1200px) rotateY(-45deg) translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutToRight {
+  0% {
+    transform: perspective(1200px) rotateY(0deg) translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(1200px) rotateY(45deg) translate3d(100%, 0, 0);
+    opacity: 0;
   }
 }

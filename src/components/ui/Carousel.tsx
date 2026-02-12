@@ -10,29 +10,40 @@ interface CarouselProps {
 
 export function Carousel({ images, alt = 'Carousel image', className }: CarouselProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [nextImageIndex, setNextImageIndex] = useState<number | null>(null);
   const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null);
 
+  const isTransitioning = nextImageIndex !== null;
+
   const handlePrevImage = () => {
-    if (images.length > 0) {
+    if (images.length > 0 && !isTransitioning) {
+      const newIndex = currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
+      setNextImageIndex(newIndex);
       setSlideDirection('right');
-      setCurrentImageIndex((prev) =>
-        prev === 0 ? images.length - 1 : prev - 1
-      );
     }
   };
 
   const handleNextImage = () => {
-    if (images.length > 0) {
+    if (images.length > 0 && !isTransitioning) {
+      const newIndex = currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
+      setNextImageIndex(newIndex);
       setSlideDirection('left');
-      setCurrentImageIndex((prev) =>
-        prev === images.length - 1 ? 0 : prev + 1
-      );
     }
   };
 
   const handleDotClick = (index: number) => {
-    setSlideDirection(index > currentImageIndex ? 'left' : 'right');
-    setCurrentImageIndex(index);
+    if (!isTransitioning && index !== currentImageIndex) {
+      setNextImageIndex(index);
+      setSlideDirection(index > currentImageIndex ? 'left' : 'right');
+    }
+  };
+
+  const handleAnimationEnd = () => {
+    if (nextImageIndex !== null) {
+      setCurrentImageIndex(nextImageIndex);
+      setNextImageIndex(null);
+      setSlideDirection(null);
+    }
   };
 
   if (!images || images.length === 0) {
@@ -40,21 +51,71 @@ export function Carousel({ images, alt = 'Carousel image', className }: Carousel
   }
 
   return (
-    <div className={cn("relative group overflow-hidden rounded-lg", className)}>
-      <div className="aspect-video relative">
-        <div className="absolute inset-0 flex items-center justify-center m-10">
+    <div
+      className={cn("relative group overflow-hidden rounded-lg", className)}
+      style={{
+        perspective: '1200px',
+        WebkitPerspective: '1200px'
+      }}
+    >
+      <div
+        className="aspect-video relative"
+        style={{
+          transformStyle: 'preserve-3d',
+          WebkitTransformStyle: 'preserve-3d'
+        }}
+      >
+        <div
+          className="absolute inset-0 flex items-center justify-center m-10"
+          style={{
+            transformStyle: 'preserve-3d',
+            WebkitTransformStyle: 'preserve-3d'
+          }}
+        >
+          {/* Current/Outgoing image */}
           <img
-            key={currentImageIndex}
+            key={`current-${currentImageIndex}`}
             src={images[currentImageIndex]}
             alt={`${alt} - Image ${currentImageIndex + 1}`}
-            className="w-full h-full object-contain transition-all duration-500"
+            className="absolute w-full h-full object-contain"
             style={{
-              animation: slideDirection
-                ? `slideIn${slideDirection === 'left' ? 'FromRight' : 'FromLeft'} 0.5s ease-out`
-                : 'none'
+              animation: isTransitioning && slideDirection
+                ? `slideOutTo${slideDirection === 'left' ? 'Left' : 'Right'} 0.6s ease-out both`
+                : 'none',
+              animationFillMode: 'both',
+              transformStyle: 'preserve-3d',
+              WebkitTransformStyle: 'preserve-3d',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              transform: 'perspective(1200px) rotateY(0deg) translate3d(0, 0, 0)',
+              opacity: 1,
+              willChange: 'transform, opacity',
+              zIndex: 1
             }}
-            onAnimationEnd={() => setSlideDirection(null)}
           />
+
+          {/* Next/Incoming image - only during transition */}
+          {isTransitioning && nextImageIndex !== null && (
+            <img
+              key={`next-${nextImageIndex}`}
+              src={images[nextImageIndex]}
+              alt={`${alt} - Image ${nextImageIndex + 1}`}
+              className="absolute w-full h-full object-contain"
+              style={{
+                animation: slideDirection
+                  ? `slideIn${slideDirection === 'left' ? 'FromRight' : 'FromLeft'} 0.6s ease-out both`
+                  : 'none',
+                animationFillMode: 'both',
+                transformStyle: 'preserve-3d',
+                WebkitTransformStyle: 'preserve-3d',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                willChange: 'transform, opacity',
+                zIndex: 2
+              }}
+              onAnimationEnd={handleAnimationEnd}
+            />
+          )}
         </div>
       </div>
 

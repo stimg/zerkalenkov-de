@@ -292,8 +292,14 @@
       "jobType": "Remote",
       "employmentType": "Freelance",
       "description": "Conversational AI chatbot for company product consulters.",
-      "achievements": "Led development of a sophisticated AI voice assistant platform for automotive and smart home integration. Implemented real-time speech processing, natural language understanding, and multi-turn conversation management. Architected scalable microservices handling 10M+ daily interactions.",
-      "skills": ["Python", "FastAPI", "OpenAI", "WebRTC", "Kubernetes", "PostgreSQL", "Redis"],
+      "achievements": [
+        "Built a real-time, voice-enabled GenAI assistant for product consultants, integrating LLMs, RAG, semantic search, and inference pipelines to support rapid information retrieval",
+        "Designed and implemented SOA-based agentic AI workflows using Novita, OpenAI, and Ollama",
+        "Developed a full-stack platform using Open WebUI and LiveKit Frameworks, Python, Svelte, WebRTC and TypeScript, deployed via Docker and GitHub CI/CD",
+        "Delivered scalable vector-search capabilities using PostgreSQL + pgvector",
+        "Actively incorporated AI assistants into the engineering workflow to accelerate prototyping and code delivery"
+      ],
+      "skills": ["Gen/Agentic AI", "RAG", "LLM", "NLP", "OpenAI", "Ollama", "OpenRouter", "Prompt Engineering", "Inferences", "Embeddings", "Vector/Semantic Search", "Tool use", "Svelte", "TypeScript", "Python", "LiveKit", "WebRTC", "PostgreSQL", "pgvector", "Chroma", "Qdrant", "SQLight", "Docker", "GitHub CI/CD", "GitHub Registry", "Cloud Native"],
       "images": [
         "/images/impact-flow/if-scr-1.png",
         "/images/impact-flow/if-scr-2.png",
@@ -320,7 +326,11 @@
       "jobType": "Remote",
       "employmentType": "Freelance",
       "description": "Intelligent product recommendation engine for industrial components",
-      "achievements": "Developed AI-powered product configuration system helping engineers select optimal industrial components. Implemented recommendation engine processing 100K+ SKUs, 3D visualization, and automated quote generation.",
+      "achievements": [
+        "Developed AI-powered product configuration system helping engineers select optimal industrial components",
+        "Implemented recommendation engine processing 100K+ SKUs with 3D visualization",
+        "Built automated quote generation system"
+      ],
       "skills": ["Vue.js", "Python", "Django", "Three.js", "PostgreSQL", "Elasticsearch"],
       "images": ["/images/igus-scr-1.png"],
       "links": {
@@ -338,7 +348,11 @@
       "jobType": "Contract",
       "employmentType": "Contract",
       "description": "Predictive maintenance and route optimization system for commercial vehicles",
-      "achievements": "Built intelligent fleet management system with predictive maintenance alerts, route optimization using ML models, and real-time telemetry processing. Reduced maintenance costs by 30% through early fault detection.",
+      "achievements": [
+        "Built intelligent fleet management system with predictive maintenance alerts",
+        "Implemented route optimization using ML models and real-time telemetry processing",
+        "Reduced maintenance costs by 30% through early fault detection"
+      ],
       "skills": ["React", "TypeScript", "Node.js", "TensorFlow", "AWS", "DynamoDB"],
       "images": ["/projects/man-1.jpg"],
       "links": {},
@@ -354,7 +368,11 @@
       "jobType": "Freelance",
       "employmentType": "Freelance",
       "description": "Multi-modal content generation with custom LLM workflows",
-      "achievements": "Architected GenAI platform for automated content creation using GPT-4, DALL-E, and custom fine-tuned models. Implemented RAG system, prompt templates, and workflow orchestration. Scaled to 50K monthly users.",
+      "achievements": [
+        "Architected GenAI platform for automated content creation using GPT-4, DALL-E, and custom fine-tuned models",
+        "Implemented RAG system with prompt templates and workflow orchestration",
+        "Scaled to 50K monthly users"
+      ],
       "skills": ["Next.js", "OpenAI", "LangChain", "Pinecone", "Vercel", "Supabase"],
       "images": ["/projects/impact-flow-1.jpg"],
       "links": {},
@@ -370,7 +388,11 @@
       "jobType": "Full-time",
       "employmentType": "Full-time",
       "description": "Real-time collaboration tools for construction planning",
-      "achievements": "Led development of real-time collaboration features for BIM software used by architects and engineers worldwide. Implemented WebSocket-based sync, conflict resolution, and 3D model streaming.",
+      "achievements": [
+        "Led development of real-time collaboration features for BIM software used by architects and engineers worldwide",
+        "Implemented WebSocket-based sync with conflict resolution",
+        "Built 3D model streaming infrastructure"
+      ],
       "skills": ["React", "TypeScript", "WebSocket", "C++", "Azure", "CosmosDB"],
       "images": ["/projects/allplan-1.jpg"],
       "links": {
