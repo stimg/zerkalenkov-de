@@ -4,6 +4,7 @@ import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
+import { Carousel } from '@/components/ui/Carousel';
 import { useIntersection } from '@/hooks/useIntersection';
 import { cn } from '@/lib/utils';
 import resumeData from '@/data/resume.json';
@@ -40,12 +41,26 @@ export function Projects() {
                 )}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className="aspect-video bg-gradient-to-br from-primary-500 to-primary-700 rounded-t-xl" />
+                {project.images && project.images.length > 0 ? (
+                  <div
+                    className="aspect-video rounded-t-xl bg-cover bg-center bg-no-repeat"
+                    style={{ backgroundImage: `url(${project.images[0]})` }}
+                  />
+                ) : (
+                  <div className="aspect-video bg-gradient-to-br from-primary-500 to-primary-700 rounded-t-xl" />
+                )}
                 <CardHeader>
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <h3 className="text-xl font-bold mb-1">{project.title}</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">{project.company}</p>
+                      <div className="flex items-center gap-2 mt-1 text-xs text-gray-500 dark:text-gray-500">
+                        <span>{project.location}</span>
+                        <span>•</span>
+                        <span>{project.jobType}</span>
+                        <span>•</span>
+                        <span>{project.employmentType}</span>
+                      </div>
                     </div>
                   </div>
                 </CardHeader>
@@ -54,14 +69,14 @@ export function Projects() {
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 4).map((tech) => (
+                    {project.skills.slice(0, 4).map((tech) => (
                       <Badge key={tech} variant="default" className="text-xs">
                         {tech}
                       </Badge>
                     ))}
-                    {project.technologies.length > 4 && (
+                    {project.skills.length > 4 && (
                       <Badge variant="default" className="text-xs">
-                        +{project.technologies.length - 4}
+                        +{project.skills.length - 4}
                       </Badge>
                     )}
                   </div>
@@ -80,9 +95,13 @@ export function Projects() {
       >
         {selectedProject && (
           <div className="space-y-6">
-            <div className="aspect-video bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg" />
+            {selectedProject.images && selectedProject.images.length > 0 ? (
+              <Carousel images={selectedProject.images} alt={selectedProject.title} />
+            ) : (
+              <div className="aspect-video bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg" />
+            )}
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div>
                 <p className="text-gray-600 dark:text-gray-400 mb-1">Company</p>
                 <p className="font-semibold">{selectedProject.company}</p>
@@ -95,17 +114,29 @@ export function Projects() {
                 <p className="text-gray-600 dark:text-gray-400 mb-1">Period</p>
                 <p className="font-semibold">{selectedProject.period}</p>
               </div>
+              <div>
+                <p className="text-gray-600 dark:text-gray-400 mb-1">Location</p>
+                <p className="font-semibold">{selectedProject.location}</p>
+              </div>
+              <div>
+                <p className="text-gray-600 dark:text-gray-400 mb-1">Job Type</p>
+                <p className="font-semibold">{selectedProject.jobType}</p>
+              </div>
+              <div>
+                <p className="text-gray-600 dark:text-gray-400 mb-1">Employment Type</p>
+                <p className="font-semibold">{selectedProject.employmentType}</p>
+              </div>
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-2">Overview</h3>
-              <p className="text-gray-600 dark:text-gray-400">{selectedProject.fullDescription}</p>
+              <h3 className="text-lg font-bold mb-2">Achievements</h3>
+              <p className="text-gray-600 dark:text-gray-400">{selectedProject.achievements}</p>
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-3">Technologies</h3>
+              <h3 className="text-lg font-bold mb-3">Skills</h3>
               <div className="flex flex-wrap gap-2">
-                {selectedProject.technologies.map((tech) => (
+                {selectedProject.skills.map((tech) => (
                   <Badge key={tech} variant="info">
                     {tech}
                   </Badge>

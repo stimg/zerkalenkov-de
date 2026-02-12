@@ -79,7 +79,12 @@ export function TechStack() {
     <div
       ref={scrollRef}
       className="flex gap-16 overflow-hidden"
-      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      style={{
+        scrollbarWidth: 'none',
+        msOverflowStyle: 'none',
+        maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'
+      }}
     >
       {/* Render logos twice for seamless infinite scroll */}
       {[...logos, ...logos].map((logo, index)=> {

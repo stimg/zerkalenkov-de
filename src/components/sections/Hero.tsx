@@ -43,7 +43,7 @@ export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
             {personal.title}
           </p>
 
-          <p className="text-lg md:text-xl text-primary-600 dark:text-primary-200 max-w-2xl mx-auto">
+          <p className="text-lg text-justify md:text-xl text-primary-600 dark:text-primary-200 max-w-2xl mx-auto">
             {personal.tagline}
           </p>
 
