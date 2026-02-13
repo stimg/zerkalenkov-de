@@ -52,232 +52,730 @@
     {
       "category": "AI/ML",
       "items": [
-        { "name": "Agentic AI", "level": "advanced" },
-        { "name": "Generative AI", "level": "advanced" },
-        { "name": "Chatbots", "level": "expert" },
-        { "name": "AI Agents", "level": "advanced" },
-        { "name": "Embeddings", "level": "advanced" },
-        { "name": "Inferences", "level": "advanced" },
-        { "name": "RAG", "level": "expert" },
-        { "name": "LLM", "level": "expert" },
-        { "name": "Similarity / Semantic Search", "level": "advanced" },
-        { "name": "Vector Search & DB", "level": "advanced" },
-        { "name": "Conversational AI", "level": "expert" },
-        { "name": "NLU / NLP", "level": "advanced" },
-        { "name": "TTS / STT", "level": "expert" },
-        { "name": "Prompt Engineering", "level": "expert" },
-        { "name": "OpenAI AI", "level": "expert" },
-        { "name": "Ollama", "level": "expert" },
-        { "name": "Openrouter", "level": "expert" },
-        { "name": "LiveKit", "level": "expert" },
-        { "name": "Open WebUI", "level": "expert" },
-        { "name": "OpenAI API", "level": "expert" },
-        { "name": "LangChain", "level": "advanced" },
-        { "name": "LangGraph", "level": "advanced" },
-        { "name": "Hugging Face", "level": "advanced" }
+        {
+          "name": "Agentic AI",
+          "level": "advanced"
+        },
+        {
+          "name": "Generative AI",
+          "level": "advanced"
+        },
+        {
+          "name": "Chatbots",
+          "level": "expert"
+        },
+        {
+          "name": "AI Agents",
+          "level": "advanced"
+        },
+        {
+          "name": "Embeddings",
+          "level": "advanced"
+        },
+        {
+          "name": "Inferences",
+          "level": "advanced"
+        },
+        {
+          "name": "RAG",
+          "level": "expert"
+        },
+        {
+          "name": "LLM",
+          "level": "expert"
+        },
+        {
+          "name": "Similarity / Semantic Search",
+          "level": "advanced"
+        },
+        {
+          "name": "Vector Search & DB",
+          "level": "advanced"
+        },
+        {
+          "name": "Conversational AI",
+          "level": "expert"
+        },
+        {
+          "name": "NLU / NLP",
+          "level": "advanced"
+        },
+        {
+          "name": "TTS / STT",
+          "level": "expert"
+        },
+        {
+          "name": "Prompt Engineering",
+          "level": "expert"
+        },
+        {
+          "name": "OpenAI AI",
+          "level": "expert"
+        },
+        {
+          "name": "Ollama",
+          "level": "expert"
+        },
+        {
+          "name": "Openrouter",
+          "level": "expert"
+        },
+        {
+          "name": "LiveKit",
+          "level": "expert"
+        },
+        {
+          "name": "Open WebUI",
+          "level": "expert"
+        },
+        {
+          "name": "OpenAI API",
+          "level": "expert"
+        },
+        {
+          "name": "LangChain",
+          "level": "advanced"
+        },
+        {
+          "name": "LangGraph",
+          "level": "advanced"
+        },
+        {
+          "name": "Hugging Face",
+          "level": "advanced"
+        }
       ]
     },
     {
       "category": "Frontend",
       "items": [
-        { "name": "React", "level": "expert" },
-        { "name": "React Query", "level": "expert" },
-        { "name": "Zustand", "level": "expert" },
-        { "name": "Redux", "level": "expert" },
-        { "name": "Zod", "level": "expert" },
-        { "name": "Next.js", "level": "expert" },
-        { "name": "Svelte.js", "level": "advanced" },
-        { "name": "Tailwind CSS", "level": "expert" },
-        { "name": "Backbone", "level": "expert" },
-        { "name": "Flight.js", "level": "advanced" },
-        { "name": "Cytoscape.js", "level": "advanced" },
-        { "name": "jQuery", "level": "expert" },
-        { "name": "jQuery UI", "level": "expert" },
-        { "name": "Bootstrap", "level": "advanced" },
-        { "name": "Google MUI", "level": "advanced" },
-        { "name": "Figma", "level": "advanced" }
+        {
+          "name": "React",
+          "level": "expert"
+        },
+        {
+          "name": "React Query",
+          "level": "expert"
+        },
+        {
+          "name": "Zustand",
+          "level": "expert"
+        },
+        {
+          "name": "Redux",
+          "level": "expert"
+        },
+        {
+          "name": "Zod",
+          "level": "expert"
+        },
+        {
+          "name": "Next.js",
+          "level": "expert"
+        },
+        {
+          "name": "Svelte.js",
+          "level": "advanced"
+        },
+        {
+          "name": "Tailwind CSS",
+          "level": "expert"
+        },
+        {
+          "name": "Backbone",
+          "level": "expert"
+        },
+        {
+          "name": "Flight.js",
+          "level": "advanced"
+        },
+        {
+          "name": "Cytoscape.js",
+          "level": "advanced"
+        },
+        {
+          "name": "jQuery",
+          "level": "expert"
+        },
+        {
+          "name": "jQuery UI",
+          "level": "expert"
+        },
+        {
+          "name": "Bootstrap",
+          "level": "advanced"
+        },
+        {
+          "name": "Google MUI",
+          "level": "advanced"
+        },
+        {
+          "name": "Figma",
+          "level": "advanced"
+        }
       ]
     },
     {
       "category": "Build & Package Tools",
       "items": [
-        { "name": "Webpack", "level": "advanced" },
-        { "name": "Gulp", "level": "expert" },
-        { "name": "Grunt", "level": "expert" },
-        { "name": "Bower", "level": "expert" },
-        { "name": "Browserify", "level": "expert" },
-        { "name": "Babel", "level": "expert" },
-        { "name": "Yarn", "level": "expert" },
-        { "name": "NPM / PNPM", "level": "expert" },
-        { "name": "Turborepo", "level": "expert" },
-        { "name": "Vite", "level": "expert" }
+        {
+          "name": "Webpack",
+          "level": "advanced"
+        },
+        {
+          "name": "Gulp",
+          "level": "expert"
+        },
+        {
+          "name": "Grunt",
+          "level": "expert"
+        },
+        {
+          "name": "Bower",
+          "level": "expert"
+        },
+        {
+          "name": "Browserify",
+          "level": "expert"
+        },
+        {
+          "name": "Babel",
+          "level": "expert"
+        },
+        {
+          "name": "Yarn",
+          "level": "expert"
+        },
+        {
+          "name": "NPM / PNPM",
+          "level": "expert"
+        },
+        {
+          "name": "Turborepo",
+          "level": "expert"
+        },
+        {
+          "name": "Vite",
+          "level": "expert"
+        }
       ]
     },
     {
       "category": "Authentication & Security",
       "items": [
-        { "name": "OAuth", "level": "expert" },
-        { "name": "OpenID", "level": "advanced" },
-        { "name": "JWT", "level": "expert" },
-        { "name": "AWS IAM", "level": "advanced" },
-        { "name": "RBAC", "level": "advanced" },
-        { "name": "Keycloak", "level": "expert" },
-        { "name": "PassportJS", "level": "advanced" }
+        {
+          "name": "OAuth",
+          "level": "expert"
+        },
+        {
+          "name": "OpenID",
+          "level": "advanced"
+        },
+        {
+          "name": "JWT",
+          "level": "expert"
+        },
+        {
+          "name": "AWS IAM",
+          "level": "advanced"
+        },
+        {
+          "name": "RBAC",
+          "level": "advanced"
+        },
+        {
+          "name": "Keycloak",
+          "level": "expert"
+        },
+        {
+          "name": "PassportJS",
+          "level": "advanced"
+        }
       ]
     },
     {
       "category": "Testing",
       "items": [
-        { "name": "Jest", "level": "expert" },
-        { "name": "Cypress", "level": "expert" },
-        { "name": "Jasmine", "level": "expert" },
-        { "name": "Karma", "level": "advanced" },
-        { "name": "Selenium", "level": "advanced" },
-        { "name": "WebdriverIO", "level": "advanced" },
-        { "name": "Playwright", "level": "advanced" },
-        { "name": "TDD / BDD", "level": "advanced" },
-        { "name": "Unit Testing", "level": "advanced" },
-        { "name": "E2E Testing", "level": "advanced" },
-        { "name": "API Testing", "level": "advanced" }
+        {
+          "name": "Jest",
+          "level": "expert"
+        },
+        {
+          "name": "Cypress",
+          "level": "expert"
+        },
+        {
+          "name": "Jasmine",
+          "level": "expert"
+        },
+        {
+          "name": "Karma",
+          "level": "advanced"
+        },
+        {
+          "name": "Selenium",
+          "level": "advanced"
+        },
+        {
+          "name": "WebdriverIO",
+          "level": "advanced"
+        },
+        {
+          "name": "Playwright",
+          "level": "advanced"
+        },
+        {
+          "name": "TDD / BDD",
+          "level": "advanced"
+        },
+        {
+          "name": "Unit Testing",
+          "level": "advanced"
+        },
+        {
+          "name": "E2E Testing",
+          "level": "advanced"
+        },
+        {
+          "name": "API Testing",
+          "level": "advanced"
+        }
       ]
     },
     {
       "category": "AWS Services",
       "items": [
-        { "name": "IAM", "level": "advanced" },
-        { "name": "ECR", "level": "expert" },
-        { "name": "EC2", "level": "advanced" },
-        { "name": "RDS", "level": "expert" },
-        { "name": "S3", "level": "advanced" },
-        { "name": "Route 53", "level": "advanced" },
-        { "name": "CloudWatch", "level": "expert" },
-        { "name": "CDK", "level": "advanced" },
-        { "name": "CloudFormation", "level": "advanced" },
-        { "name": "Amplify", "level": "advanced" },
-        { "name": "Cognito", "level": "advanced" },
-        { "name": "CodeCommit", "level": "advanced" },
-        { "name": "API Gateway", "level": "advanced" },
-        { "name": "Lambda", "level": "advanced" },
-        { "name": "DynamoDB", "level": "advanced" },
-        { "name": "MSK", "level": "advanced" },
-        { "name": "Kinesis", "level": "advanced" },
-        { "name": "SNS", "level": "advanced" },
-        { "name": "SQS", "level": "advanced" }
+        {
+          "name": "IAM",
+          "level": "advanced"
+        },
+        {
+          "name": "ECR",
+          "level": "expert"
+        },
+        {
+          "name": "EC2",
+          "level": "advanced"
+        },
+        {
+          "name": "RDS",
+          "level": "expert"
+        },
+        {
+          "name": "S3",
+          "level": "advanced"
+        },
+        {
+          "name": "Route 53",
+          "level": "advanced"
+        },
+        {
+          "name": "CloudWatch",
+          "level": "expert"
+        },
+        {
+          "name": "CDK",
+          "level": "advanced"
+        },
+        {
+          "name": "CloudFormation",
+          "level": "advanced"
+        },
+        {
+          "name": "Amplify",
+          "level": "advanced"
+        },
+        {
+          "name": "Cognito",
+          "level": "advanced"
+        },
+        {
+          "name": "CodeCommit",
+          "level": "advanced"
+        },
+        {
+          "name": "API Gateway",
+          "level": "advanced"
+        },
+        {
+          "name": "Lambda",
+          "level": "advanced"
+        },
+        {
+          "name": "DynamoDB",
+          "level": "advanced"
+        },
+        {
+          "name": "MSK",
+          "level": "advanced"
+        },
+        {
+          "name": "Kinesis",
+          "level": "advanced"
+        },
+        {
+          "name": "SNS",
+          "level": "advanced"
+        },
+        {
+          "name": "SQS",
+          "level": "advanced"
+        }
       ]
     },
     {
       "category": "CSS Preprocessors",
       "items": [
-        { "name": "SASS", "level": "expert" },
-        { "name": "LESS", "level": "expert" },
-        { "name": "Stylus", "level": "advanced" },
-        { "name": "BEM", "level": "expert" },
-        { "name": "OOCSS", "level": "advanced" },
-        { "name": "SMACSS", "level": "advanced" }
+        {
+          "name": "SASS",
+          "level": "expert"
+        },
+        {
+          "name": "LESS",
+          "level": "expert"
+        },
+        {
+          "name": "Stylus",
+          "level": "advanced"
+        },
+        {
+          "name": "BEM",
+          "level": "expert"
+        },
+        {
+          "name": "OOCSS",
+          "level": "advanced"
+        },
+        {
+          "name": "SMACSS",
+          "level": "advanced"
+        }
       ]
     },
     {
       "category": "Backend",
       "items": [
-        { "name": "Node.js", "level": "expert" },
-        { "name": "Express", "level": "expert" },
-        { "name": "Hapi", "level": "expert" },
-        { "name": "NestJS", "level": "advanced" },
-        { "name": "NxJS", "level": "advanced" },
-        { "name": "FastAPI", "level": "advanced" },
-        { "name": "GraphQL", "level": "advanced" },
-        { "name": "REST", "level": "expert" },
-        { "name": "AJAX", "level": "expert" },
-        { "name": "SOAP", "level": "advanced" },
-        { "name": "JSON", "level": "expert" },
-        { "name": "YAML", "level": "expert" },
-        { "name": "WebSocket / WebRTC", "level": "expert" },
-        { "name": "Kafka", "level": "expert" },
-        { "name": "RxJS", "level": "expert" },
-        { "name": "PubSub", "level": "expert" },
-        { "name": "Lambdas", "level": "expert" }
+        {
+          "name": "Node.js",
+          "level": "expert"
+        },
+        {
+          "name": "Express",
+          "level": "expert"
+        },
+        {
+          "name": "Hapi",
+          "level": "expert"
+        },
+        {
+          "name": "NestJS",
+          "level": "advanced"
+        },
+        {
+          "name": "NxJS",
+          "level": "advanced"
+        },
+        {
+          "name": "FastAPI",
+          "level": "advanced"
+        },
+        {
+          "name": "GraphQL",
+          "level": "advanced"
+        },
+        {
+          "name": "REST",
+          "level": "expert"
+        },
+        {
+          "name": "AJAX",
+          "level": "expert"
+        },
+        {
+          "name": "SOAP",
+          "level": "advanced"
+        },
+        {
+          "name": "JSON",
+          "level": "expert"
+        },
+        {
+          "name": "YAML",
+          "level": "expert"
+        },
+        {
+          "name": "WebSocket / WebRTC",
+          "level": "expert"
+        },
+        {
+          "name": "Kafka",
+          "level": "expert"
+        },
+        {
+          "name": "RxJS",
+          "level": "expert"
+        },
+        {
+          "name": "PubSub",
+          "level": "expert"
+        },
+        {
+          "name": "Lambdas",
+          "level": "expert"
+        }
       ]
     },
     {
       "category": "Databases",
       "items": [
-        { "name": "PostgreSQL", "level": "advanced" },
-        { "name": "Pgvector", "level": "advanced" },
-        { "name": "DynamoDB", "level": "expert" },
-        { "name": "MongoDB", "level": "advanced" },
-        { "name": "MySQL", "level": "advanced" },
-        { "name": "Redis", "level": "advanced" },
-        { "name": "SQLite", "level": "advanced" },
-        { "name": "Chroma", "level": "advanced" },
-        { "name": "Qdrant", "level": "advanced" },
-        { "name": "OpenSearch", "level": "advanced" },
-        { "name": "Semantic Search", "level": "advanced" },
-        { "name": "Similarity Search", "level": "advanced" },
-        { "name": "Web Search", "level": "advanced" },
-        { "name": "IndexedDB", "level": "advanced" },
-        { "name": "Session Storage", "level": "advanced" },
-        { "name": "LocalStorage", "level": "advanced" }
+        {
+          "name": "PostgreSQL",
+          "level": "advanced"
+        },
+        {
+          "name": "Pgvector",
+          "level": "advanced"
+        },
+        {
+          "name": "DynamoDB",
+          "level": "expert"
+        },
+        {
+          "name": "MongoDB",
+          "level": "advanced"
+        },
+        {
+          "name": "MySQL",
+          "level": "advanced"
+        },
+        {
+          "name": "Redis",
+          "level": "advanced"
+        },
+        {
+          "name": "SQLite",
+          "level": "advanced"
+        },
+        {
+          "name": "Chroma",
+          "level": "advanced"
+        },
+        {
+          "name": "Qdrant",
+          "level": "advanced"
+        },
+        {
+          "name": "OpenSearch",
+          "level": "advanced"
+        },
+        {
+          "name": "Semantic Search",
+          "level": "advanced"
+        },
+        {
+          "name": "Similarity Search",
+          "level": "advanced"
+        },
+        {
+          "name": "Web Search",
+          "level": "advanced"
+        },
+        {
+          "name": "IndexedDB",
+          "level": "advanced"
+        },
+        {
+          "name": "Session Storage",
+          "level": "advanced"
+        },
+        {
+          "name": "LocalStorage",
+          "level": "advanced"
+        }
       ]
     },
     {
       "category": "Server Software",
       "items": [
-        { "name": "Apache", "level": "expert" },
-        { "name": "Nginx", "level": "expert" },
-        { "name": "HA-Proxy", "level": "expert" },
-        { "name": "Tomcat", "level": "advanced" }
+        {
+          "name": "Apache",
+          "level": "expert"
+        },
+        {
+          "name": "Nginx",
+          "level": "expert"
+        },
+        {
+          "name": "HA-Proxy",
+          "level": "expert"
+        },
+        {
+          "name": "Tomcat",
+          "level": "advanced"
+        }
       ]
     },
     {
       "category": "DevOps & CI/CD",
       "items": [
-        { "name": "Git", "level": "expert" },
-        { "name": "CVS", "level": "advanced" },
-        { "name": "SVN", "level": "expert" },
-        { "name": "Subversion", "level": "advanced" },
-        { "name": "Perforce", "level": "intermediate" },
-        { "name": "GitHub", "level": "advanced" },
-        { "name": "GitLab", "level": "advanced" },
-        { "name": "Stash", "level": "advanced" },
-        { "name": "Bitbucket", "level": "advanced" },
-        { "name": "GitHub Actions", "level": "advanced" },
-        { "name": "GitHub Pipelines", "level": "advanced" },
-        { "name": "GitLab Pipelines", "level": "advanced" },
-        { "name": "GitHub Runners", "level": "advanced" },
-        { "name": "Copilot", "level": "advanced" },
-        { "name": "Claude Code", "level": "advanced" },
-        { "name": "Jenkins", "level": "intermediate" },
-        { "name": "Prometheus", "level": "intermediate" },
-        { "name": "Grafana", "level": "intermediate" },
-        { "name": "CloudWatch", "level": "intermediate" }
+        {
+          "name": "Git",
+          "level": "expert"
+        },
+        {
+          "name": "CVS",
+          "level": "advanced"
+        },
+        {
+          "name": "SVN",
+          "level": "expert"
+        },
+        {
+          "name": "Subversion",
+          "level": "advanced"
+        },
+        {
+          "name": "Perforce",
+          "level": "intermediate"
+        },
+        {
+          "name": "GitHub",
+          "level": "advanced"
+        },
+        {
+          "name": "GitLab",
+          "level": "advanced"
+        },
+        {
+          "name": "Stash",
+          "level": "advanced"
+        },
+        {
+          "name": "Bitbucket",
+          "level": "advanced"
+        },
+        {
+          "name": "GitHub Actions",
+          "level": "advanced"
+        },
+        {
+          "name": "GitHub Pipelines",
+          "level": "advanced"
+        },
+        {
+          "name": "GitLab Pipelines",
+          "level": "advanced"
+        },
+        {
+          "name": "GitHub Runners",
+          "level": "advanced"
+        },
+        {
+          "name": "Copilot",
+          "level": "advanced"
+        },
+        {
+          "name": "Claude Code",
+          "level": "advanced"
+        },
+        {
+          "name": "Jenkins",
+          "level": "intermediate"
+        },
+        {
+          "name": "Prometheus",
+          "level": "intermediate"
+        },
+        {
+          "name": "Grafana",
+          "level": "intermediate"
+        },
+        {
+          "name": "CloudWatch",
+          "level": "intermediate"
+        }
       ]
     },
     {
       "category": "Project Management",
       "items": [
-        { "name": "Agile", "level": "expert" },
-        { "name": "SCRUM", "level": "advanced" },
-        { "name": "Kanban", "level": "expert" },
-        { "name": "SOC", "level": "advanced" },
-        { "name": "DRY", "level": "intermediate" },
-        { "name": "KISS", "level": "intermediate" },
-        { "name": "YAGNI", "level": "intermediate" },
-        { "name": "Code Review", "level": "intermediate" },
-        { "name": "Pair Programming", "level": "intermediate" },
-        { "name": "JIRA", "level": "expert" },
-        { "name": "Confluence", "level": "expert" }
+        {
+          "name": "Agile",
+          "level": "expert"
+        },
+        {
+          "name": "SCRUM",
+          "level": "advanced"
+        },
+        {
+          "name": "Kanban",
+          "level": "expert"
+        },
+        {
+          "name": "SOC",
+          "level": "advanced"
+        },
+        {
+          "name": "DRY",
+          "level": "intermediate"
+        },
+        {
+          "name": "KISS",
+          "level": "intermediate"
+        },
+        {
+          "name": "YAGNI",
+          "level": "intermediate"
+        },
+        {
+          "name": "Code Review",
+          "level": "intermediate"
+        },
+        {
+          "name": "Pair Programming",
+          "level": "intermediate"
+        },
+        {
+          "name": "JIRA",
+          "level": "expert"
+        },
+        {
+          "name": "Confluence",
+          "level": "expert"
+        }
       ]
     },
     {
       "category": "Languages",
       "items": [
-        { "name": "TypeScript", "level": "expert" },
-        { "name": "JavaScript (ES6+)", "level": "expert" },
-        { "name": "HTML5", "level": "expert" },
-        { "name": "CSS3", "level": "expert" },
-        { "name": "Python", "level": "advanced" },
-        { "name": "Shell", "level": "advanced" },
-        { "name": "SQL", "level": "advanced" }
+        {
+          "name": "TypeScript",
+          "level": "expert"
+        },
+        {
+          "name": "JavaScript (ES6+)",
+          "level": "expert"
+        },
+        {
+          "name": "HTML5",
+          "level": "expert"
+        },
+        {
+          "name": "CSS3",
+          "level": "expert"
+        },
+        {
+          "name": "Python",
+          "level": "advanced"
+        },
+        {
+          "name": "Shell",
+          "level": "advanced"
+        },
+        {
+          "name": "SQL",
+          "level": "advanced"
+        }
       ]
     }
   ],
@@ -287,7 +785,7 @@
       "title": "AI Chatbot Assistant",
       "company": "Impact Flow",
       "role": "Full-Stack AI Engineer",
-      "period": "02.2025 – now",
+      "period": "02.2025 – present",
       "location": "Zurich, Switzerland",
       "jobType": "Remote",
       "employmentType": "Freelance",
@@ -299,7 +797,34 @@
         "Delivered scalable vector-search capabilities using PostgreSQL + pgvector",
         "Actively incorporated AI assistants into the engineering workflow to accelerate prototyping and code delivery"
       ],
-      "skills": ["Gen/Agentic AI", "RAG", "LLM", "NLP", "OpenAI", "Ollama", "OpenRouter", "Prompt Engineering", "Inferences", "Embeddings", "Vector/Semantic Search", "Tool use", "Svelte", "TypeScript", "Python", "LiveKit", "WebRTC", "PostgreSQL", "pgvector", "Chroma", "Qdrant", "SQLight", "Docker", "GitHub CI/CD", "GitHub Registry", "Cloud Native"],
+      "skills": [
+        "Gen/Agentic AI",
+        "RAG",
+        "LLM",
+        "NLP",
+        "OpenAI",
+        "Ollama",
+        "OpenRouter",
+        "Prompt Engineering",
+        "Inferences",
+        "Embeddings",
+        "Vector/Semantic Search",
+        "Tool use",
+        "Svelte",
+        "TypeScript",
+        "Python",
+        "LiveKit",
+        "WebRTC",
+        "PostgreSQL",
+        "pgvector",
+        "Chroma",
+        "Qdrant",
+        "SQLight",
+        "Docker",
+        "GitHub CI/CD",
+        "GitHub Registry",
+        "Cloud Native"
+      ],
       "images": [
         "/images/impact-flow/if-scr-1.png",
         "/images/impact-flow/if-scr-2.png",
@@ -310,9 +835,7 @@
         "/images/impact-flow/if-scr-7.png"
       ],
       "links": {
-        "live": "https://www.myimpactflow.app",
-        "caseStudy": "",
-        "github": ""
+        "live": "https://www.myimpactflow.app"
       },
       "featured": true
     },
@@ -321,40 +844,132 @@
       "title": "Enterprise eCommerce Platform",
       "company": "igus GmbH",
       "role": "Senior Full-Stack Developer",
-      "period": "2020 - 2021",
+      "period": "10.2022 – 02.2025",
       "location": "Cologne, Germany",
       "jobType": "Remote",
       "employmentType": "Freelance",
-      "description": "Intelligent product recommendation engine for industrial components",
+      "description": "Extensive development of the iCommerce online platform, actively using AI code assistants, integrating a diverse tech stack and enabling the purchase of over 150,000 products across 70+ countries worldwide. Collaborated with talented experts to design a highly advanced and scalable platform with real-time monitoring, smart alerting, and CI/CD pipelines.",
       "achievements": [
-        "Developed AI-powered product configuration system helping engineers select optimal industrial components",
-        "Implemented recommendation engine processing 100K+ SKUs with 3D visualization",
-        "Built automated quote generation system"
+        "Mentored three junior engineers, improving code quality by 15% and establishing robust engineering practices (SOC, DRY, KISS, YAGNI)",
+        "Utilized AI code assistants and automated tooling to significantly improve code quality and delivery speed",
+        "Improved loading time of the platform main web page 3x by optimising session handling in the Next.js middleware",
+        "Speed up backend data processing speed by 3% optimising async/wait promise handling",
+        "Reduced HA-Proxy routing script running time by 15x, optimising internal loops",
+        "Created comprehensive AWS monitoring dashboard, using CloudWatch logs and internal DB metrics",
+        "Introduced the session data caching, updating and expiration, reducing the number of service requests by ~60%"
       ],
-      "skills": ["Vue.js", "Python", "Django", "Three.js", "PostgreSQL", "Elasticsearch"],
-      "images": ["/images/igus-scr-1.png"],
+      "skills": [
+        "React",
+        "TypeScript",
+        "Zustand",
+        "React Query",
+        "TailwindCSS",
+        "Zod",
+        "CSS3",
+        "HTML5",
+        "Python",
+        "Go",
+        "Java",
+        "Node.js",
+        "Next.js",
+        "Nest.js",
+        "RxJS",
+        "REST API",
+        "Microservices",
+        "HA-Proxy",
+        "Babel",
+        "PNPM",
+        "Turborepo",
+        "PostgreSQL",
+        "Redis",
+        "Hasura",
+        "GraphQL",
+        "Hasura",
+        "Docker",
+        "AWS",
+        "MSK",
+        "Kafka",
+        "ECR",
+        "EC2",
+        "RDS",
+        "MSK",
+        "Lambda",
+        "CloudWatch",
+        "IAM",
+        "CloudFormation",
+        "ElasticSearch",
+        "ElastiCache",
+        "HA-Proxy",
+        "OpenSearch",
+        "GitHub Actions",
+        "Cypress",
+        "Jest",
+        "React Testing Library",
+        "AWS CloudWatch dashboard and alerting",
+        "Sentry",
+        "Grafana"
+      ],
+      "images": [
+        "/images/igus/igus-scr-1.png",
+        "/images/igus/igus-scr-2.png",
+        "/images/igus/igus-scr-3.png",
+        "/images/igus/igus-scr-4.png",
+        "/images/igus/igus-scr-5.png"
+      ],
       "links": {
-        "live": "https://igus.com"
+        "live": "https://www.igus.com"
       },
       "featured": true
     },
     {
       "id": "man-truck",
-      "title": "Fleet Management AI",
-      "company": "MAN Truck & Bus",
+      "title": "MAN SimplePay",
+      "company": "MAN Truck & Bus SE",
       "role": "Fullstack Engineer",
-      "period": "2021 - 2022",
+      "period": "05.2021 – 10.2022",
       "location": "Munich, Germany",
       "jobType": "Contract",
-      "employmentType": "Contract",
-      "description": "Predictive maintenance and route optimization system for commercial vehicles",
+      "employmentType": "Freelance",
+      "description": "Development of internal connected digital services, React PWA and React Native mobile apps. Spearheaded the MAN SimplePay payment-in-truck front-end development from wireframes and POC to MVP, successfully showcased at IAA 2022 in Hannover.",
       "achievements": [
-        "Built intelligent fleet management system with predictive maintenance alerts",
-        "Implemented route optimization using ML models and real-time telemetry processing",
-        "Reduced maintenance costs by 30% through early fault detection"
+        "Spearheaded the MAN Simple Pay payment-in-truck front end development from\nwireframes and POC to MVP, successfully showcased at IAA 2022 in Hannover",
+        "Mentored a junior developer through pair programming, improving code quality by 20%",
+        "Transitioned from full-stack TypeScript development to designing and deploying scalable solutions using AWS cloud technologies and microservices"
       ],
-      "skills": ["React", "TypeScript", "Node.js", "TensorFlow", "AWS", "DynamoDB"],
-      "images": ["/projects/man-1.jpg"],
+      "skills": [
+        "React",
+        "React Native",
+        "JavaScript",
+        "TypeScript",
+        "Zod",
+        "HTML5",
+        "CSS3",
+        "Bootstrap",
+        "Node.js",
+        "WebSocket",
+        "Push Notifications",
+        "Adobe XD",
+        "Figma",
+        "Babel",
+        "PNPM",
+        "AWS Amplify",
+        "CDK",
+        "CloudFormation",
+        "API Gateway",
+        "Cognito",
+        "Lambda",
+        "DynamoDB",
+        "S3",
+        "CodeCommit",
+        "Kafka"
+      ],
+      "images": [
+        "/images/man/man-scr-1.png",
+        "/images/man/man-scr-2.jpg",
+        "/images/man/man-scr-3.jpg",
+        "/images/man/man-scr-4.jpg",
+        "/images/man/repair_workflow.m4v"
+      ],
       "links": {},
       "featured": true
     },
@@ -373,8 +988,17 @@
         "Implemented RAG system with prompt templates and workflow orchestration",
         "Scaled to 50K monthly users"
       ],
-      "skills": ["Next.js", "OpenAI", "LangChain", "Pinecone", "Vercel", "Supabase"],
-      "images": ["/projects/impact-flow-1.jpg"],
+      "skills": [
+        "Next.js",
+        "OpenAI",
+        "LangChain",
+        "Pinecone",
+        "Vercel",
+        "Supabase"
+      ],
+      "images": [
+        "/projects/impact-flow-1.jpg"
+      ],
       "links": {},
       "featured": true
     },
@@ -393,8 +1017,17 @@
         "Implemented WebSocket-based sync with conflict resolution",
         "Built 3D model streaming infrastructure"
       ],
-      "skills": ["React", "TypeScript", "WebSocket", "C++", "Azure", "CosmosDB"],
-      "images": ["/projects/allplan-1.jpg"],
+      "skills": [
+        "React",
+        "TypeScript",
+        "WebSocket",
+        "C++",
+        "Azure",
+        "CosmosDB"
+      ],
+      "images": [
+        "/projects/allplan-1.jpg"
+      ],
       "links": {
         "live": "https://allplan.com"
       },
@@ -402,18 +1035,54 @@
     }
   ],
   "techStack": [
-    { "name": "React", "icon": "⚛️" },
-    { "name": "TypeScript", "icon": "📘" },
-    { "name": "Next.js", "icon": "▲" },
-    { "name": "Node.js", "icon": "🟢" },
-    { "name": "Python", "icon": "🐍" },
-    { "name": "OpenAI", "icon": "🤖" },
-    { "name": "LangChain", "icon": "🦜" },
-    { "name": "AWS", "icon": "☁️" },
-    { "name": "Docker", "icon": "🐳" },
-    { "name": "PostgreSQL", "icon": "🐘" },
-    { "name": "MongoDB", "icon": "🍃" },
-    { "name": "Redis", "icon": "🔴" }
+    {
+      "name": "React",
+      "icon": "⚛️"
+    },
+    {
+      "name": "TypeScript",
+      "icon": "📘"
+    },
+    {
+      "name": "Next.js",
+      "icon": "▲"
+    },
+    {
+      "name": "Node.js",
+      "icon": "🟢"
+    },
+    {
+      "name": "Python",
+      "icon": "🐍"
+    },
+    {
+      "name": "OpenAI",
+      "icon": "🤖"
+    },
+    {
+      "name": "LangChain",
+      "icon": "🦜"
+    },
+    {
+      "name": "AWS",
+      "icon": "☁️"
+    },
+    {
+      "name": "Docker",
+      "icon": "🐳"
+    },
+    {
+      "name": "PostgreSQL",
+      "icon": "🐘"
+    },
+    {
+      "name": "MongoDB",
+      "icon": "🍃"
+    },
+    {
+      "name": "Redis",
+      "icon": "🔴"
+    }
   ],
   "experience": [
     {
