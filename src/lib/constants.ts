@@ -13,15 +13,3 @@ export const QUICK_SUGGESTIONS = [
   "Describe your most challenging project",
   "Are you available for freelance?",
 ];
-
-export const ANIMATION_DURATION = {
-  fast: 150,
-  normal: 300,
-  slow: 600,
-};
-
-export const BREAKPOINTS = {
-  mobile: 639,
-  tablet: 1023,
-  desktop: 1279,
-};

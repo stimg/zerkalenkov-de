@@ -1,106 +1,56 @@
+# Project Overview
 
-Default to using Bun instead of Node.js.
+This is a personal portfolio website built with:
+- **Frontend**: Vite + React + TypeScript + Tailwind CSS
+- **Backend API**: Bun runtime
+- **3D Graphics**: React Three Fiber
 
-- Use `bun <file>` instead of `node <file>` or `ts-node <file>`
-- Use `bun test` instead of `jest` or `vitest`
-- Use `bun build <file.html|file.ts|file.css>` instead of `webpack` or `esbuild`
-- Use `bun install` instead of `npm install` or `yarn install` or `pnpm install`
-- Use `bun run <script>` instead of `npm run <script>` or `yarn run <script>` or `pnpm run <script>`
-- Use `bunx <package> <command>` instead of `npx <package> <command>`
-- Bun automatically loads .env, so don't use dotenv.
+## Project Structure
 
-## APIs
-
-- `Bun.serve()` supports WebSockets, HTTPS, and routes. Don't use `express`.
-- `bun:sqlite` for SQLite. Don't use `better-sqlite3`.
-- `Bun.redis` for Redis. Don't use `ioredis`.
-- `Bun.sql` for Postgres. Don't use `pg` or `postgres.js`.
-- `WebSocket` is built-in. Don't use `ws`.
-- Prefer `Bun.file` over `node:fs`'s readFile/writeFile
-- Bun.$`ls` instead of execa.
-
-## Testing
-
-Use `bun test` to run tests.
-
-```ts#index.test.ts
-import { test, expect } from "bun:test";
-
-test("hello world", () => {
-  expect(1).toBe(1);
-});
+```
+├── src/              # Frontend React application
+├── api/              # Backend API server (Bun)
+├── public/           # Static assets
+└── index.html        # Vite entry point
 ```
 
-## Frontend
+## Development
 
-Use HTML imports with `Bun.serve()`. Don't use `vite`. HTML imports fully support React, CSS, Tailwind.
+Use Bun as the package manager and runtime:
 
-Server:
+- `bun install` - Install dependencies
+- `bun run dev` - Start Vite dev server (frontend only, port 3000)
+- `bun run dev:api` - Start Bun API server (backend only)
+- `bun run dev:all` - Start both frontend and backend
+- `bun run build` - Build for production
+- `bun run preview` - Preview production build
+- `bun run lint` - Type check with TypeScript
 
-```ts#index.ts
-import index from "./index.html"
+## Package Management
 
-Bun.serve({
-  routes: {
-    "/": index,
-    "/api/users/:id": {
-      GET: (req) => {
-        return new Response(JSON.stringify({ id: req.params.id }));
-      },
-    },
-  },
-  // optional websocket support
-  websocket: {
-    open: (ws) => {
-      ws.send("Hello, world!");
-    },
-    message: (ws, message) => {
-      ws.send(message);
-    },
-    close: (ws) => {
-      // handle close
-    }
-  },
-  development: {
-    hmr: true,
-    console: true,
-  }
-})
-```
+- Use `bun install` instead of `npm install`
+- Use `bun add <package>` instead of `npm install <package>`
+- Use `bun remove <package>` instead of `npm uninstall <package>`
+- Use `bunx <package>` instead of `npx <package>`
 
-HTML files can import .tsx, .jsx or .js files directly and Bun's bundler will transpile & bundle automatically. `<link>` tags can point to stylesheets and Bun's CSS bundler will bundle.
+## Backend API (api/server.ts)
 
-```html#index.html
-<html>
-  <body>
-    <h1>Hello, world!</h1>
-    <script type="module" src="./frontend.tsx"></script>
-  </body>
-</html>
-```
+The API server uses Bun's built-in server capabilities:
+- `Bun.serve()` for HTTP server
+- Bun automatically loads `.env` files
+- Use `Bun.file()` for file operations
+- Built-in WebSocket support
 
-With the following `frontend.tsx`:
+## Frontend (Vite + React)
 
-```tsx#frontend.tsx
-import React from "react";
-import { createRoot } from "react-dom/client";
+- Entry point: `src/main.tsx`
+- Uses Vite for bundling and dev server
+- React 19 with TypeScript
+- Tailwind CSS for styling
+- Path alias: `@/` maps to `./src/`
 
-// import .css files directly and it works
-import './index.css';
+## Environment Variables
 
-const root = createRoot(document.body);
-
-export default function Frontend() {
-  return <h1>Hello, world!</h1>;
-}
-
-root.render(<Frontend />);
-```
-
-Then, run index.ts
-
-```sh
-bun --hot ./index.ts
-```
-
-For more information, read the Bun API docs in `node_modules/bun-types/docs/**.mdx`.
+- `.env` - Local environment variables (not committed)
+- `.env.example` - Template for environment variables
+- Bun automatically loads `.env` without needing dotenv package

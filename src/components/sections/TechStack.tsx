@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import resumeData from '@/data/resume.json';
 import {
   ReactLogo,
   TypeScriptLogo,
@@ -88,17 +87,14 @@ export function TechStack() {
     >
       {/* Render logos twice for seamless infinite scroll */}
       {[...logos, ...logos].map((logo, index)=> {
-        const logoIcon = logo();
         return (
           <div
             key={`tech-icon-${index}`}
             className="flex flex-col items-center justify-center gap-3 shrink-0 transition-opacity hover:opacity-70"
           >
-            {logoIcon &&
-              <span className="text-4xl" role="img">
-                {logo()}
-              </span>
-            }
+            <span className="text-4xl" role="img">
+              {logo()}
+            </span>
           </div>
         );
       })}
