@@ -781,7 +781,7 @@
   ],
   "projects": [
     {
-      "id": "impact flow",
+      "id": "impact-flow",
       "title": "AI Chatbot Assistant",
       "company": "Impact Flow",
       "role": "Full-Stack AI Engineer",
@@ -826,16 +826,17 @@
         "Cloud Native"
       ],
       "images": [
-        "/images/impact-flow/if-scr-1.png",
-        "/images/impact-flow/if-scr-2.png",
-        "/images/impact-flow/if-scr-3.png",
-        "/images/impact-flow/if-scr-4.png",
-        "/images/impact-flow/if-scr-5.png",
-        "/images/impact-flow/if-scr-6.png",
-        "/images/impact-flow/if-scr-7.png"
+        "/assets/impact-flow/if-scr-1.png",
+        "/assets/impact-flow/if-scr-2.png",
+        "/assets/impact-flow/if-scr-3.png",
+        "/assets/impact-flow/if-scr-4.png",
+        "/assets/impact-flow/if-scr-5.png",
+        "/assets/impact-flow/if-scr-6.png",
+        "/assets/impact-flow/if-scr-7.png"
       ],
       "links": {
-        "live": "https://www.myimpactflow.app"
+        "live": "https://www.myimpactflow.app",
+        "github": ""
       },
       "featured": true
     },
@@ -910,14 +911,15 @@
         "Grafana"
       ],
       "images": [
-        "/images/igus/igus-scr-1.png",
-        "/images/igus/igus-scr-2.png",
-        "/images/igus/igus-scr-3.png",
-        "/images/igus/igus-scr-4.png",
-        "/images/igus/igus-scr-5.png"
+        "/assets/igus/igus-scr-1.png",
+        "/assets/igus/igus-scr-2.png",
+        "/assets/igus/igus-scr-3.png",
+        "/assets/igus/igus-scr-4.png",
+        "/assets/igus/igus-scr-5.png"
       ],
       "links": {
-        "live": "https://www.igus.com"
+        "live": "https://www.igus.com",
+        "github": ""
       },
       "featured": true
     },
@@ -964,156 +966,443 @@
         "Kafka"
       ],
       "images": [
-        "/images/man/man-scr-1.png",
-        "/images/man/man-scr-2.jpg",
-        "/images/man/man-scr-3.jpg",
-        "/images/man/man-scr-4.jpg",
-        "/images/man/repair_workflow.m4v"
+        "/assets/man/man-scr-1.png",
+        "/assets/man/man-scr-2.jpg",
+        "/assets/man/man-scr-3.jpg",
+        "/assets/man/man-scr-4.jpg",
+        "/assets/man/repair_workflow.m4v",
+        "/assets/man/demo_workflow.m4v"
       ],
-      "links": {},
+      "links": {
+        "live": "https://www.man.com/de/simplepay",
+        "github": ""
+      },
       "featured": true
     },
     {
-      "id": "impact-flow",
-      "title": "GenAI Content Platform",
-      "company": "Impact Flow",
-      "role": "AI Solutions Architect",
-      "period": "2023 - 2024",
-      "location": "Remote",
-      "jobType": "Freelance",
+      "id": "samsung",
+      "title": "Samsung Bixby SmartThings",
+      "company": "Samsung / HARMAN Connected Services GmbH",
+      "role": "Technical Lead / Application Developer ",
+      "period": "03.2018 – 12.2020",
+      "location": "Munich, Germany",
+      "jobType": "On-site / Remote",
       "employmentType": "Freelance",
-      "description": "Multi-modal content generation with custom LLM workflows",
+      "description": "Member of the Samsung AI NLU Team Germany. Design and development of Bixby web applications (capsules), GUI and VUI implementation, localization of global and native capsules, trainings and machine learning, AI/NLU and E2E testing. Led SmartThings app development, mentoring a team of 5 developers.",
       "achievements": [
-        "Architected GenAI platform for automated content creation using GPT-4, DALL-E, and custom fine-tuned models",
-        "Implemented RAG system with prompt templates and workflow orchestration",
-        "Scaled to 50K monthly users"
+        "Reduced app development costs up to 5x through creating reusable JavaScript modules and app templates",
+        "Wrote scripts for automated training data, vocabularies, and dialogs check, which improved bug fixing speed up to 50 times",
+        "SmartThings E2E tests pass rate improvement from 67% to 98%",
+        "NL tests (machine learning) pass rate improvement from initial 63% to 99%",
+        "Generated 1M+ new user registrations by deploying 12 native standalone Conversational AI apps",
+        "99% bugs-free final result, 0% app crash rate",
+        "99% JavaScript DRY code efficiency and optimization",
+        "Korean developers took over my Node.js module creation structure and style"
       ],
       "skills": [
-        "Next.js",
-        "OpenAI",
-        "LangChain",
-        "Pinecone",
-        "Vercel",
-        "Supabase"
+        "VIV AI Platform",
+        "NLU",
+        "NLP",
+        "ML Training",
+        "Conversational AI",
+        "VUI",
+        "Node.js",
+        "Bixby Language",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Bixby Views"
       ],
       "images": [
-        "/projects/impact-flow-1.jpg"
+        "/assets/samsung/samsung-bixby.jpg",
+        "/assets/samsung/bixby-logo.webp"
       ],
-      "links": {},
+      "links": {
+        "live": "",
+        "github": ""
+      },
       "featured": true
     },
     {
-      "id": "allplan",
-      "title": "BIM Collaboration Suite",
-      "company": "Allplan",
-      "role": "Technical Lead",
-      "period": "2019 - 2020",
-      "location": "Munich, Germany",
-      "jobType": "Full-time",
-      "employmentType": "Full-time",
-      "description": "Real-time collaboration tools for construction planning",
+      "id": "ux-flo-wr",
+      "title": "D-Cipher Web Replay",
+      "company": "UX-FLO",
+      "role": "Senior Software Engineer",
+      "period": "03.2018",
+      "location": "USA",
+      "jobType": "Remote",
+      "employmentType": "Freelance",
+      "description": "State-of-the-art UX measurement tool. SPA which works in any browser, takes captured UX data, renders user actions map and timeline with time brackets, giving the possibility to navigate through events or select a bunch of events to render by moving time brackets. Flow map is dynamically updated respective to the selected time span.",
       "achievements": [
-        "Led development of real-time collaboration features for BIM software used by architects and engineers worldwide",
-        "Implemented WebSocket-based sync with conflict resolution",
-        "Built 3D model streaming infrastructure"
+        "Ported part of existing D-Cypher pure JS app into React SPA within one week",
+        "100% bugs-free final result, 0% app crash so far"
       ],
       "skills": [
         "React",
-        "TypeScript",
-        "WebSocket",
-        "C++",
-        "Azure",
-        "CosmosDB"
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "2D Canvas"
       ],
       "images": [
-        "/projects/allplan-1.jpg"
+        "/assets/ux-flo/replay.jpg"
       ],
       "links": {
-        "live": "https://allplan.com"
+        "live": "",
+        "github": ""
+      },
+      "featured": false
+    },
+    {
+      "id": "sky",
+      "title": "Sky Store App for SkyQ STB",
+      "company": "Sky Deutschland Fernsehen GmbH & Co. KG",
+      "role": "Senior Software Engineer",
+      "period": "05.2017 – 02.2018",
+      "location": "Munich, Germany",
+      "jobType": "On-site",
+      "employmentType": "Freelance",
+      "description": "Development of the new generation of Sky Store STB application for SkyQ Set-Top-Box. It runs in Linux environment and is able to render high-quality UI elements with great performance and to communicate with application services and Acetrax backend over the REST API. Front end represents content in HD resolution and allows users to navigate through movie catalogs, see product details, buy, rent, and watch films or trailers.",
+      "achievements": [
+        "Designed and built the next-gen Sky Q embedded app UI, enhancing performance and user experience",
+        "Improved onboarding cost-efficiency up to 10% by creating complete application developer documentation",
+        "Reduced development costs up to 5% by forging JSON Schema Grunt task for API responses evaluation"
+      ],
+      "skills": [
+        "TypeScript",
+        "JavaScript/ES6",
+        "Node.js",
+        "HTML5",
+        "CSS3",
+        "Luna",
+        "Acetrax API",
+        "REST API",
+        "Video Streaming",
+        "DRM",
+        "NPM",
+        "Grunt",
+        "Agile",
+        "SCRUM"
+      ],
+      "images": [
+        "/assets/sky/sky-q-ui.webp",
+        "/assets/sky/sky-q-store.jpg"
+      ],
+      "links": {
+        "live": "https://d-cipher.io",
+        "github": "https://github.com/stimg/dcipher-demo"
       },
       "featured": true
-    }
-  ],
-  "techStack": [
-    {
-      "name": "React",
-      "icon": "⚛️"
     },
     {
-      "name": "TypeScript",
-      "icon": "📘"
+      "id": "exaring-ccc",
+      "title": "Customer Care Cockpit",
+      "company": "EXARING AG",
+      "role": "Software Engineer",
+      "period": "10.2015 – 05.2017",
+      "location": "Munich, Germany",
+      "jobType": "On-site",
+      "employmentType": "Freelance",
+      "description": "Single page application for user management, quick access to contract, payment, invoice, and other related information of the corporate product waipu.tv.",
+      "achievements": [
+        "Boosted internal customer management speed up to 30% by optimizing Backbone based front end UI layout and functionality"
+      ],
+      "skills": [
+        "Node.js",
+        "Hapi",
+        "JavaScript",
+        "Backbone",
+        "Mustache",
+        "jQuery",
+        "HTML5",
+        "CSS3",
+        "Stylus",
+        "Bootstrap",
+        "JSON",
+        "Prometheus",
+        "Grafana",
+        "Gulp",
+        "Babel",
+        "Bower",
+        "SCRUM",
+        "Agile",
+        "GitLab",
+        "Atlassian JIRA",
+        "SourceTree"
+      ],
+      "images": [
+        "/assets/exaring/exaring-waipu.png"
+      ],
+      "links": {
+        "live": "",
+        "github": ""
+      },
+      "featured": true
     },
     {
-      "name": "Next.js",
-      "icon": "▲"
+      "id": "exaring-waipu",
+      "title": "waipu.tv – IP TV",
+      "company": "EXARING AG",
+      "role": "Software Engineer",
+      "period": "08.2016 – 03.2017",
+      "location": "Munich, Germany",
+      "jobType": "On-site",
+      "employmentType": "Freelance",
+      "description": "Frontend development of the onboarding, subscription, and checkout processing web interfaces, implementation of the corporate landing and service pages for waipu.tv online corporate platform.",
+      "achievements": [
+        "Improved UX and efficiency of the customer journey checkout process by optimising UI.",
+        "Increased sales of waipu.tv services up to 5% by optimising customer journey checkout process"
+      ],
+      "skills": [
+        "HTML5",
+        "CSS3",
+        "LESS",
+        "JavaScript",
+        "jQuery",
+        "FlightJS",
+        "Mustache",
+        "ExpressJS",
+        "Node.js",
+        "JSON",
+        "Typo3",
+        "Gulp",
+        "Babel",
+        "Bower",
+        "Selenium",
+        "WebdriverIO",
+        "Jasmine",
+        "Karma",
+        "Docker",
+        "SCRUM",
+        "Agile",
+        "GitLab",
+        "Atlassian JIRA",
+        "SourceTree"
+      ],
+      "images": [
+        "/assets/exaring/waipu-logo.jpg",
+        "/assets/exaring/checkout.webp",
+        "/assets/exaring/starter-info.png"
+      ],
+      "links": {
+        "live": "",
+        "github": ""
+      },
+      "featured": true
     },
     {
-      "name": "Node.js",
-      "icon": "🟢"
+      "id": "exaring-devops",
+      "title": "Network Operations Dashboard",
+      "company": "EXARING AG",
+      "role": "Software Engineer",
+      "period": "11.2015 – 08.2016",
+      "location": "Munich, Germany",
+      "jobType": "On-site",
+      "employmentType": "Freelance",
+      "description": "Network operations dashboard SPA — a bunch of network operation tools.",
+      "achievements": [
+        "Improved cost-efficiency of the DevOps division up to 30% and reduced hardware damage risks by building a set of network operation and monitoring tools:",
+        "Network Monitoring: Statistic data from network devices and sensors collected by the Dashboard App and represented in the frontend as visual information",
+        "IPAM/DNS Operations Tool: IP address management and DNS registration in the AWS Route 53",
+        "Alert Monitoring: Graphical representation of the network alert status, collected from network monitoring devices",
+        "Data centers humidity monitoring: Monitoring of the humidity level in the data centers and visual representation of the data in the frontend",
+        "Temperature monitoring: Monitoring of the temperature level in the data centers and visual representation of the data in the frontend",
+        "DSL speedometer: testing the connection speed between the customers and the waipu IP TV provider"
+
+      ],
+      "skills": [
+        "AngularJS",
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Cytoscape.js",
+        "jQuery",
+        "Node.js",
+        "NPM",
+        "Express.js",
+        "REST",
+        "JSON",
+        "YAML",
+        "MongoDB",
+        "Keycloak",
+        "PassportJS",
+        "OpenID",
+        "Grunt",
+        "Bower",
+        "GitLab",
+        "Atlassian JIRA",
+        "Jenkins"
+      ],
+      "images": [
+        "/assets/exaring/speedometer.png",
+        "/assets/exaring/alarm-dashboard.png",
+        "/assets/exaring/humidity.png",
+        "/assets/exaring/temperature.png",
+        "/assets/exaring/network-view.png",
+        "/assets/exaring/traffic-1.png",
+        "/assets/exaring/traffic-2.png"
+      ],
+      "links": {
+        "live": "",
+        "github": ""
+      },
+      "featured": true
     },
     {
-      "name": "Python",
-      "icon": "🐍"
+      "id": "ux-flo-dc",
+      "title": "D-Cipher – UX Measurement Tool",
+      "company": "UX-FLO",
+      "role": "Software Architect",
+      "period": "07.2015 – 10.2015",
+      "location": "USA",
+      "jobType": "Remote",
+      "employmentType": "Freelance",
+      "description": "Innovative web application for scientific efficiency measuring of modern software GUI, testing and rating applications User Experience. Developer from scratch state-of-the-art web application.",
+      "achievements": [
+      ],
+      "skills": [
+        "JavaScript", "HTML5/CSS3 + Canvas 2D", "jQuery", "Bootstrap", "IndexedDB", "Session & Local Storage", "Git", "JSON"
+      ],
+      "images": [
+        "/assets/ux-flo/dcipher.png",
+        "/assets/ux-flo/dcipher-test.m4v",
+        "/assets/ux-flo/record-test-events.m4v",
+        "/assets/ux-flo/task-info-frames.m4v",
+        "/assets/ux-flo/task-management.m4v",
+        "/assets/ux-flo/zoom-move-click.m4v"
+      ],
+      "links": {
+        "live": "https://d-cipher.io/",
+        "github": "https://github.com/stimg/dcipher-demo"
+      },
+      "featured": true
     },
     {
-      "name": "OpenAI",
-      "icon": "🤖"
+      "id": "bimplus",
+      "title": "bim+ Web Explorer (3D-Viewer)",
+      "company": "bim+ / Allplan – NEMETSCHEK Group",
+      "role": "Software Engineer",
+      "period": "10.2012 – 06.2015",
+      "location": "Munich, Germany",
+      "jobType": "On-site",
+      "employmentType": "Freelance",
+      "description": "3D-Viewer in browser for engineers and architects with possibilities to load and render building models in Sketch, IFC, and Allplan formats, navigate through it, make sectioning, place pins, comments, paint model parts by type, and many more.",
+      "achievements": [
+        "Developed the industry first browser-based 3D web viewer for architects",
+        "Used brand new JS framework Three.js with HTML5 Canvas 3D",
+        "Achieved app front end performance by 37x by deep optimisation of the JavaScript code",
+        "Contributing to a ~5% stock value increase, matching this impact required a €1M company"
+      ],
+      "skills": [
+        "JavaScript", "WebGL", "Ember.js", "Handlebars", "Three.js", "jQuery", "Zeplin", "jQueryUI", "RequireJS", "Node.js", "REST", "AJAX", "HTML5", "CSS3", "JSON", "AMD", "Grunt.js", "CI/CD", "SVN", "Git", "GitLab", "Scrum", "Balsamiq", "SourceTree", "JIRA", "Confluence"
+      ],
+      "images": [
+        "/assets/bimplus/bim-scr-1.png",
+        "/assets/bimplus/bim-scr-2.png",
+        "/assets/bimplus/bim-scr-3.png",
+        "/assets/bimplus/bim-scr-4.png",
+        "/assets/bimplus/bim-scr-5.png"
+      ],
+      "links": {
+        "live": "",
+        "github": ""
+      },
+      "featured": true
     },
     {
-      "name": "LangChain",
-      "icon": "🦜"
+      "id": "",
+      "title": "CAD Web Viewer",
+      "company": "Allplan – NEMETSCHEK Group",
+      "role": "Software Engineer",
+      "period": "11.2011 – 09.2012",
+      "location": "Munich, Germany",
+      "jobType": "On-site",
+      "employmentType": "Freelance",
+      "description": "2D-Viewer in browser for engineers and architects with possibilities to load 2D model, navigate through it, make simple graphical drawings and text comments and save it to the database. Engineered the advanced browser-based CAD Drawing Web Viewer based on HTML5 features, streamlining development and boosting speed by 60x.",
+      "achievements": [
+        "Engineered the advanced browser-based CAD Drawing Web Viewer based on HTML5 Canvas features",
+        "Replaced an entire development team, boosting development speed ~60x by moving the product from the obsolete Java FX framework to the SOTA HTML5 Canvas technology"
+      ],
+      "skills": [
+        "JavaScript", "jQuery", "jQueryUI", "Prototype.js", "HTML5", "CSS", "Canvas 2D", "HTML", "Java", "Oracle", "Apache", "Tomcat", "Maven", "AJAX", "JSON", "SVN", "Subversive", "CVS", "Scrum", "Illustrator", "Balsamiq", "Eclipse", "JSDT", "JIRA", "Confluence"
+      ],
+      "images": [
+        "/assets/allplan/allplan-visual.jpg"
+      ],
+      "links": {
+        "live": "",
+        "github": ""
+      },
+      "featured": true
     },
     {
-      "name": "AWS",
-      "icon": "☁️"
+      "id": "",
+      "title": "",
+      "company": "",
+      "role": "",
+      "period": "",
+      "location": "Munich, Germany",
+      "jobType": "Remote",
+      "employmentType": "Freelance",
+      "description": "",
+      "achievements": [
+      ],
+      "skills": [
+      ],
+      "images": [
+        "/assets"
+      ],
+      "links": {
+        "live": "",
+        "github": ""
+      },
+      "featured": true
     },
     {
-      "name": "Docker",
-      "icon": "🐳"
+      "id": "",
+      "title": "",
+      "company": "",
+      "role": "",
+      "period": "",
+      "location": "Munich, Germany",
+      "jobType": "Remote",
+      "employmentType": "Freelance",
+      "description": "",
+      "achievements": [
+      ],
+      "skills": [
+      ],
+      "images": [
+        "/assets"
+      ],
+      "links": {
+        "live": "",
+        "github": ""
+      },
+      "featured": true
     },
     {
-      "name": "PostgreSQL",
-      "icon": "🐘"
-    },
-    {
-      "name": "MongoDB",
-      "icon": "🍃"
-    },
-    {
-      "name": "Redis",
-      "icon": "🔴"
-    }
-  ],
-  "experience": [
-    {
-      "company": "Samsung / Harman",
-      "role": "Lead AI Engineer",
-      "period": "2022 - 2024",
-      "highlights": [
-        "Led AI voice assistant platform serving 10M+ daily interactions",
-        "Architected real-time NLU pipeline with 95% intent accuracy",
-        "Reduced response latency from 2s to 300ms through optimization"
-      ]
-    },
-    {
-      "company": "MAN Truck & Bus",
-      "role": "Fullstack Engineer",
-      "period": "2021 - 2022",
-      "highlights": [
-        "Built predictive maintenance system reducing costs by 30%",
-        "Implemented ML-powered route optimization",
-        "Processed 50M+ telemetry events daily"
-      ]
-    },
-    {
-      "company": "Impact Flow",
-      "role": "AI Solutions Architect",
-      "period": "2023 - 2024",
-      "highlights": [
-        "Designed GenAI platform with 50K monthly users",
-        "Implemented RAG system with custom embeddings",
-        "Built workflow orchestration for multi-modal content"
-      ]
+      "id": "",
+      "title": "",
+      "company": "",
+      "role": "",
+      "period": "",
+      "location": "Munich, Germany",
+      "jobType": "Remote",
+      "employmentType": "Freelance",
+      "description": "",
+      "achievements": [
+      ],
+      "skills": [
+      ],
+      "images": [
+        "/assets"
+      ],
+      "links": {
+        "live": "",
+        "github": ""
+      },
+      "featured": true
     }
   ]
 }

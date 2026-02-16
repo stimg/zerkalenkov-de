@@ -8,6 +8,50 @@ interface CarouselProps {
   className?: string;
 }
 
+interface MediaItemProps {
+  src: string;
+  alt: string;
+  className?: string;
+  style?: React.CSSProperties;
+  onAnimationEnd?: () => void;
+}
+
+const VIDEO_EXTENSIONS = ['.m4v', '.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv'];
+
+function isVideo(src: string): boolean {
+  const lowerSrc = src.toLowerCase();
+  return VIDEO_EXTENSIONS.some(ext => lowerSrc.endsWith(ext));
+}
+
+function MediaItem({ src, alt, className, style, onAnimationEnd }: MediaItemProps) {
+  if (isVideo(src)) {
+    return (
+      <video
+        src={src}
+        className={className}
+        style={style}
+        controls
+        autoPlay
+        loop
+        muted
+        playsInline
+        onAnimationEnd={onAnimationEnd as React.AnimationEventHandler<HTMLVideoElement>}
+        aria-label={alt}
+      />
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      style={style}
+      onAnimationEnd={onAnimationEnd as React.AnimationEventHandler<HTMLImageElement>}
+    />
+  );
+}
+
 export function Carousel({ images, alt = 'Carousel image', className }: CarouselProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [nextImageIndex, setNextImageIndex] = useState<number | null>(null);
@@ -72,11 +116,11 @@ export function Carousel({ images, alt = 'Carousel image', className }: Carousel
             WebkitTransformStyle: 'preserve-3d'
           }}
         >
-          {/* Current/Outgoing image */}
-          <img
+          {/* Current/Outgoing media */}
+          <MediaItem
             key={`current-${currentImageIndex}`}
-            src={images[currentImageIndex]}
-            alt={`${alt} - Image ${currentImageIndex + 1}`}
+            src={images[currentImageIndex]!}
+            alt={`${alt} - Media ${currentImageIndex + 1}`}
             className="absolute w-full h-full object-contain"
             style={{
               animation: isTransitioning && slideDirection
@@ -94,12 +138,12 @@ export function Carousel({ images, alt = 'Carousel image', className }: Carousel
             }}
           />
 
-          {/* Next/Incoming image - only during transition */}
+          {/* Next/Incoming media - only during transition */}
           {isTransitioning && nextImageIndex !== null && (
-            <img
+            <MediaItem
               key={`next-${nextImageIndex}`}
-              src={images[nextImageIndex]}
-              alt={`${alt} - Image ${nextImageIndex + 1}`}
+              src={images[nextImageIndex]!}
+              alt={`${alt} - Media ${nextImageIndex + 1}`}
               className="absolute w-full h-full object-contain"
               style={{
                 animation: slideDirection

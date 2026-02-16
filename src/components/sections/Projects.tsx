@@ -3,7 +3,6 @@ import { ExternalLink, Github } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Modal } from '@/components/ui/Modal';
-import { Button } from '@/components/ui/Button';
 import { Carousel } from '@/components/ui/Carousel';
 import { useIntersection } from '@/hooks/useIntersection';
 import { cn } from '@/lib/utils';
@@ -24,7 +23,7 @@ export function Projects() {
               hasIntersected ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             )}
           >
-            <h2 className="text-3xl md:text-5xl font-bold">Featured Projects</h2>
+            <h2 className="text-3xl md:text-5xl font-bold">Recent Projects</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -129,6 +128,13 @@ export function Projects() {
             </div>
 
             <div>
+              <h3 className="text-lg font-bold mb-2">Description</h3>
+              <ul className="text-gray-800 dark:text-gray-200">
+                {selectedProject.description}
+              </ul>
+            </div>
+
+            <div>
               <h3 className="text-lg font-bold mb-2">Achievements</h3>
               <ul className="list-disc list-outside ml-4 space-y-2 text-gray-800 dark:text-gray-200">
                 {selectedProject.achievements.map((achievement, index) => (
@@ -148,7 +154,7 @@ export function Projects() {
               </div>
             </div>
 
-            {(selectedProject.links.live || selectedProject.links.github || selectedProject.links.caseStudy) && (
+            {(selectedProject.links.live || selectedProject.links.github) && (
               <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-800">
                 {selectedProject.links.live && (
                   <a
@@ -170,16 +176,6 @@ export function Projects() {
                   >
                     <Github className="w-4 h-4" />
                     GitHub
-                  </a>
-                )}
-                {selectedProject.links.caseStudy && (
-                  <a
-                    href={selectedProject.links.caseStudy}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm rounded-lg font-medium border-2 border-primary-500 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 transition-all duration-200"
-                  >
-                    Case Study
                   </a>
                 )}
               </div>
