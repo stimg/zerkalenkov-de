@@ -1051,7 +1051,7 @@
         "live": "",
         "github": ""
       },
-      "featured": false
+      "featured": true
     },
     {
       "id": "sky",
@@ -1137,7 +1137,7 @@
         "live": "",
         "github": ""
       },
-      "featured": true
+      "featured": false
     },
     {
       "id": "exaring-waipu",
@@ -1188,7 +1188,7 @@
         "live": "",
         "github": ""
       },
-      "featured": true
+      "featured": false
     },
     {
       "id": "exaring-devops",
@@ -1246,7 +1246,7 @@
         "live": "",
         "github": ""
       },
-      "featured": true
+      "featured": false
     },
     {
       "id": "ux-flo-dc",
@@ -1275,7 +1275,7 @@
         "live": "https://d-cipher.io/",
         "github": "https://github.com/stimg/dcipher-demo"
       },
-      "featured": true
+      "featured": false
     },
     {
       "id": "bimplus",
@@ -1307,7 +1307,7 @@
         "live": "",
         "github": ""
       },
-      "featured": true
+      "featured": false
     },
     {
       "id": "",
@@ -1333,76 +1333,92 @@
         "live": "",
         "github": ""
       },
-      "featured": true
+      "featured": false
+    }
+  ],
+
+  "recommendations": [
+    {
+      "id": "rec-1",
+      "name": "Edris Temori",
+      "position": "Full-Stack Developer",
+      "company": "igus GmbH",
+      "date": "February 23, 2025",
+      "content": "Alexey has a rare combination of technical expertise, problem-solving skills, and a deep understanding of modern development. Whether it was architecting scalable React applications, optimizing performance, or setting up a robust infrastructure, he consistently delivered high-quality solutions with precision and efficiency.\n\nBeyond his technical abilities, Alexey is an exceptional collaborator. He articulates complex ideas clearly, embraces feedback, and thrives in a team environment. His contributions had a significant impact on our projects, and I will truly miss working with him.\n\nIf you're looking for a seasoned developer who writes clean, maintainable code and elevates those around him, Alexey is the person you want on your team. I wholeheartedly recommend him!"
     },
     {
-      "id": "",
-      "title": "",
-      "company": "",
-      "role": "",
-      "period": "",
-      "location": "Munich, Germany",
-      "jobType": "Remote",
-      "employmentType": "Freelance",
-      "description": "",
-      "achievements": [
-      ],
-      "skills": [
-      ],
-      "images": [
-        "/assets"
-      ],
-      "links": {
-        "live": "",
-        "github": ""
-      },
-      "featured": true
+      "id": "rec-2",
+      "name": "Deniz Sari",
+      "position": "Software Developer",
+      "company": "igus GmbH",
+      "date": "February 17, 2025",
+      "content": "I had the pleasure of working alongside Alexey for nearly two and a half years, during which he consistently proved himself as a highly professional, dedicated, and efficient member of our team. He approached his work with seriousness and a strong sense of responsibility, always taking the initiative to drive projects forward. His contributions were invaluable, making him one of the standout members of our team.\n\nBeyond his technical expertise, Alexey brought a fantastic energy to the team. He was genuinely friendly, easy to collaborate with, and had a great sense of humor that made even the most challenging tasks enjoyable. Our sessions – whether code reviews or pair programming – were not only productive but also engaging and often filled with laughter.\n\nAt the same time, his deep experience and sharp analytical skills allowed him to tackle complex problems with impressive speed and precision. Over time, we learned a great deal from each other, and I was always amazed by his ability to surprise our Product Owners and team members with creative, well-thought-out solutions.\n\nIf you ever have the opportunity to work with him, consider yourself truly fortunate. He is not only a highly experienced and exceptional developer but also someone who elevates the entire team with his expertise, positive attitude, and collaborative spirit."
     },
     {
-      "id": "",
-      "title": "",
-      "company": "",
-      "role": "",
-      "period": "",
-      "location": "Munich, Germany",
-      "jobType": "Remote",
-      "employmentType": "Freelance",
-      "description": "",
-      "achievements": [
-      ],
-      "skills": [
-      ],
-      "images": [
-        "/assets"
-      ],
-      "links": {
-        "live": "",
-        "github": ""
-      },
-      "featured": true
+      "id": "rec-3",
+      "name": "Kristiina Arnold",
+      "position": "Product Owner E-Commerce",
+      "company": "igus GmbH",
+      "date": "February 16, 2025",
+      "content": "I had the pleasure of working with Alexey Zerkalenkov in my role as Product Owner, where he contributed as a freelance developer for several years. Throughout our collaboration, he consistently demonstrated a high level of professionalism, technical expertise, and dedication.\n\nAlexey Zerkalenkov is an excellent developer with strong problem-solving skills and the ability to deliver high-quality code. He seamlessly integrated into our team, communicating effectively in English and German and working efficiently with tools from the Atlassian suite. His proactive attitude and team-oriented mindset made him a highly valued member of our project.\n\nI highly recommend Alexey Zerkalenkov for any future opportunities. He would be a great asset to any team."
     },
     {
-      "id": "",
-      "title": "",
-      "company": "",
-      "role": "",
-      "period": "",
-      "location": "Munich, Germany",
-      "jobType": "Remote",
-      "employmentType": "Freelance",
-      "description": "",
-      "achievements": [
-      ],
-      "skills": [
-      ],
-      "images": [
-        "/assets"
-      ],
-      "links": {
-        "live": "",
-        "github": ""
-      },
-      "featured": true
+      "id": "rec-4",
+      "name": "Marc Grau",
+      "position": "EngOps Escalations TPM lead",
+      "company": "Samsung / HARMAN",
+      "date": "March 31, 2021",
+      "content": "I had the pleasure of working with Alexey in the Samsung Bixby Project for 2+ years, where we proved to be an extremely professional worker with high technical and programming skills. As well he was highly completely reliable and always delivered extraordinary results. During this time his proved himself in developing an outstanding Samsung IoT application for Samsung's Voice assistant between other tasks.\nAlexey is a self-motivated person and his sense of professionality is outstanding. I would be happy to have Alexey in my developer team once again in the future."
+    },
+    {
+      "id": "rec-5",
+      "name": "Andreas Haag",
+      "position": "Speech Technology Consulting",
+      "company": "Samsung / HARMAN",
+      "date": "March 31, 2021",
+      "content": "I was working with Alexey on Samungs Bixby Project where he was working as a full stack developer and responsible for the all IoT (in Samsung Terms \"Smart Things\") developments. He was doing a great job there, especially when you look into the huge amount of devices and technologies that have been involved. His skill set including java script and the complete front-end development skills have been a great asset for all of us and he was a great contribution to the Team. His determination in getting things done was great and he continuously delivered our team new data and input to improve Bixby Virtual Assistant continuously."
+    },
+    {
+      "id": "rec-6",
+      "name": "Neil Millner",
+      "position": "Digital Transformation Lead",
+      "company": "Samsung / HARMAN",
+      "date": "January 27, 2021",
+      "content": "I have had the pleasure to work together with Alexey whilst at Harman / Samsung, during which time, Alexey has proven to be an extremely reliable professional with exceptional technical skills who has always delivered outstanding results even when schedules were tight. Alexey is a self-motivated person and an absolute professional who delivers incredibly qualitative work while being very efficient with his time management. Not only is he a very skilled full stack developer with surprisingly impressive problem-solving skills, but he is also a great guy to work with. As the technical lead of Samsung Bixby SmartThings Germany, he has always been willing to help as well as educate his fellow team members and guide others with his expertise in order to reach better results. Alexey would be an asset to any organization and software development team and I can highly recommend him for similar opportunities. "
+    },
+    {
+
+
+      "id": "rec-7",
+      "name": "Dr. Ignacio Izaguirre",
+      "position": "VP of Product at Concentrio AG",
+      "company": "Samsung / HARMAN",
+      "date": "December 1, 2020",
+      "content": "I have worked with Alexey for the last three years on the development of Samsung's voice assistant and Samsung Smartthings IoT services. During all this time, he's proved himself to be extraordinary reliable and he's always delivered outstanding results on tight schedules. He's technical skills are exceptional and he is also always ready to face new challenges. To round it all up, he is always willing to help his teammates and guide other with his expertise. I look forward to work with him again in the future."
+    },
+    {
+      "id": "rec-8",
+      "name": "Sverrir Rolf Sander",
+      "position": "Lead Development Manager at CCP Games",
+      "company": "Samsung / HARMAN",
+      "date": "November 19, 2020",
+      "content": "I had the pleasure of working with Alexey for almost 3 years and he is an absolute professional. Not only is he a very skilled developer and a nice person, but he also functions very well within a team in an agile setting (we used Scrum). What's also one of Alexey's strong suits is how efficient he is with his time and is able to implement technical solutions within hectic and tight deadlines. Alexey would be an asset for every software development team."
+    },
+    {
+      "id": "rec-9",
+      "name": "Jayaraj Purushothaman",
+      "position": "Product Lead at 7TV",
+      "company": "Allplan - NEMETSCHEK Group",
+      "date": "May 27, 2015",
+      "content": "Alexey is the best front-end developer I have worked with. He has tremendous knowledge of Javascript, HTML5/CSS & graphics programming (2D, 3D). He is very dedicated and loves his work. Any company would be lucky to have him."
+    },
+    {
+      "id": "rec-10",
+      "name": "Gray Holland",
+      "position": "Product Design Leader",
+      "company": "Allplan - NEMETSCHEK Group",
+      "date": "January 28, 2013",
+      "content": "I have worked with Alexey Zerkalenkov over the last year. I have enjoyed collaborating with him on various design and prototyping project for Allplan. His dedication to his work is exceptional to put it mildly. He is a completely self-motivated individual, and left to his own devises will amaze you with both the quality of his work and hi productivity. He has consistently surprised me with quality of his problem solving skills, and has often exceed my expectations [and this is not easy to do]. He is a talented designer, a highly skilled programer, and a wonderful person to work with. I cannot recommend Alexey enough... Any organization would be very lucky to work with him."
     }
   ]
 }
