@@ -1,8 +1,8 @@
 import { Canvas } from '@react-three/fiber';
 import { NeuralNetwork } from './NeuralNetwork';
-import { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 
-export function Scene() {
+export const Scene: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 800, height: 600 });
 
@@ -35,7 +35,7 @@ export function Scene() {
   }, []);
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 1 }}>
+    <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-black" style={{ zIndex: 1 }}>
       <div
         ref={containerRef}
         style={{
@@ -67,7 +67,7 @@ export function Scene() {
           <NeuralNetwork />
         </Canvas>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/90 dark:to-[#0a0a0f]/90 pointer-events-none" style={{ zIndex: 2 }} />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/50 to-white/100 dark:bg-gradient-to-b dark:from-transparent dark:via-transparent dark:to-[#0a0a0f]/90 pointer-events-none" style={{ zIndex: 2 }} />
     </div>
   );
 }

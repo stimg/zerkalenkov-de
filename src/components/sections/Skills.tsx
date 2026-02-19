@@ -1,3 +1,4 @@
+import React from 'react';
 import { Badge } from '@/components/ui/Badge';
 import { Accordion } from '@/components/ui/Accordion';
 import { useIntersection } from '@/hooks/useIntersection';
@@ -5,7 +6,7 @@ import { useIsMobile } from '@/hooks/useMediaQuery';
 import { cn } from '@/lib/utils';
 import resumeData from '@/data/resume.json';
 
-export function Skills() {
+export const Skills: React.FC = () => {
   const { skills } = resumeData;
   const { ref, hasIntersected } = useIntersection({ threshold: 0.1, freezeOnceVisible: true });
   const isMobile = useIsMobile();

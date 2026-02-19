@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -23,7 +23,7 @@ function isVideo(src: string): boolean {
   return VIDEO_EXTENSIONS.some(ext => lowerSrc.endsWith(ext));
 }
 
-function MediaItem({ src, alt, className, style, onAnimationEnd }: MediaItemProps) {
+const MediaItem: React.FC<MediaItemProps> = ({ src, alt, className, style, onAnimationEnd }) => {
   if (isVideo(src)) {
     return (
       <video
@@ -52,7 +52,7 @@ function MediaItem({ src, alt, className, style, onAnimationEnd }: MediaItemProp
   );
 }
 
-export function Carousel({ images, alt = 'Carousel image', className }: CarouselProps) {
+export const Carousel: React.FC<CarouselProps> = ({ images, alt = 'Carousel image', className }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [nextImageIndex, setNextImageIndex] = useState<number | null>(null);
   const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null);

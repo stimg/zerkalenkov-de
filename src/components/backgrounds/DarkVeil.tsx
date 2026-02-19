@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Renderer, Program, Mesh, Triangle, Vec2 } from 'ogl';
 
 const vertex = `
@@ -83,7 +83,7 @@ type Props = {
     resolutionScale?: number;
 };
 
-export const DarkVeil = ({
+export const DarkVeil: React.FC<Props> = ({
                                      hueShift = 0,
                                      noiseIntensity = 0,
                                      scanlineIntensity = 0,

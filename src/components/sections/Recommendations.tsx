@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Quote, ChevronRight } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Modal } from '@/components/ui/Modal';
@@ -7,7 +7,7 @@ import { useIntersection } from '@/hooks/useIntersection';
 import { cn } from '@/lib/utils';
 import resumeData from '@/data/resume.json';
 
-export function Recommendations() {
+export const Recommendations: React.FC = () => {
   const { recommendations } = resumeData;
   const [isAllModalOpen, setIsAllModalOpen] = useState(false);
   const [selectedRecommendation, setSelectedRecommendation] = useState<typeof recommendations[0] | null>(null);

@@ -54,3 +54,9 @@ The API server uses Bun's built-in server capabilities:
 - `.env` - Local environment variables (not committed)
 - `.env.example` - Template for environment variables
 - Bun automatically loads `.env` without needing dotenv package
+
+## Code Style
+
+- Always use semicolons at the end of statements
+- Use arrow functions everywhere possible instead of function declarations
+- React components must be typed arrow functions: `export const Foo: React.FC<Props> = ({ ... }) => { ... }`

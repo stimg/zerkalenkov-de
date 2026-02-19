@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from 'react';
+import React, { type ReactNode, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -8,7 +8,7 @@ interface AccordionProps {
   defaultOpen?: boolean;
 }
 
-export function Accordion({ title, children, defaultOpen = false }: AccordionProps) {
+export const Accordion: React.FC<AccordionProps> = ({ title, children, defaultOpen = false }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (

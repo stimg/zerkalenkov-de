@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Loader2, CheckCircle, Link as LinkIcon, Zap, Copy, MessageSquare, RotateCcw } from 'lucide-react';
 import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
@@ -22,7 +22,7 @@ interface MatchResult {
   whyThisCandidate: string[];
 }
 
-export function JDMatcher({ isOpen, onClose, onChatOpen }: JDMatcherProps) {
+export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpen }) => {
   const [jd, setJd] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<MatchResult | null>(null);
@@ -39,10 +39,6 @@ export function JDMatcher({ isOpen, onClose, onChatOpen }: JDMatcherProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ jd, resume: resumeData }),
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to analyze');
-      }
 
       const data = await response.json();
       setResult(data);

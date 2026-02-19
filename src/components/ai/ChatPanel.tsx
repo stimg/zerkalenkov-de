@@ -1,7 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { X, Minimize2, Send, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import { useChat } from '@/hooks/useChat';
 import { useIsMobile } from '@/hooks/useMediaQuery';
 import { cn, formatDate } from '@/lib/utils';
@@ -13,7 +12,7 @@ interface ChatPanelProps {
   onClose: () => void;
 }
 
-export function ChatPanel({ isOpen, onClose }: ChatPanelProps) {
+export const ChatPanel: React.FC<ChatPanelProps> = ({ isOpen, onClose }) => {
   const [input, setInput] = useState('');
   const { messages, isLoading, sendMessage } = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);

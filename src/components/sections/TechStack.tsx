@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   ReactLogo,
   TypeScriptLogo,
@@ -34,7 +34,7 @@ const logos = [
   MongoDBLogo,
   RedisLogo,
 ]
-export function TechStack() {
+export const TechStack: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

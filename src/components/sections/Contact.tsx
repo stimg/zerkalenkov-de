@@ -1,3 +1,4 @@
+import React from 'react';
 import { Mail, Linkedin, Github, MapPin, CheckCircle } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
@@ -5,7 +6,7 @@ import { useIntersection } from '@/hooks/useIntersection';
 import { cn } from '@/lib/utils';
 import resumeData from '@/data/resume.json';
 
-export function Contact() {
+export const Contact: React.FC = () => {
   const { personal } = resumeData;
   const { ref, hasIntersected } = useIntersection({ threshold: 0.1, freezeOnceVisible: true });
 

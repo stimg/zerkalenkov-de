@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect } from 'react';
+import React, { type ReactNode, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from './Button';
@@ -12,7 +12,7 @@ interface ModalProps {
   fullScreen?: boolean;
 }
 
-export function Modal({ isOpen, onClose, children, title, className, fullScreen = false }: ModalProps) {
+export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title, className, fullScreen = false }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';

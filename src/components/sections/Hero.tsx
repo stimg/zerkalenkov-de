@@ -1,4 +1,5 @@
-import { ChevronDown, MessageSquare, FileSearch } from 'lucide-react';
+import React from 'react';
+import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { scrollToSection } from '@/lib/utils';
 import { Scene } from '@/components/three/Scene';
@@ -11,7 +12,7 @@ interface HeroProps {
   onJDMatchOpen: () => void;
 }
 
-export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
+export const Hero: React.FC<HeroProps> = ({ onChatOpen, onJDMatchOpen }) => {
   const { personal } = resumeData;
 
   return (
@@ -31,11 +32,11 @@ export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
 
       <div className="relative z-10 container-custom text-center px-4 py-20">
         <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
-          <p className="text-5xl md:text-2xl text-black dark:text-white font-medium">
+          <p className="text-3xl md:text-5xl font-medium text-gray-800 dark:text-white">
             Hi, I'm
           </p>
 
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary-400 via-primary-100 to-primary-400 bg-clip-text text-transparent pb-3">
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary-800 via-primary-400 to-primary-800 dark:from-primary-500 dark:via-primary-50 dark:to-primary-500 bg-clip-text text-transparent pb-3">
             {personal.name} {personal.surname}
           </h1>
 
@@ -43,18 +44,16 @@ export function Hero({ onChatOpen, onJDMatchOpen }: HeroProps) {
             {personal.title}
           </p>
 
-          <p className="text-lg text-justify md:text-xl text-primary-600 dark:text-primary-200 max-w-2xl mx-auto">
+          <p className="text-lg text-justify md:text-xl text-primary-600 dark:text-primary-200 max-w-80 md:max-w-2xl mx-auto">
             {personal.tagline}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
             <Button variant="primary" size="md" onClick={onChatOpen}>
-              <MessageSquare className="w-5 h-5" />
               Chat with My Resume
             </Button>
 
             <Button variant="primary" size="md" onClick={onJDMatchOpen}>
-              <FileSearch className="w-5 h-5" />
               Check JD Match
             </Button>
 

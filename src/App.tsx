@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
@@ -10,7 +10,7 @@ import { Contact } from '@/components/sections/Contact';
 import { ChatPanel } from '@/components/ai/ChatPanel';
 import { JDMatcher } from '@/components/ai/JDMatcher';
 
-function App() {
+const App: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isJDMatcherOpen, setIsJDMatcherOpen] = useState(false);
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Brain, Code, Mic } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { useIntersection } from '@/hooks/useIntersection';
@@ -10,7 +11,7 @@ const iconMap = {
   Mic,
 };
 
-export function About() {
+export const About: React.FC = () => {
   const { about } = resumeData;
   const { ref, hasIntersected } = useIntersection({ threshold: 0.1, freezeOnceVisible: true });
 
