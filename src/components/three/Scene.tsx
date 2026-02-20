@@ -35,7 +35,7 @@ export const Scene: React.FC = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-black" style={{ zIndex: 1 }}>
+    <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-transparent" style={{ zIndex: 1 }}>
       <div
         ref={containerRef}
         style={{

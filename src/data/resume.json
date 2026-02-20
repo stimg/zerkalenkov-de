@@ -85,11 +85,15 @@
           "level": "expert"
         },
         {
-          "name": "Similarity / Semantic Search",
+          "name": "Similarity Search",
           "level": "advanced"
         },
         {
-          "name": "Vector Search & DB",
+          "name": "Semantic Search",
+          "level": "advanced"
+        },
+        {
+          "name": "Vector Search",
           "level": "advanced"
         },
         {
@@ -97,11 +101,23 @@
           "level": "expert"
         },
         {
-          "name": "NLU / NLP",
+          "name": "NLU",
           "level": "advanced"
         },
         {
-          "name": "TTS / STT",
+          "name": "NLP",
+          "level": "advanced"
+        },
+        {
+          "name": "TTS",
+          "level": "expert"
+        },
+        {
+          "name": "STT",
+          "level": "expert"
+        },
+        {
+          "name": "ASR",
           "level": "expert"
         },
         {
@@ -109,7 +125,7 @@
           "level": "expert"
         },
         {
-          "name": "OpenAI AI",
+          "name": "OpenAI",
           "level": "expert"
         },
         {
@@ -129,7 +145,23 @@
           "level": "expert"
         },
         {
-          "name": "OpenAI API",
+          "name": "Chat GPT",
+          "level": "expert"
+        },
+        {
+          "name": "Claude",
+          "level": "expert"
+        },
+        {
+          "name": "Claude Code",
+          "level": "expert"
+        },
+        {
+          "name": "Gemini",
+          "level": "expert"
+        },
+        {
+          "name": "Antigravity",
           "level": "expert"
         },
         {
@@ -154,6 +186,10 @@
           "level": "expert"
         },
         {
+          "name": "Next.js",
+          "level": "expert"
+        },
+        {
           "name": "React Query",
           "level": "expert"
         },
@@ -162,24 +198,16 @@
           "level": "expert"
         },
         {
-          "name": "Redux",
-          "level": "expert"
-        },
-        {
           "name": "Zod",
           "level": "expert"
         },
         {
-          "name": "Next.js",
-          "level": "expert"
-        },
-        {
-          "name": "Svelte.js",
-          "level": "advanced"
-        },
-        {
           "name": "Tailwind CSS",
           "level": "expert"
+        },
+        {
+          "name": "Svelte",
+          "level": "advanced"
         },
         {
           "name": "Backbone",
@@ -205,64 +233,6 @@
           "name": "Bootstrap",
           "level": "advanced"
         },
-        {
-          "name": "Google MUI",
-          "level": "advanced"
-        },
-        {
-          "name": "Figma",
-          "level": "advanced"
-        }
-      ]
-    },
-    {
-      "category": "Build & Package Tools",
-      "items": [
-        {
-          "name": "Webpack",
-          "level": "advanced"
-        },
-        {
-          "name": "Gulp",
-          "level": "expert"
-        },
-        {
-          "name": "Grunt",
-          "level": "expert"
-        },
-        {
-          "name": "Bower",
-          "level": "expert"
-        },
-        {
-          "name": "Browserify",
-          "level": "expert"
-        },
-        {
-          "name": "Babel",
-          "level": "expert"
-        },
-        {
-          "name": "Yarn",
-          "level": "expert"
-        },
-        {
-          "name": "NPM / PNPM",
-          "level": "expert"
-        },
-        {
-          "name": "Turborepo",
-          "level": "expert"
-        },
-        {
-          "name": "Vite",
-          "level": "expert"
-        }
-      ]
-    },
-    {
-      "category": "Authentication & Security",
-      "items": [
         {
           "name": "OAuth",
           "level": "expert"
@@ -290,63 +260,134 @@
         {
           "name": "PassportJS",
           "level": "advanced"
-        }
-      ]
-    },
-    {
-      "category": "Testing",
-      "items": [
+        },
         {
-          "name": "Jest",
+          "name": "Figma",
+          "level": "advanced"
+        },
+        {
+          "name": "Redux",
           "level": "expert"
         },
         {
-          "name": "Cypress",
+          "name": "SASS",
           "level": "expert"
         },
         {
-          "name": "Jasmine",
+          "name": "LESS",
           "level": "expert"
         },
         {
-          "name": "Karma",
+          "name": "Stylus",
           "level": "advanced"
         },
         {
-          "name": "Selenium",
+          "name": "BEM",
+          "level": "expert"
+        },
+        {
+          "name": "OOCSS",
           "level": "advanced"
         },
         {
-          "name": "WebdriverIO",
-          "level": "advanced"
-        },
-        {
-          "name": "Playwright",
-          "level": "advanced"
-        },
-        {
-          "name": "TDD / BDD",
-          "level": "advanced"
-        },
-        {
-          "name": "Unit Testing",
-          "level": "advanced"
-        },
-        {
-          "name": "E2E Testing",
-          "level": "advanced"
-        },
-        {
-          "name": "API Testing",
+          "name": "SMACSS",
           "level": "advanced"
         }
       ]
     },
     {
-      "category": "AWS Services",
+      "category": "Backend",
       "items": [
         {
-          "name": "IAM",
+          "name": "Node.js",
+          "level": "expert"
+        },
+        {
+          "name": "Python",
+          "level": "advanced"
+        },
+        {
+          "name": "Shell",
+          "level": "advanced"
+        },
+        {
+          "name": "Bash",
+          "level": "advanced"
+        },
+        {
+          "name": "Express",
+          "level": "expert"
+        },
+        {
+          "name": "Hapi",
+          "level": "expert"
+        },
+        {
+          "name": "Nest.js",
+          "level": "advanced"
+        },
+        {
+          "name": "NxJS",
+          "level": "advanced"
+        },
+        {
+          "name": "FastAPI",
+          "level": "advanced"
+        },
+        {
+          "name": "SQLAlchemy",
+          "level": "advanced"
+        },
+        {
+          "name": "GraphQL",
+          "level": "advanced"
+        },
+        {
+          "name": "REST",
+          "level": "expert"
+        },
+        {
+          "name": "AJAX",
+          "level": "expert"
+        },
+        {
+          "name": "SOAP",
+          "level": "advanced"
+        },
+        {
+          "name": "JSON",
+          "level": "expert"
+        },
+        {
+          "name": "JSON Schema",
+          "level": "expert"
+        },
+        {
+          "name": "YAML",
+          "level": "expert"
+        },
+        {
+          "name": "WebSocket",
+          "level": "expert"
+        },
+        {
+          "name": "WebRTC",
+          "level": "expert"
+        },
+        {
+          "name": "Kafka",
+          "level": "expert"
+        },
+        {
+          "name": "RxJS",
+          "level": "expert"
+        },
+        {
+          "name": "PubSub",
+          "level": "expert"
+        },
+        {
+          "name": "AWS IAM",
           "level": "advanced"
         },
         {
@@ -420,108 +461,115 @@
         {
           "name": "SQS",
           "level": "advanced"
-        }
-      ]
-    },
-    {
-      "category": "CSS Preprocessors",
-      "items": [
+        },
         {
-          "name": "SASS",
+          "name": "Apache",
           "level": "expert"
         },
         {
-          "name": "LESS",
+          "name": "Nginx",
           "level": "expert"
         },
         {
-          "name": "Stylus",
-          "level": "advanced"
-        },
-        {
-          "name": "BEM",
+          "name": "HA-Proxy",
           "level": "expert"
         },
         {
-          "name": "OOCSS",
-          "level": "advanced"
-        },
-        {
-          "name": "SMACSS",
+          "name": "Tomcat",
           "level": "advanced"
         }
       ]
     },
     {
-      "category": "Backend",
+      "category": "Test & Build",
       "items": [
         {
-          "name": "Node.js",
-          "level": "expert"
-        },
-        {
-          "name": "Express",
-          "level": "expert"
-        },
-        {
-          "name": "Hapi",
-          "level": "expert"
-        },
-        {
-          "name": "NestJS",
+          "name": "Webpack",
           "level": "advanced"
         },
         {
-          "name": "NxJS",
+          "name": "Gulp",
+          "level": "expert"
+        },
+        {
+          "name": "Grunt",
+          "level": "expert"
+        },
+        {
+          "name": "Bower",
+          "level": "expert"
+        },
+        {
+          "name": "Babel",
+          "level": "expert"
+        },
+        {
+          "name": "Yarn",
+          "level": "expert"
+        },
+        {
+          "name": "NPM",
+          "level": "expert"
+        },
+        {
+          "name": "PNPM",
+          "level": "expert"
+        },
+        {
+          "name": "Turborepo",
           "level": "advanced"
         },
         {
-          "name": "FastAPI",
+          "name": "Vite",
           "level": "advanced"
         },
         {
-          "name": "GraphQL",
+          "name": "Browserify",
+          "level": "expert"
+        },
+        {
+          "name": "Jest",
+          "level": "expert"
+        },
+        {
+          "name": "Cypress",
+          "level": "expert"
+        },
+        {
+          "name": "Jasmine",
+          "level": "expert"
+        },
+        {
+          "name": "Karma",
           "level": "advanced"
         },
         {
-          "name": "REST",
-          "level": "expert"
-        },
-        {
-          "name": "AJAX",
-          "level": "expert"
-        },
-        {
-          "name": "SOAP",
+          "name": "Selenium",
           "level": "advanced"
         },
         {
-          "name": "JSON",
-          "level": "expert"
+          "name": "WebdriverIO",
+          "level": "advanced"
         },
         {
-          "name": "YAML",
-          "level": "expert"
+          "name": "TDD / BDD",
+          "level": "advanced"
         },
         {
-          "name": "WebSocket / WebRTC",
-          "level": "expert"
+          "name": "Unit Testing",
+          "level": "advanced"
         },
         {
-          "name": "Kafka",
-          "level": "expert"
+          "name": "E2E Testing",
+          "level": "advanced"
         },
         {
-          "name": "RxJS",
-          "level": "expert"
+          "name": "API Testing",
+          "level": "advanced"
         },
         {
-          "name": "PubSub",
-          "level": "expert"
-        },
-        {
-          "name": "Lambdas",
-          "level": "expert"
+          "name": "Playwright",
+          "level": "advanced"
         }
       ]
     },
@@ -573,6 +621,10 @@
           "level": "advanced"
         },
         {
+          "name": "Vector Search",
+          "level": "advanced"
+        },
+        {
           "name": "Similarity Search",
           "level": "advanced"
         },
@@ -591,32 +643,15 @@
         {
           "name": "LocalStorage",
           "level": "advanced"
-        }
-      ]
-    },
-    {
-      "category": "Server Software",
-      "items": [
-        {
-          "name": "Apache",
-          "level": "expert"
         },
         {
-          "name": "Nginx",
-          "level": "expert"
-        },
-        {
-          "name": "HA-Proxy",
-          "level": "expert"
-        },
-        {
-          "name": "Tomcat",
+          "name": "SQL",
           "level": "advanced"
         }
       ]
     },
     {
-      "category": "DevOps & CI/CD",
+      "category": "CI/CD & Project Management",
       "items": [
         {
           "name": "Git",
@@ -635,10 +670,6 @@
           "level": "advanced"
         },
         {
-          "name": "Perforce",
-          "level": "intermediate"
-        },
-        {
           "name": "GitHub",
           "level": "advanced"
         },
@@ -647,7 +678,7 @@
           "level": "advanced"
         },
         {
-          "name": "Stash",
+          "name": "GitLab CI",
           "level": "advanced"
         },
         {
@@ -659,19 +690,7 @@
           "level": "advanced"
         },
         {
-          "name": "GitHub Pipelines",
-          "level": "advanced"
-        },
-        {
-          "name": "GitLab Pipelines",
-          "level": "advanced"
-        },
-        {
           "name": "GitHub Runners",
-          "level": "advanced"
-        },
-        {
-          "name": "Copilot",
           "level": "advanced"
         },
         {
@@ -693,12 +712,7 @@
         {
           "name": "CloudWatch",
           "level": "intermediate"
-        }
-      ]
-    },
-    {
-      "category": "Project Management",
-      "items": [
+        },
         {
           "name": "Agile",
           "level": "expert"
@@ -712,7 +726,7 @@
           "level": "expert"
         },
         {
-          "name": "SOC",
+          "name": "SoC",
           "level": "advanced"
         },
         {
@@ -744,39 +758,6 @@
           "level": "expert"
         }
       ]
-    },
-    {
-      "category": "Languages",
-      "items": [
-        {
-          "name": "TypeScript",
-          "level": "expert"
-        },
-        {
-          "name": "JavaScript (ES6+)",
-          "level": "expert"
-        },
-        {
-          "name": "HTML5",
-          "level": "expert"
-        },
-        {
-          "name": "CSS3",
-          "level": "expert"
-        },
-        {
-          "name": "Python",
-          "level": "advanced"
-        },
-        {
-          "name": "Shell",
-          "level": "advanced"
-        },
-        {
-          "name": "SQL",
-          "level": "advanced"
-        }
-      ]
     }
   ],
   "projects": [
@@ -798,32 +779,63 @@
         "Actively incorporated AI assistants into the engineering workflow to accelerate prototyping and code delivery"
       ],
       "skills": [
-        "Gen/Agentic AI",
+        "Typescript",
+        "Svelte",
+        "Agentic AI",
+        "Generative AI",
+        "Chatbots",
+        "AI Agents",
+        "Conversational AI",
         "RAG",
         "LLM",
+        "NLU",
         "NLP",
+        "TTS",
+        "STT",
+        "ASR",
+        "Prompt Engineering",
+        "Embeddings",
+        "Inferences",
+        "Similarity Search",
+        "Semantic Search",
+        "Vector Search",
         "OpenAI",
         "Ollama",
         "OpenRouter",
-        "Prompt Engineering",
-        "Inferences",
-        "Embeddings",
-        "Vector/Semantic Search",
+        "LiveKit",
+        "Open WebUI",
+        "Hugging Face",
         "Tool use",
         "Svelte",
         "TypeScript",
         "Python",
-        "LiveKit",
+        "FastAPI",
+        "SQLAlchemy",
+        "LangChain",
         "WebRTC",
         "PostgreSQL",
         "pgvector",
         "Chroma",
         "Qdrant",
-        "SQLight",
+        "SQLite",
+        "SQL",
+        "Semantic Search",
+        "Similarity Search",
+        "Web Search",
+        "Vector Search",
         "Docker",
+        "Shell",
+        "Zsh",
+        "Bash",
+        "Git",
         "GitHub CI/CD",
         "GitHub Registry",
-        "Cloud Native"
+        "Cloud Native",
+        "Claude",
+        "Claude Code",
+        "Chat GPT",
+        "Gemini",
+        "Antigravity"
       ],
       "images": [
         "/assets/impact-flow/if-scr-1.png",
@@ -838,7 +850,8 @@
         "live": "https://www.myimpactflow.app",
         "github": ""
       },
-      "featured": true
+      "featured": true,
+      "hidden": false
     },
     {
       "id": "igus",
@@ -864,7 +877,7 @@
         "TypeScript",
         "Zustand",
         "React Query",
-        "TailwindCSS",
+        "Tailwind CSS",
         "Zod",
         "CSS3",
         "HTML5",
@@ -875,12 +888,18 @@
         "Next.js",
         "Nest.js",
         "RxJS",
+        "JWT",
         "REST API",
+        "JSON",
+        "Session Storage",
+        "LocalStorage",
+        "Yaml",
         "Microservices",
         "HA-Proxy",
         "Babel",
         "PNPM",
         "Turborepo",
+        "SQL",
         "PostgreSQL",
         "Redis",
         "Hasura",
@@ -888,27 +907,50 @@
         "Hasura",
         "Docker",
         "AWS",
+        "RBAC",
         "MSK",
         "Kafka",
         "ECR",
         "EC2",
         "RDS",
         "MSK",
+        "S3",
         "Lambda",
         "CloudWatch",
-        "IAM",
+        "AWS IAM",
         "CloudFormation",
         "ElasticSearch",
         "ElastiCache",
         "HA-Proxy",
         "OpenSearch",
+        "Git",
+        "GitHub",
+        "GitHub Runners",
         "GitHub Actions",
+        "Bitbucket",
+        "Jenkins",
         "Cypress",
         "Jest",
         "React Testing Library",
+        "TDD / BDD",
+        "Unit Testing",
+        "API Testing",
+        "E2E Testing",
         "AWS CloudWatch dashboard and alerting",
         "Sentry",
-        "Grafana"
+        "Grafana",
+        "JIRA",
+        "Confluence",
+        "Kanban",
+        "SoC",
+        "DRY",
+        "KISS",
+        "YAGNI",
+        "Code Review",
+        "Pair Programming",
+        "Claude",
+        "Claude Code",
+        "Chat GPT"
       ],
       "images": [
         "/assets/igus/igus-scr-1.png",
@@ -921,7 +963,8 @@
         "live": "https://www.igus.com",
         "github": ""
       },
-      "featured": true
+      "featured": false,
+      "hidden": false
     },
     {
       "id": "man-truck",
@@ -943,27 +986,51 @@
         "React Native",
         "JavaScript",
         "TypeScript",
+        "JWT",
         "Zod",
         "HTML5",
         "CSS3",
         "Bootstrap",
         "Node.js",
+        "JSON",
+        "Session Storage",
+        "LocalStorage",
+        "Yaml",
         "WebSocket",
         "Push Notifications",
         "Adobe XD",
         "Figma",
         "Babel",
+        "Yarn",
+        "Shell",
+        "Bash",
         "PNPM",
         "AWS Amplify",
+        "AWS IAM",
+        "EC2",
+        "RBAC",
         "CDK",
         "CloudFormation",
         "API Gateway",
         "Cognito",
+        "Amplify",
         "Lambda",
         "DynamoDB",
         "S3",
         "CodeCommit",
-        "Kafka"
+        "Kafka",
+        "Git",
+        "GitHub",
+        "Bitbucket",
+        "JIRA",
+        "Confluence",
+        "Kanban",
+        "SoC",
+        "DRY",
+        "KISS",
+        "YAGNI",
+        "Code Review",
+        "Pair Programming"
       ],
       "images": [
         "/assets/man/man-scr-1.png",
@@ -977,7 +1044,61 @@
         "live": "https://www.man.com/de/simplepay",
         "github": ""
       },
-      "featured": true
+      "featured": true,
+      "hidden": false
+    },
+    {
+      "id": "ebot7",
+      "title": "Application Platform MVP",
+      "company": "e-bot7 GmbH",
+      "role": "Fullstack Engineer",
+      "period": "02.2021 – 03.2021",
+      "location": "Munich, Germany",
+      "jobType": "Contract",
+      "employmentType": "Freelance",
+      "description": "e-bot7 brings Artificial Intelligence to customer service and helps companies achieve greater customer service efficiency. The system analyzes inbound messages and provides agents with accurate response suggestions. This reduces the average handling time by up to 80% and automates repetitive and recurring questions and processes right after integration.",
+      "achievements": [
+        "Development of the Application Platform front and back end",
+        "Kick off Application Platform on Nest.js-based back end and React based front end"
+      ],
+      "skills": [
+        "React",
+        "ES6",
+        "TypeScript",
+        "Node.js",
+        "Nest.js",
+        "JSON",
+        "JWT",
+        "Session Storage",
+        "LocalStorage",
+        "NxJS",
+        "RxJS",
+        "GraphQL",
+        "Swagger",
+        "Linux",
+        "Yarn",
+        "NPM",
+        "Webpack",
+        "Babel",
+        "Git",
+        "GitHub",
+        "SoC",
+        "DRY",
+        "KISS",
+        "YAGNI",
+        "Code Review",
+        "Pair Programming",
+        "Shell",
+        "Bash",
+        "Zsh"
+      ],
+      "images": [],
+      "links": {
+        "live": "",
+        "github": ""
+      },
+      "featured": false,
+      "hidden": true
     },
     {
       "id": "samsung",
@@ -1003,15 +1124,30 @@
         "VIV AI Platform",
         "NLU",
         "NLP",
+        "TTS",
+        "STT",
+        "ASR",
         "ML Training",
         "Conversational AI",
         "VUI",
         "Node.js",
+        "SOAP",
+        "REST API",
+        "JSON",
+        "Git",
+        "GitHub",
+        "GitHub Runners",
+        "Python",
         "Bixby Language",
         "JavaScript",
         "HTML5",
         "CSS3",
-        "Bixby Views"
+        "Bixby Views",
+        "SoC",
+        "DRY",
+        "KISS",
+        "YAGNI",
+        "Code Review"
       ],
       "images": [
         "/assets/samsung/samsung-bixby.jpg",
@@ -1021,7 +1157,8 @@
         "live": "",
         "github": ""
       },
-      "featured": true
+      "featured": false,
+      "hidden": false
     },
     {
       "id": "ux-flo-wr",
@@ -1051,7 +1188,8 @@
         "live": "",
         "github": ""
       },
-      "featured": true
+      "featured": true,
+      "hidden": false
     },
     {
       "id": "sky",
@@ -1077,12 +1215,24 @@
         "Luna",
         "Acetrax API",
         "REST API",
+        "JSON Schema",
+        "JSON",
+        "PubSub",
+        "API Testing",
         "Video Streaming",
         "DRM",
         "NPM",
         "Grunt",
         "Agile",
-        "SCRUM"
+        "JIRA",
+        "Confluence",
+        "SCRUM",
+        "SoC",
+        "DRY",
+        "KISS",
+        "YAGNI",
+        "Code Review",
+        "Pair Programming"
       ],
       "images": [
         "/assets/sky/sky-q-ui.webp",
@@ -1092,7 +1242,8 @@
         "live": "https://d-cipher.io",
         "github": "https://github.com/stimg/dcipher-demo"
       },
-      "featured": true
+      "featured": false,
+      "hidden": false
     },
     {
       "id": "exaring-ccc",
@@ -1111,19 +1262,32 @@
         "Node.js",
         "Hapi",
         "JavaScript",
+        "JWT",
+        "Selenium",
+        "WebdriverIO",
+        "Jasmine",
+        "Karma",
+        "TDD / BDD",
+        "Unit Testing",
+        "E2E Testing",
         "Backbone",
         "Mustache",
         "jQuery",
         "HTML5",
         "CSS3",
+        "BEM",
+        "OOCSS",
+        "SMACSS",
         "Stylus",
         "Bootstrap",
         "JSON",
+        "SQL",
         "Prometheus",
         "Grafana",
         "Gulp",
         "Babel",
         "Bower",
+        "Webpack",
         "SCRUM",
         "Agile",
         "GitLab",
@@ -1137,7 +1301,8 @@
         "live": "",
         "github": ""
       },
-      "featured": false
+      "featured": false,
+      "hidden": false
     },
     {
       "id": "exaring-waipu",
@@ -1157,21 +1322,27 @@
         "HTML5",
         "CSS3",
         "LESS",
+        "SASS",
         "JavaScript",
         "jQuery",
-        "FlightJS",
+        "Flight.js",
         "Mustache",
-        "ExpressJS",
+        "Express",
         "Node.js",
         "JSON",
         "Typo3",
         "Gulp",
+        "Webpack",
         "Babel",
+        "Webpack",
         "Bower",
         "Selenium",
         "WebdriverIO",
         "Jasmine",
         "Karma",
+        "TDD / BDD",
+        "Unit Testing",
+        "E2E Testing",
         "Docker",
         "SCRUM",
         "Agile",
@@ -1188,7 +1359,8 @@
         "live": "",
         "github": ""
       },
-      "featured": false
+      "featured": true,
+      "hidden": false
     },
     {
       "id": "exaring-devops",
@@ -1208,7 +1380,6 @@
         "Data centers humidity monitoring: Monitoring of the humidity level in the data centers and visual representation of the data in the frontend",
         "Temperature monitoring: Monitoring of the temperature level in the data centers and visual representation of the data in the frontend",
         "DSL speedometer: testing the connection speed between the customers and the waipu IP TV provider"
-
       ],
       "skills": [
         "AngularJS",
@@ -1218,19 +1389,39 @@
         "Cytoscape.js",
         "jQuery",
         "Node.js",
+        "JSON",
+        "Session Storage",
+        "LocalStorage",
+        "Yaml",
         "NPM",
-        "Express.js",
+        "Express",
         "REST",
         "JSON",
         "YAML",
         "MongoDB",
+        "SQL",
         "Keycloak",
+        "RBAC",
         "PassportJS",
         "OpenID",
+        "OAuth",
+        "AWS IAM",
+        "Route 53",
+        "EC2",
         "Grunt",
         "Bower",
         "GitLab",
-        "Atlassian JIRA",
+        "GitLab CI",
+        "Git",
+        "Shell",
+        "Bash",
+        "Nginx",
+        "JIRA",
+        "Confluence",
+        "SoC",
+        "DRY",
+        "KISS",
+        "YAGNI",
         "Jenkins"
       ],
       "images": [
@@ -1246,7 +1437,8 @@
         "live": "",
         "github": ""
       },
-      "featured": false
+      "featured": false,
+      "hidden": false
     },
     {
       "id": "ux-flo-dc",
@@ -1261,7 +1453,14 @@
       "achievements": [
       ],
       "skills": [
-        "JavaScript", "HTML5/CSS3 + Canvas 2D", "jQuery", "Bootstrap", "IndexedDB", "Session & Local Storage", "Git", "JSON"
+        "JavaScript",
+        "HTML5/CSS3 + Canvas 2D",
+        "jQuery",
+        "Bootstrap",
+        "IndexedDB",
+        "Session & Local Storage",
+        "Git",
+        "JSON"
       ],
       "images": [
         "/assets/ux-flo/dcipher.png",
@@ -1275,7 +1474,8 @@
         "live": "https://d-cipher.io/",
         "github": "https://github.com/stimg/dcipher-demo"
       },
-      "featured": false
+      "featured": true,
+      "hidden": false
     },
     {
       "id": "bimplus",
@@ -1294,7 +1494,39 @@
         "Contributing to a ~5% stock value increase, matching this impact required a €1M company"
       ],
       "skills": [
-        "JavaScript", "WebGL", "Ember.js", "Handlebars", "Three.js", "jQuery", "Zeplin", "jQueryUI", "RequireJS", "Node.js", "REST", "AJAX", "HTML5", "CSS3", "JSON", "AMD", "Grunt.js", "CI/CD", "SVN", "Git", "GitLab", "Scrum", "Balsamiq", "SourceTree", "JIRA", "Confluence"
+        "JavaScript",
+        "WebGL",
+        "Ember.js",
+        "Handlebars",
+        "Three.js",
+        "jQuery",
+        "Zeplin",
+        "jQueryUI",
+        "RequireJS",
+        "Node.js",
+        "REST",
+        "JSON",
+        "SQL",
+        "Session Storage",
+        "LocalStorage",
+        "IndexedDB",
+        "AJAX",
+        "HTML5",
+        "CSS3",
+        "SASS",
+        "JSON",
+        "AMD",
+        "Grunt.js",
+        "CI/CD",
+        "SVN",
+        "Subversion",
+        "Git",
+        "GitLab",
+        "Scrum",
+        "Balsamiq",
+        "SourceTree",
+        "JIRA",
+        "Confluence"
       ],
       "images": [
         "/assets/bimplus/bim-scr-1.png",
@@ -1307,10 +1539,11 @@
         "live": "",
         "github": ""
       },
-      "featured": false
+      "featured": true,
+      "hidden": false
     },
     {
-      "id": "",
+      "id": "cad-web-viewer",
       "title": "CAD Web Viewer",
       "company": "Allplan – NEMETSCHEK Group",
       "role": "Software Engineer",
@@ -1324,7 +1557,31 @@
         "Replaced an entire development team, boosting development speed ~60x by moving the product from the obsolete Java FX framework to the SOTA HTML5 Canvas technology"
       ],
       "skills": [
-        "JavaScript", "jQuery", "jQueryUI", "Prototype.js", "HTML5", "CSS", "Canvas 2D", "HTML", "Java", "Oracle", "Apache", "Tomcat", "Maven", "AJAX", "JSON", "SVN", "Subversive", "CVS", "Scrum", "Illustrator", "Balsamiq", "Eclipse", "JSDT", "JIRA", "Confluence"
+        "JavaScript",
+        "jQuery",
+        "jQueryUI",
+        "Prototype.js",
+        "HTML5",
+        "CSS",
+        "Canvas 2D",
+        "HTML",
+        "Java",
+        "Oracle",
+        "Apache",
+        "Tomcat",
+        "Maven",
+        "AJAX",
+        "JSON",
+        "SVN",
+        "Subversion",
+        "CVS",
+        "Scrum",
+        "Balsamiq",
+        "Eclipse",
+        "JSDT",
+        "JIRA",
+        "Kanban",
+        "Confluence"
       ],
       "images": [
         "/assets/allplan/allplan-visual.jpg"
@@ -1333,10 +1590,10 @@
         "live": "",
         "github": ""
       },
-      "featured": false
+      "featured": false,
+      "hidden": false
     }
   ],
-
   "recommendations": [
     {
       "id": "rec-1",
@@ -1387,8 +1644,6 @@
       "content": "I have had the pleasure to work together with Alexey whilst at Harman / Samsung, during which time, Alexey has proven to be an extremely reliable professional with exceptional technical skills who has always delivered outstanding results even when schedules were tight. Alexey is a self-motivated person and an absolute professional who delivers incredibly qualitative work while being very efficient with his time management. Not only is he a very skilled full stack developer with surprisingly impressive problem-solving skills, but he is also a great guy to work with. As the technical lead of Samsung Bixby SmartThings Germany, he has always been willing to help as well as educate his fellow team members and guide others with his expertise in order to reach better results. Alexey would be an asset to any organization and software development team and I can highly recommend him for similar opportunities. "
     },
     {
-
-
       "id": "rec-7",
       "name": "Dr. Ignacio Izaguirre",
       "position": "VP of Product at Concentrio AG",

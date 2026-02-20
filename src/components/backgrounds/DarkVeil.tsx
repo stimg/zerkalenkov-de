@@ -73,17 +73,7 @@ void main(){
 }
 `;
 
-type Props = {
-    hueShift?: number;
-    noiseIntensity?: number;
-    scanlineIntensity?: number;
-    speed?: number;
-    scanlineFrequency?: number;
-    warpAmount?: number;
-    resolutionScale?: number;
-};
-
-export const DarkVeil: React.FC<Props> = ({
+export const DarkVeil = ({
                                      hueShift = 0,
                                      noiseIntensity = 0,
                                      scanlineIntensity = 0,
@@ -91,7 +81,7 @@ export const DarkVeil: React.FC<Props> = ({
                                      scanlineFrequency = 0,
                                      warpAmount = 0,
                                      resolutionScale = 1
-                                 }: Props) => {
+                                 }) => {
     const ref = useRef<HTMLCanvasElement>(null);
     useEffect(() => {
         const canvas = ref.current as HTMLCanvasElement;

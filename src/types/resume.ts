@@ -49,6 +49,7 @@ export type Project = {
     github: string;
   };
   featured: boolean;
+  hidden: boolean;
 };
 
 export type Recommendation = {

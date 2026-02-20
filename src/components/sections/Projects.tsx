@@ -21,13 +21,15 @@ export const Projects: FC = () => {
   const projects: Project[] = resumeData.projects;
   const skills: Skill[] = resumeData.skills;
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [filter, setFilter] = useState<FilterType>('featured');
+  const [filter, setFilter] = useState<FilterType>('recent');
   const {ref, hasIntersected} = useIntersection({threshold: 0.1, freezeOnceVisible: true});
 
+  const visibleProjects = projects.filter(p => !p.hidden);
+
   const filteredProjects =
-    filter === 'featured' ? projects.filter(p => p.featured) :
-    filter === 'recent'   ? projects.slice(0, 6) :
-    projects;
+    filter === 'featured' ? visibleProjects.filter(p => p.featured) :
+    filter === 'recent'   ? visibleProjects.slice(0, 6) :
+    visibleProjects;
 
   const heading = HEADINGS[filter];
 
