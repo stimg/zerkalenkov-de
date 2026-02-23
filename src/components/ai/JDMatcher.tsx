@@ -1,10 +1,66 @@
-import React, { useState } from 'react';
-import { Loader2, CheckCircle, Link as LinkIcon, Zap, Copy, MessageSquare, RotateCcw, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Loader2, CheckCircle, Link as LinkIcon, Zap, Copy, MessageSquare, RotateCcw, AlertCircle, Clock } from 'lucide-react';
 import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { useIsMobile } from '@/hooks/useMediaQuery';
 import { callAnthropic, type MatchResult } from '@/api/anthropic';
+
+const RATE_LIMIT = 3;
+const RATE_WINDOW_MS = 5 * 60 * 1000;
+const STORAGE_KEY = 'jd_submission_timestamps';
+
+const getActiveTimestamps = (): number[] => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    const timestamps: number[] = stored ? JSON.parse(stored) : [];
+    return timestamps.filter((ts) => Date.now() - ts < RATE_WINDOW_MS);
+  } catch {
+    return [];
+  }
+};
+
+const formatTimeRemaining = (ms: number): string => {
+  const totalSeconds = Math.ceil(ms / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${String(seconds).padStart(2, '0')}`;
+};
+
+const useJDRateLimit = () => {
+  const [isLimited, setIsLimited] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(0);
+  const [submissionsLeft, setSubmissionsLeft] = useState(RATE_LIMIT);
+
+  const refresh = useCallback(() => {
+    const active = getActiveTimestamps();
+    const limited = active.length >= RATE_LIMIT;
+    setIsLimited(limited);
+    setSubmissionsLeft(Math.max(0, RATE_LIMIT - active.length));
+    if (limited && active.length > 0) {
+      const oldest = Math.min(...active);
+      setTimeRemaining(RATE_WINDOW_MS - (Date.now() - oldest));
+    } else {
+      setTimeRemaining(0);
+    }
+    return limited;
+  }, []);
+
+  const recordSubmission = useCallback(() => {
+    const active = getActiveTimestamps();
+    active.push(Date.now());
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(active));
+    refresh();
+  }, [refresh]);
+
+  useEffect(() => {
+    refresh();
+    const interval = setInterval(refresh, 1000);
+    return () => clearInterval(interval);
+  }, [refresh]);
+
+  return { isLimited, timeRemaining, submissionsLeft, recordSubmission, refresh };
+};
 
 interface JDMatcherProps {
   isOpen: boolean;
@@ -17,10 +73,13 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<MatchResult | null>(null);
   const isMobile = useIsMobile();
+  const { isLimited, timeRemaining, submissionsLeft, recordSubmission, refresh } = useJDRateLimit();
 
   const handleAnalyze = async () => {
     if (!jd.trim()) return;
+    if (refresh()) return;
 
+    recordSubmission();
     setIsAnalyzing(true);
 
     try {
@@ -58,30 +117,51 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
             Paste a job description to see how Alexey's experience aligns with the requirements.
           </p>
 
-          <textarea
-            value={jd}
-            onChange={(e) => setJd(e.target.value)}
-            placeholder="Paste the job description here..."
-            rows={isMobile ? 12 : 10}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e2e] focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
-          />
-
-          <Button
-            variant="primary"
-            size="lg"
-            onClick={handleAnalyze}
-            disabled={!jd.trim() || isAnalyzing}
-            className="w-full"
-          >
-            {isAnalyzing ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Analyzing...
-              </>
-            ) : (
-              'Analyze Match'
-            )}
-          </Button>
+          {isLimited ? (
+            <div className="flex items-start gap-3 p-4 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg">
+              <Clock className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+              <div>
+                <p className="font-semibold text-amber-800 dark:text-amber-300">Daily limit reached</p>
+                <p className="text-sm text-amber-700 dark:text-amber-400 mt-1">
+                  You've used all {RATE_LIMIT} analyses for this session. To keep the service available for everyone, please wait a moment before trying again.
+                </p>
+                <p className="text-sm font-mono font-semibold text-amber-800 dark:text-amber-300 mt-2">
+                  Available again in {formatTimeRemaining(timeRemaining)}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <>
+              <textarea
+                value={jd}
+                onChange={(e) => setJd(e.target.value)}
+                placeholder="Paste the job description here..."
+                rows={isMobile ? 12 : 10}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e2e] focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
+              />
+              {submissionsLeft < RATE_LIMIT && (
+                <p className="text-xs text-gray-500 dark:text-gray-500 -mt-2">
+                  {submissionsLeft} {submissionsLeft === 1 ? 'analysis' : 'analyses'} remaining in this session
+                </p>
+              )}
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={handleAnalyze}
+                disabled={!jd.trim() || isAnalyzing}
+                className="w-full"
+              >
+                {isAnalyzing ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Analyzing...
+                  </>
+                ) : (
+                  'Analyze Match'
+                )}
+              </Button>
+            </>
+          )}
         </div>
       ) : result?.error ? (
         <div className="space-y-4">

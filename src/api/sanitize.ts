@@ -29,7 +29,7 @@ export const sanitizeJD = (raw: string): string => {
   // Detect injection attempts before any stripping
   for (const pattern of INJECTION_PATTERNS) {
     if (pattern.test(raw)) {
-      throw new JDSanitizationError('Input contains disallowed content.');
+      return "Input contains disallowed content.";
     }
   }
 
