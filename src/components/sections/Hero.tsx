@@ -49,12 +49,12 @@ export const Hero: React.FC<HeroProps> = ({ onChatOpen, onJDMatchOpen }) => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-            <Button variant="primary" size="md" onClick={onChatOpen}>
-              Chat with My Resume
-            </Button>
-
             <Button variant="primary" size="md" onClick={onJDMatchOpen}>
               Check JD Match
+            </Button>
+
+            <Button variant="primary" size="md" onClick={onChatOpen}>
+              Chat with My Resume
             </Button>
 
             <Button

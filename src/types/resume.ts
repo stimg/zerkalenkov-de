@@ -3,6 +3,7 @@ export type Personal = {
   surname: string;
   title: string;
   tagline: string;
+  about: string;
   email: string;
   linkedin: string;
   github: string;

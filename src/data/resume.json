@@ -3,7 +3,8 @@
     "name": "Alexey",
     "surname": "Zerkalenkov",
     "title": "Senior Fullstack AI Engineer",
-    "tagline": "20+ years turning complex problems into production-grade web platforms and AI solutions — from 3D CAD viewers to voice-enabled GenAI assistants. I find solutions to problems that others cannot.",
+    "tagline": "20+ years turning complex problems into production-grade web platforms and AI solutions – from 3D CAD viewers to voice-enabled GenAI assistants. I find solutions to problems that others cannot.",
+    "about": "Twenty years of building software taught me one thing most engineers miss: code that ships fast means nothing if it doesn't solve the right problem. I've replaced entire development teams, delivered industry firsts, and mentored engineers from junior to confident – all while staying the engineer who writes the code, not just talks about it.\n\nMy work spans the full modern stack – React, TypeScript, Python, Node.js, AWS cloud infrastructure, and increasingly, GenAI systems with RAG pipelines, LLMs, and agentic AI workflows. At igus GmbH, I reduced main page load time 3x through a single well-targeted middleware optimization. At Samsung, I wrote automation scripts that sped up bug fixing 50x and pushed NL test pass rates from 63% to 98%. At Nemetschek Allplan, I built the industry's first browser-based 3D CAD viewer – alone – which contributed to a ~5% stock value increase. These aren't flukes. They're what happens when deep technical knowledge meets genuine ownership of outcomes.\n\nWhat drives me isn't the technology itself – it's the moment a complex system finally clicks into place and makes someone's work measurably better. Whether that's a product consultant getting answers in real time from a voice AI assistant, or a junior engineer writing their first clean, testable module, I care about the outcome, not just the output. If you're looking for a senior engineer who brings both hands-on delivery and architectural thinking – available immediately for contract engagements in the DACH region – let's connect.",
     "email": "a.zerkalenkov@smart-image.eu",
     "linkedin": "https://linkedin.com/in/zerkalenkov",
     "github": "https://github.com/stimg",
@@ -11,7 +12,7 @@
     "availability": "available"
   },
   "about": {
-    "summary": "I build full-stack web platforms, SPA, PWA, SaaS, cloud-native backends on AWS, and production-grade AI systems — end to end, from architecture to deployment. My stack covers React, Svelte, Next.js, TypeScript, Node.js, Python, AWS serverless, and GenAI including RAG pipelines, agentic workflows, vector DB, similarity/semantic search, and voice-enabled assistants. 20+ years shipping software, 14+ enterprise projects delivered, freelancing since 2009.",
+    "summary": "I build full-stack web platforms, SPA, PWA, SaaS, cloud-native backends on AWS, and production-grade AI systems – end to end, from architecture to deployment. My stack covers React, Svelte, Next.js, TypeScript, Node.js, Python, AWS serverless, and GenAI including RAG pipelines, agentic workflows, vector DB, similarity/semantic search, and voice-enabled assistants. 20+ years shipping software, 14+ enterprise projects delivered, freelancing since 2009.",
     "services": [
       {
         "icon": "Brain",
@@ -1041,7 +1042,7 @@
         "/assets/man/demo_workflow.m4v"
       ],
       "links": {
-        "live": "https://www.man.com/de/simplepay",
+        "live": "https://rio.cloud/en/marketplace/produkt/man-simplepay",
         "github": ""
       },
       "featured": true,
@@ -1151,10 +1152,10 @@
       ],
       "images": [
         "/assets/samsung/samsung-bixby.jpg",
-        "/assets/samsung/bixby-logo.webp"
+        "/assets/samsung/bixby-logo.jpg"
       ],
       "links": {
-        "live": "",
+        "live": "https://www.samsung.com/de/apps/bixby/",
         "github": ""
       },
       "featured": false,
@@ -1235,12 +1236,12 @@
         "Pair Programming"
       ],
       "images": [
-        "/assets/sky/sky-q-ui.webp",
+        "/assets/sky/sky-q-ui.jpg",
         "/assets/sky/sky-q-store.jpg"
       ],
       "links": {
-        "live": "https://d-cipher.io",
-        "github": "https://github.com/stimg/dcipher-demo"
+        "live": "https://www.sky.de/pakete-produkte/sky-q",
+        "github": ""
       },
       "featured": false,
       "hidden": false
@@ -1352,11 +1353,11 @@
       ],
       "images": [
         "/assets/exaring/waipu-logo.jpg",
-        "/assets/exaring/checkout.webp",
+        "/assets/exaring/checkout.jpg",
         "/assets/exaring/starter-info.png"
       ],
       "links": {
-        "live": "",
+        "live": "https://www.waipu.tv",
         "github": ""
       },
       "featured": true,
@@ -1371,7 +1372,7 @@
       "location": "Munich, Germany",
       "jobType": "On-site",
       "employmentType": "Freelance",
-      "description": "Network operations dashboard SPA — a bunch of network operation tools.",
+      "description": "Network operations dashboard SPA – a bunch of network operation tools.",
       "achievements": [
         "Improved cost-efficiency of the DevOps division up to 30% and reduced hardware damage risks by building a set of network operation and monitoring tools:",
         "Network Monitoring: Statistic data from network devices and sensors collected by the Dashboard App and represented in the frontend as visual information",
@@ -1536,7 +1537,7 @@
         "/assets/bimplus/bim-scr-5.png"
       ],
       "links": {
-        "live": "",
+        "live": "https://www.bimplus.net/de",
         "github": ""
       },
       "featured": true,

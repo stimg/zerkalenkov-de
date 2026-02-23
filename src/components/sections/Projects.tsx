@@ -7,7 +7,7 @@ import { useIntersection } from '@/hooks/useIntersection';
 import { cn } from '@/lib/utils';
 import resumeData from '@/data/resume.json';
 import { ProjectDetails } from "@/components/sections/ProjectDetails.tsx";
-import type { Skill, Project } from '@/types/resume';
+import type { Project } from '@/types/resume';
 
 type FilterType = 'featured' | 'recent' | 'all';
 
@@ -19,7 +19,6 @@ const HEADINGS: Record<FilterType, string> = {
 
 export const Projects: FC = () => {
   const projects: Project[] = resumeData.projects;
-  const skills: Skill[] = resumeData.skills;
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [filter, setFilter] = useState<FilterType>('recent');
   const {ref, hasIntersected} = useIntersection({threshold: 0.1, freezeOnceVisible: true});
@@ -59,8 +58,9 @@ export const Projects: FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project, index) => (
-              <Card
+            {filteredProjects.map((project, index) => {
+              const skills = project.skills;
+              return <Card
                 key={project.id}
                 hover
                 onClick={() => setSelectedProject(project)}
@@ -100,9 +100,9 @@ export const Projects: FC = () => {
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {skills.slice(0, 4).map((tech) => (
-                      <Badge key={tech.category} variant="default" className="text-xs">
-                        {tech.category}
+                    { skills.slice(0, 4).map((tech) => (
+                      <Badge key={tech} variant="default" className="text-xs">
+                        {tech}
                       </Badge>
                     ))}
                     {skills.length > 4 && (
@@ -113,7 +113,7 @@ export const Projects: FC = () => {
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            })}
           </div>
         </div>
       </section>

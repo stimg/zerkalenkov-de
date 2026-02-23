@@ -1,25 +1,15 @@
 import React, { useState } from 'react';
-import { Loader2, CheckCircle, Link as LinkIcon, Zap, Copy, MessageSquare, RotateCcw } from 'lucide-react';
+import { Loader2, CheckCircle, Link as LinkIcon, Zap, Copy, MessageSquare, RotateCcw, AlertCircle } from 'lucide-react';
 import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { useIsMobile } from '@/hooks/useMediaQuery';
-import resumeData from '@/data/resume.json';
+import { callAnthropic, type MatchResult } from '@/api/anthropic';
 
 interface JDMatcherProps {
   isOpen: boolean;
   onClose: () => void;
   onChatOpen: () => void;
-}
-
-interface MatchResult {
-  overallFit: string;
-  summary: string;
-  directMatches: string[];
-  relatedExperience: Array<{ required: string; related: string }>;
-  transferableStrengths: string[];
-  quickLearnerNote: string;
-  whyThisCandidate: string[];
 }
 
 export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpen }) => {
@@ -34,56 +24,10 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
     setIsAnalyzing(true);
 
     try {
-      const response = await fetch('/api/jd-match', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ jd, resume: resumeData }),
-      });
-
-      const data = await response.json();
+      const data = await callAnthropic(jd);
       setResult(data);
     } catch (error) {
       console.error('JD Match error:', error);
-      // Fallback to demo data for development
-      setResult({
-        overallFit: 'Strong Match',
-        summary:
-          "Alexey's 20+ years of full-stack experience combined with recent AI/GenAI specialization makes him an excellent fit for this role. His proven track record with enterprise-scale voice assistants and GenAI platforms directly aligns with the position requirements.",
-        directMatches: [
-          'TypeScript',
-          'React',
-          'Node.js',
-          'Python',
-          'OpenAI API',
-          'LangChain',
-          'AWS',
-          'Docker',
-          'PostgreSQL',
-        ],
-        relatedExperience: [
-          {
-            required: 'GraphQL',
-            related: 'Extensive REST API design and implementation; GraphQL adoption is straightforward',
-          },
-          {
-            required: 'Kubernetes',
-            related: 'Advanced Docker experience with container orchestration knowledge',
-          },
-        ],
-        transferableStrengths: [
-          'Rapid technology adoption - proven by mastering GenAI stack in production within months',
-          '20+ years adapting to evolving tech landscapes',
-          'Enterprise-scale system architecture experience',
-        ],
-        quickLearnerNote:
-          'With 20+ years of consistently adopting new technologies and frameworks, any unfamiliar tools mentioned in the JD would be quick additions to the skillset.',
-        whyThisCandidate: [
-          'Led AI voice assistant platform serving 10M+ daily interactions at Samsung/Harman',
-          'Architected GenAI content platform scaling to 50K monthly users',
-          'Proven ability to deliver production-ready AI solutions for Fortune 500 companies',
-          'Strong full-stack foundation enables end-to-end feature ownership',
-        ],
-      });
     } finally {
       setIsAnalyzing(false);
     }
@@ -96,7 +40,7 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
 
   const handleCopySummary = () => {
     if (!result) return;
-    const summary = `JD Match Analysis for Alexey Zerkalenkov\n\nOverall Fit: ${result.overallFit}\n\n${result.summary}\n\nKey Strengths:\n${result.whyThisCandidate.map((point) => `• ${point}`).join('\n')}`;
+    const summary = `JD Match Analysis for Alexey Zerkalenkov\n\nPosition: ${result.position}\nOverall Fit: ${result.overallMatch}\n\n${result.summary}\n\nKey Strengths:\n${result.whyThisCandidate.map((point) => `• ${point}`).join('\n')}`;
     navigator.clipboard.writeText(summary);
   };
 
@@ -139,16 +83,49 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
             )}
           </Button>
         </div>
+      ) : result?.error ? (
+        <div className="space-y-4">
+          <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-[#1e1e2e] rounded-lg">
+            <AlertCircle className="w-8 h-8 text-gray-400 shrink-0" />
+            <div>
+              <p className="font-semibold text-gray-800 dark:text-gray-200">
+                {result.error === 'Invalid JD'
+                  ? "That doesn't look like a job description"
+                  : result.error === 'Not relevant'
+                    ? "Role outside Alexey's domain"
+                    : "Input could not be processed"}
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                {result.error === 'Invalid JD'
+                  ? 'Please paste a valid job description that includes a position title, responsibilities, and required skills.'
+                  : result.error === 'Not relevant'
+                    ? "This position doesn't match Alexey's expertise in software engineering. Try pasting a tech role."
+                    : 'The input contains content that cannot be processed. Please paste a plain job description and try again.'}
+              </p>
+            </div>
+          </div>
+          <div className="flex justify-end">
+            <Button variant="ghost" size="sm" onClick={handleReset}>
+              <RotateCcw className="w-4 h-4" />
+              Try Again
+            </Button>
+          </div>
+        </div>
       ) : (
         <div className="space-y-6 max-h-[70vh] overflow-y-auto">
           <div className="flex items-center justify-between p-4 bg-primary-50 dark:bg-primary-950 rounded-lg">
             <div>
+              {result.position && (
+                <p className="text-xs text-gray-500 dark:text-gray-500 mb-0.5">{result.position}</p>
+              )}
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Overall Fit</p>
               <p className="text-2xl font-bold text-primary-600 dark:text-primary-400">
-                {result.overallFit}
+                {result.overallMatch}
               </p>
             </div>
-            <CheckCircle className="w-12 h-12 text-primary-500" />
+            {result.overallMatch !== 'Weak Match' && (
+              <CheckCircle className="w-12 h-12 text-primary-500" />
+            )}
           </div>
 
           <div>
@@ -157,7 +134,7 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
 
           <div>
             <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-500" />
+              <CheckCircle className="w-5 h-5 text-secondary-500" />
               Direct Skill Matches
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -169,6 +146,25 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
             </div>
           </div>
 
+          {result.missingMustHaveSkills?.length > 0 && (
+            <div>
+              <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
+                <AlertCircle className="w-5 h-5 text-red-500" />
+                Missing Must-Have Skills
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {result.missingMustHaveSkills.map((skill: string) => (
+                  <span
+                    key={skill}
+                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
           {result.relatedExperience.length > 0 && (
             <div>
               <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
@@ -179,7 +175,7 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
                 {result.relatedExperience.map((item, index) => (
                   <div
                     key={index}
-                    className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg text-sm"
+                    className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg text-sm leading-[1.6]"
                   >
                     <p className="font-semibold text-blue-700 dark:text-blue-400">
                       {item.required}
@@ -213,17 +209,19 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
             </div>
           )}
 
-          <div>
-            <h3 className="text-lg font-bold mb-3">Why This Candidate</h3>
-            <ul className="space-y-2">
-              {result.whyThisCandidate.map((point, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm">
-                  <span className="text-primary-500 mt-1">•</span>
-                  <span className="text-gray-700 dark:text-gray-300">{point}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {result.overallMatch !== 'Weak Match' && (
+            <div>
+              <h3 className="text-lg font-bold mb-3">Why This Candidate</h3>
+              <ul className="space-y-2">
+                {result.whyThisCandidate.map((point, index) => (
+                  <li key={index} className="flex items-start gap-2 text-sm">
+                    <span className="text-primary-500 mt-1">•</span>
+                    <span className="text-gray-700 dark:text-gray-300">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-800">
             <Button variant="primary" size="sm" onClick={handleCopySummary}>
