@@ -8,6 +8,7 @@
     "dev:api": "bun run src/api/server.ts",
     "dev:all": "bun run dev & bun run dev:api",
     "build": "vite build",
+    "build:lambda": "bun build ./lambda/handler.ts --outfile ./lambda/dist/handler.js --target node --format cjs --minify",
     "preview": "vite preview",
     "lint": "tsc --noEmit"
   },

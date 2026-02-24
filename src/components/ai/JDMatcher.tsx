@@ -87,6 +87,7 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
       setResult(data);
     } catch (error) {
       console.error('JD Match error:', error);
+      setResult({ error: 'API Error' } as unknown as MatchResult);
     } finally {
       setIsAnalyzing(false);
     }
@@ -131,7 +132,7 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
               </div>
             </div>
           ) : (
-            <>
+            <div className="text-center">
               <textarea
                 value={jd}
                 onChange={(e) => setJd(e.target.value)}
@@ -140,16 +141,16 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e2e] focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
               />
               {submissionsLeft < RATE_LIMIT && (
-                <p className="text-xs text-gray-500 dark:text-gray-500 -mt-2">
+                <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
                   {submissionsLeft} {submissionsLeft === 1 ? 'analysis' : 'analyses'} remaining in this session
                 </p>
               )}
               <Button
                 variant="primary"
-                size="lg"
+                size="md"
                 onClick={handleAnalyze}
                 disabled={!jd.trim() || isAnalyzing}
-                className="w-full"
+                className="w-auto mt-4"
               >
                 {isAnalyzing ? (
                   <>
@@ -160,7 +161,7 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
                   'Analyze Match'
                 )}
               </Button>
-            </>
+            </div>
           )}
         </div>
       ) : result?.error ? (
@@ -173,14 +174,26 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
                   ? "That doesn't look like a job description"
                   : result.error === 'Not relevant'
                     ? "Role outside Alexey's domain"
-                    : "Input could not be processed"}
+                    : result.error === 'Too short'
+                      ? "Job description is too short"
+                      : result.error === 'Too long'
+                        ? "Job description is too long"
+                        : result.error === 'API Error'
+                        ? "Service temporarily unavailable"
+                        : "Input could not be processed"}
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                 {result.error === 'Invalid JD'
                   ? 'Please paste a valid job description that includes a position title, responsibilities, and required skills.'
                   : result.error === 'Not relevant'
                     ? "This position doesn't match Alexey's expertise in software engineering. Try pasting a tech role."
-                    : 'The input contains content that cannot be processed. Please paste a plain job description and try again.'}
+                    : result.error === 'Too short'
+                      ? "The job description is too brief for a meaningful analysis. Please include the position title, key responsibilities, required tech stack, and any must-have qualifications."
+                      : result.error === 'Too long'
+                        ? "The job description exceeds the 3000 character limit. Please trim it down to the key sections: position title, responsibilities, and required skills."
+                        : result.error === 'API Error'
+                        ? "Something went wrong on our end. Please try again in a moment."
+                        : 'The input contains content that cannot be processed. Please paste a plain job description and try again.'}
               </p>
             </div>
           </div>
