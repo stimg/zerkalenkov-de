@@ -79,13 +79,19 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
     if (!jd.trim()) return;
     if (refresh()) return;
 
-    recordSubmission();
     setIsAnalyzing(true);
 
     try {
       const data = await callAnthropic(jd);
+      // Only count against quota when the request actually reached Lambda
+      // (client-side length guards return early without hitting the backend)
+      if (data.error !== 'Too short' && data.error !== 'Too long') {
+        recordSubmission();
+      }
       setResult(data);
     } catch (error) {
+      // Network-level errors mean the fetch was attempted, so count it
+      recordSubmission();
       console.error('JD Match error:', error);
       setResult({ error: 'API Error' } as unknown as MatchResult);
     } finally {

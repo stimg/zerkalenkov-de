@@ -1,4 +1,4 @@
-import resumeText from '../src/data/resume.txt' with { type: 'text' };
+import resumeText from '../data/resume.txt' with { type: 'text' };
 
 export const buildSystemPrompt = (jd: string): string => `You are an expert recruiter analyzing job description matches and calculate relevance scores for job postings.
 
