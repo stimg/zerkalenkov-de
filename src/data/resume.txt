@@ -1,0 +1,63 @@
+Alexey Zerkalenkov – Senior Fullstack AI Engineer
+LinkedIn: linkedin.com/in/zerkalenkov | GitHub: github.com/stimg
+Location: Remote / Europe | Availability: immediately available for contract engagements in DACH region
+
+20+ years, 14+ enterprise projects, freelancing since 2009.
+
+Tagline: 20+ years turning complex problems into production-grade web platforms and AI solutions – from 3D CAD viewers to voice-enabled GenAI assistants.
+
+About: Twenty years of building software taught me one thing most engineers miss: code that ships fast means nothing if it doesn't solve the right problem. I've replaced entire development teams, delivered industry firsts, and mentored engineers from junior to confident – all while staying the engineer who writes the code, not just talks about it.
+
+My work spans the full modern stack – React, TypeScript, Python, Node.js, AWS cloud infrastructure, and increasingly, GenAI systems with RAG pipelines, LLMs, and agentic AI workflows. At igus GmbH, I reduced main page load time 3x through a single well-targeted middleware optimization. At Samsung, I wrote automation scripts that sped up bug fixing 50x and pushed NL test pass rates from 63% to 98%. At Nemetschek Allplan, I built the industry's first browser-based 3D CAD viewer – alone – which contributed to a ~5% stock value increase. These aren't flukes. They're what happens when deep technical knowledge meets genuine ownership of outcomes.
+
+What drives me isn't the technology itself – it's the moment a complex system finally clicks into place and makes someone's work measurably better. Whether that's a product consultant getting answers in real time from a voice AI assistant, or a junior engineer writing their first clean, testable module, I care about the outcome, not just the output. Available immediately for contract engagements in the DACH region.
+
+SKILLS
+AI/ML: Agentic AI, Generative AI, Chatbots, AI Agents, RAG, LLM, Embeddings, Inferences, Similarity Search, Semantic Search, Vector Search, Conversational AI, NLU, NLP, TTS, STT, ASR, Prompt Engineering, OpenAI, Anthropic, Claude, Ollama, Openrouter, LiveKit, Open WebUI, LangChain, LangGraph, Hugging Face, ML Training, VUI
+Frontend: React, Next.js, React Query, Zustand, Zod, Tailwind CSS, Svelte, TypeScript, JavaScript, Backbone, jQuery, Redux, SASS, LESS, Bootstrap, Figma
+Auth: OAuth, JWT, OpenID, Keycloak, AWS IAM, RBAC, Cognito, PassportJS
+Backend: Node.js, Python, Express, Hapi, Nest.js, NxJS, FastAPI, SQLAlchemy, GraphQL, REST, WebSocket, WebRTC, Kafka, RxJS, PubSub, SOAP
+AWS: Lambda, EC2, RDS, S3, DynamoDB, API Gateway, Cognito, CDK, CloudFormation, Amplify, MSK, Kinesis, SNS, SQS, CloudWatch, ECR, Route 53
+Infrastructure: Docker, Nginx, Apache, HA-Proxy, Tomcat, Shell, Bash
+Databases: PostgreSQL, pgvector, DynamoDB, MongoDB, MySQL, Redis, Chroma, Qdrant, OpenSearch, SQLite, IndexedDB
+Testing: Jest, Cypress, Playwright, Jasmine, Selenium, WebdriverIO, TDD/BDD, Unit/E2E/API Testing
+CI/CD: Git, GitHub Actions, GitLab CI, GitHub Runners, Jenkins, Docker, Turborepo
+Methods: Agile, SCRUM, Kanban, Code Review, Pair Programming, Microservices, Serverless, SaaS, Cloud Native
+
+PROJECTS
+
+Impact Flow | AI Chatbot Assistant | Full-Stack AI Engineer | Freelance | 2025–present | Zurich
+Built real-time voice-enabled GenAI assistant for product consultants. SOA-based agentic AI workflows (Novita, OpenAI, Ollama). RAG pipelines, semantic search, vector search, inference pipelines. Full-stack: Open WebUI, LiveKit, Python, Svelte, WebRTC, TypeScript, FastAPI. Vector DB: PostgreSQL+pgvector, Chroma, Qdrant. Docker + GitHub CI/CD deployment.
+Stack: TypeScript, Svelte, Python, FastAPI, SQLAlchemy, LangChain, WebRTC, PostgreSQL, pgvector, Chroma, Qdrant, SQLite, OpenAI, Ollama, OpenRouter, LiveKit, Open WebUI, Hugging Face, Docker, GitHub CI/CD, RAG, Agentic AI, NLU, NLP, TTS, STT, ASR, Embeddings
+
+igus GmbH | Enterprise eCommerce Platform | Senior Full-Stack Developer | Freelance | 2022–2025 | Cologne
+iCommerce platform – 150,000+ products, 70+ countries. Improved main page load 3x via Next.js middleware. Session caching cut service requests ~60%. HA-Proxy script 15x faster. AWS CloudWatch monitoring dashboard. Mentored 3 junior engineers (+15% code quality). Used AI code assistants daily.
+Stack: React, TypeScript, Next.js, Nest.js, Node.js, Python, Go, Java, Zustand, React Query, Tailwind CSS, Zod, GraphQL, Hasura, PostgreSQL, Redis, Kafka, MSK, Docker, AWS (EC2, RDS, S3, Lambda, CloudWatch, ECR, IAM, CloudFormation), Turborepo, Jest, Cypress, GitHub Actions, Sentry, Grafana
+
+MAN Truck & Bus SE | MAN SimplePay | Fullstack Engineer | Freelance | 2021–2022 | Munich
+Payment-in-truck PWA and React Native mobile apps from wireframes to MVP. Showcased at IAA 2022. AWS cloud microservices architecture. Mentored junior developer (+20% code quality).
+Stack: React, React Native, TypeScript, Node.js, JWT, Zod, WebSocket, AWS Amplify, CDK, CloudFormation, API Gateway, Cognito, Lambda, DynamoDB, S3, CodeCommit, Kafka, Figma
+
+Samsung / HARMAN Connected Services | Bixby SmartThings | Technical Lead | Freelance | 2018–2020 | Munich
+Samsung AI NLU Team Germany. Built 12 Conversational AI standalone apps generating 1M+ new user registrations. NL test pass rate improved 63%→99%. E2E tests 67%→98%. Automation scripts improved bug fixing speed 50x. Led SmartThings team of 5 developers.
+Stack: VIV AI Platform, NLU, NLP, TTS, STT, ASR, ML Training, Conversational AI, Node.js, Python, JavaScript, REST, SOAP, GitHub, Bixby Language, Bixby Views
+
+e-bot7 GmbH | Application Platform MVP | Fullstack Engineer | Freelance | 2021 | Munich
+AI customer service platform – reduces average handling time 80%, automates recurring queries. Full-stack development, Nest.js backend + React frontend.
+Stack: React, TypeScript, Node.js, Nest.js, NxJS, RxJS, GraphQL, JWT, Webpack, Babel
+
+Sky Deutschland | Sky Store App for SkyQ STB | Senior Software Engineer | Freelance | 2017–2018 | Munich
+Next-gen embedded STB app for SkyQ Set-Top-Box. HD UI, movie catalog, purchase, rent, streaming. Linux environment. Developer documentation reduced onboarding cost 10%.
+Stack: TypeScript, JavaScript, Node.js, REST API, JSON Schema, PubSub, Video Streaming, DRM, Grunt
+
+EXARING AG | Customer Care Cockpit + waipu.tv + Network Ops Dashboard | Software Engineer | Freelance | 2015–2017 | Munich
+Customer management SPA for waipu.tv (30% speed boost). IP-TV checkout/subscription frontend (5% sales increase). Network operations dashboard: IP address management (AWS Route 53), network monitoring, alert monitoring, humidity/temperature sensors, DSL speedometer (30% DevOps efficiency improvement).
+Stack: Node.js, Hapi, Backbone, JavaScript, Express, MongoDB, JWT, Selenium, WebdriverIO, Keycloak, OAuth, OpenID, AWS Route 53, EC2, AngularJS, Cytoscape.js, Nginx, GitLab CI
+
+bim+ / Allplan – NEMETSCHEK Group | 3D Web Viewer | Software Engineer | Freelance | 2012–2015 | Munich
+Industry-first browser-based 3D CAD viewer for architects and engineers. Loads Sketch, IFC, Allplan formats. JS performance optimized 37x. Contributed to ~5% company stock value increase.
+Stack: JavaScript, WebGL, Three.js, Ember.js, Node.js, REST, SASS, SVN, Git
+
+Allplan – NEMETSCHEK Group | CAD Web Viewer | Software Engineer | Freelance | 2011–2012 | Munich
+First browser-based 2D CAD viewer using HTML5 Canvas. Replaced entire Java FX development team. Development speed improved ~60x.
+Stack: JavaScript, jQuery, HTML5 Canvas 2D, Java, Oracle, Apache, Tomcat, AJAX
