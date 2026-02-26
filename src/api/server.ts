@@ -1,8 +1,17 @@
 import OpenAI from 'openai';
-import resumeData from '../data/resume.json';
+import Anthropic from '@anthropic-ai/sdk';
+import resumeText from '../data/resume.txt' with { type: 'text' };
+import { sanitizeUserMessage } from './sanitize';
+import { buildJDMSystemPrompt } from "@/api/prompts.ts";
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+  maxRetries: 0,
+  timeout: 30000,
+});
 
 const openai = new OpenAI({
-  apiKey: process.env.VITE_OPENAI_API_KEY || process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const server = Bun.serve({
@@ -29,7 +38,7 @@ const server = Bun.serve({
         const systemPrompt = `You are a helpful assistant representing Alexey Zerkalenkov, a Senior Fullstack AI Engineer with 20+ years of experience.
 
 Answer questions about his professional background based on this resume data:
-${JSON.stringify(resumeData, null, 2)}
+${resumeText}
 
 Be professional, concise, and helpful. Speak in first person as if you are Alexey. Don't make up information not in the resume.`;
 
@@ -51,7 +60,7 @@ Be professional, concise, and helpful. Speak in first person as if you are Alexe
 
         return new Response(
           JSON.stringify({
-            message: completion.choices[0].message.content,
+            message: completion.choices[0]?.message.content || "Sorry, I couldn't understand your message.",
           }),
           {
             headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -64,6 +73,59 @@ Be professional, concise, and helpful. Speak in first person as if you are Alexe
             error: 'Failed to process request',
             message: 'Sorry, I encountered an error. Please try again.',
           }),
+          {
+            status: 500,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          }
+        );
+      }
+    }
+
+    // JD Match endpoint
+    if (url.pathname === '/api/match' && req.method === 'POST') {
+      try {
+        const { jd: rawJd } = await req.json();
+
+        if (!rawJd?.trim()) {
+          return new Response(JSON.stringify({ error: 'Missing jd field' }), {
+            status: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        const jd = sanitizeUserMessage(rawJd);
+
+        if (jd.length < 250) {
+          return new Response(JSON.stringify({ error: 'Too short' }), {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        if (jd.length > 3000) {
+          return new Response(JSON.stringify({ error: 'Too long' }), {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        const completion = await anthropic.messages.create({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 4096,
+          system: buildJDMSystemPrompt(jd),
+          messages: [{ role: 'user', content: 'Analyze the match' }],
+        });
+
+        const block = completion.content[0];
+        const text = block?.type === 'text' ? block.text : '{}';
+        const jsonMatch = text.match(/\{[\s\S]*}/);
+        const result = JSON.parse(jsonMatch ? jsonMatch[0] : '{}');
+
+        return new Response(JSON.stringify(result), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      } catch (error) {
+        console.error('Match error:', error);
+        return new Response(
+          JSON.stringify({ error: 'Failed to process request' }),
           {
             status: 500,
             headers: { ...corsHeaders, 'Content-Type': 'application/json' },

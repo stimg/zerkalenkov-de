@@ -1,10 +1,12 @@
 import { useState, useCallback } from 'react';
+import { callAnthropicChat, type ChatUsage } from '@/api/anthropic';
 
 export interface Message {
   id: string;
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  usage?: ChatUsage;
 }
 
 export function useChat() {
@@ -12,7 +14,7 @@ export function useChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const sendMessage = useCallback(async (content: string, context?: string) => {
+  const sendMessage = useCallback(async (content: string) => {
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
@@ -25,23 +27,15 @@ export function useChat() {
     setError(null);
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: content, context, history: messages }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to get response');
-      }
-
-      const data = await response.json();
+      const history = messages.map(({ role, content: c }) => ({ role, content: c }));
+      const { message: responseText, usage } = await callAnthropicChat(content, history);
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: data.message,
+        content: responseText,
         timestamp: new Date(),
+        usage,
       };
 
       setMessages((prev) => [...prev, assistantMessage]);

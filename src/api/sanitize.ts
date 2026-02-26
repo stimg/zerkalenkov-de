@@ -18,18 +18,11 @@ const INJECTION_PATTERNS = [
   /jailbreak/i,
 ];
 
-export class JDSanitizationError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'JDSanitizationError';
-  }
-}
-
-export const sanitizeJD = (raw: string): string => {
+export const sanitizeUserMessage = (raw: string): string => {
   // Detect injection attempts before any stripping
   for (const pattern of INJECTION_PATTERNS) {
     if (pattern.test(raw)) {
-      throw new JDSanitizationError('Input contains disallowed content.');
+      return "Input contains disallowed content.";
     }
   }
 

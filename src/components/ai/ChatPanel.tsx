@@ -1,32 +1,39 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { X, Minimize2, Send, Loader2 } from 'lucide-react';
+import { X, Minimize2, Maximize2, Send, Loader2 } from 'lucide-react';
+import Markdown from 'react-markdown';
 import { Button } from '@/components/ui/Button';
-import { useChat } from '@/hooks/useChat';
+import { useChat, type Message } from '@/hooks/useChat';
 import { useIsMobile } from '@/hooks/useMediaQuery';
 import { cn, formatDate } from '@/lib/utils';
 import { QUICK_SUGGESTIONS } from '@/lib/constants';
-import resumeData from '@/data/resume.json';
 
 interface ChatPanelProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const ChatPanel: React.FC<ChatPanelProps> = ({ isOpen, onClose }) => {
+export const ChatPanel: React.FC<ChatPanelProps> = ({isOpen, onClose}) => {
   const [input, setInput] = useState('');
-  const { messages, isLoading, sendMessage } = useChat();
+  const [isMinimized, setIsMinimized] = useState(false);
+  const {messages, isLoading, sendMessage} = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({behavior: 'smooth'});
   }, [messages]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      inputRef.current?.focus();
+    }
+  }, [isLoading]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    const context = JSON.stringify(resumeData);
-    await sendMessage(input, context);
+    await sendMessage(input);
     setInput('');
   };
 
@@ -36,13 +43,27 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
+  if (isMinimized) {
+    return (
+      <div className="fixed bottom-4 right-4 z-50 flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#12121a] shadow-2xl border border-gray-200 dark:border-gray-800 rounded-full">
+        <span className="text-sm font-semibold">Ask About My Experience</span>
+        <Button variant="ghost" size="sm" onClick={() => setIsMinimized(false)} className="rounded-full">
+          <Maximize2 className="w-4 h-4"/>
+        </Button>
+        <Button variant="ghost" size="sm" onClick={onClose} className="rounded-full">
+          <X className="w-4 h-4"/>
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <div
       className={cn(
         'fixed z-50 bg-white dark:bg-[#12121a] shadow-2xl border border-gray-200 dark:border-gray-800',
         isMobile
           ? 'inset-0 rounded-none'
-          : 'bottom-4 right-4 w-[400px] h-[600px] rounded-xl'
+          : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(80vw,860px)] h-[min(80vh,85svh)] rounded-xl'
       )}
     >
       <div className="flex flex-col h-full">
@@ -50,12 +71,12 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({ isOpen, onClose }) => {
           <h3 className="font-bold">Ask About My Experience</h3>
           <div className="flex items-center gap-2">
             {!isMobile && (
-              <Button variant="ghost" size="sm" onClick={onClose} className="rounded-full">
-                <Minimize2 className="w-4 h-4" />
+              <Button variant="ghost" size="sm" onClick={() => setIsMinimized(true)} className="rounded-full">
+                <Minimize2 className="w-4 h-4"/>
               </Button>
             )}
             <Button variant="ghost" size="sm" onClick={onClose} className="rounded-full">
-              <X className="w-4 h-4" />
+              <X className="w-4 h-4"/>
             </Button>
           </div>
         </div>
@@ -83,7 +104,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({ isOpen, onClose }) => {
             </div>
           )}
 
-          {messages.map((message) => (
+          {messages.map((message: Message) => (
             <div
               key={message.id}
               className={cn(
@@ -99,8 +120,25 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({ isOpen, onClose }) => {
                     : 'bg-gray-100 dark:bg-[#1e1e2e]'
                 )}
               >
-                <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                <p className="text-xs opacity-70 mt-1">{formatDate(message.timestamp)}</p>
+                {message.role === 'user' ? (
+                  <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                ) : (
+                  <div className="text-sm prose dark:prose-invert max-w-none
+                  prose-p:my-1.2 prose-p:text-sm prose-ul:my-1 prose-ol:my-1 prose-li:my-0 prose-li:text-sm
+                  prose-headings:my-1.5 prose-headings:font-semibold prose-h1:text-md prose-h2:text-md
+                  prose-h3:text-md prose-h4:text-md prose-strong:text-sm prose-code:text-sm prose-code:text-primary-400
+                  prose-pre:bg-gray-200 dark:prose-pre:bg-black/40 prose-pre:rounded prose-pre:p-2 prose-pre:text-sm">
+                    <Markdown>{message.content}</Markdown>
+                  </div>
+                )}
+                <div className="flex items-center justify-between gap-3 mt-1">
+                  <p className="text-xs opacity-70">{formatDate(message.timestamp)}</p>
+                  {message.role === 'assistant' && message.usage && (
+                    <p className="text-xs opacity-50 tabular-nums">
+                      ↑{message.usage.input} ↓{message.usage.output}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           ))}
@@ -108,17 +146,18 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({ isOpen, onClose }) => {
           {isLoading && (
             <div className="flex gap-3 justify-start">
               <div className="bg-gray-100 dark:bg-[#1e1e2e] rounded-lg p-3">
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="w-5 h-5 animate-spin"/>
               </div>
             </div>
           )}
 
-          <div ref={messagesEndRef} />
+          <div ref={messagesEndRef}/>
         </div>
 
         <div className="p-4 border-t border-gray-200 dark:border-gray-800">
           <div className="flex gap-2">
             <input
+              ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -133,7 +172,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({ isOpen, onClose }) => {
               onClick={handleSend}
               disabled={!input.trim() || isLoading}
             >
-              {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+              {isLoading ? <Loader2 className="w-4 h-4 animate-spin"/> : <Send className="w-4 h-4"/>}
             </Button>
           </div>
         </div>

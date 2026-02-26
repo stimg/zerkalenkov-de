@@ -25,6 +25,7 @@ Use Bun as the package manager and runtime:
 - `bun run build` - Build for production
 - `bun run preview` - Preview production build
 - `bun run lint` - Type check with TypeScript
+- `bun run build:lambda` - Bundle Lambda handler to `lambda/dist/handler.js`
 
 ## Package Management
 
@@ -33,13 +34,27 @@ Use Bun as the package manager and runtime:
 - Use `bun remove <package>` instead of `npm uninstall <package>`
 - Use `bunx <package>` instead of `npx <package>`
 
-## Backend API (api/server.ts)
+## Backend API (src/api/server.ts)
 
 The API server uses Bun's built-in server capabilities:
 - `Bun.serve()` for HTTP server
 - Bun automatically loads `.env` files
 - Use `Bun.file()` for file operations
 - Built-in WebSocket support
+
+Key modules in `src/api/`:
+- `server.ts` — Bun dev server (chat + JD match endpoints)
+- `prompts.ts` — shared system prompt builder (used by server and Lambda)
+- `sanitize.ts` — JD sanitization and injection-pattern detection
+- `anthropic.ts` — frontend client (sanitize → length guards → Lambda fetch)
+
+## Lambda (AWS)
+
+Production JD matcher runs as an AWS Lambda function:
+- Source: `lambda/handler.ts`
+- Build: `bun run build:lambda` → outputs `lambda/dist/handler.js`
+- Deploy manually via AWS Console or CLI after each build
+- Uses `resume.txt` (not `resume.json`) as LLM context
 
 ## Frontend (Vite + React)
 
@@ -54,6 +69,10 @@ The API server uses Bun's built-in server capabilities:
 - `.env` - Local environment variables (not committed)
 - `.env.example` - Template for environment variables
 - Bun automatically loads `.env` without needing dotenv package
+
+Required in `.env`:
+- `ANTHROPIC_API_KEY` — used by Lambda and local dev server
+- `OPENAI_API_KEY` — used by local dev server (chat endpoint)
 
 ## Code Style
 

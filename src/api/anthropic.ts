@@ -1,11 +1,9 @@
-import Anthropic from '@anthropic-ai/sdk';
-import resumeData from '@/data/resume.json';
-import { sanitizeJD } from '@/api/sanitize';
+import { sanitizeUserMessage } from './sanitize';
 
-const anthropic = new Anthropic({
-  apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
-  dangerouslyAllowBrowser: true,
-});
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
 
 export interface MatchResult {
   position: string;
@@ -20,72 +18,54 @@ export interface MatchResult {
   error?: string;
 }
 
-export const callAnthropic = async (rawJd: string): Promise<MatchResult> => {
-  const jd = sanitizeJD(rawJd);
+const LAMBDA_URL = import.meta.env.VITE_LAMBDA_URL as string;
 
-  const systemPrompt = `You are an expert recruiter analyzing job description matches and calculate relevance scores for job postings.
+export const callAnthropicJDMatcher = async (rawJd: string): Promise<MatchResult> => {
+  const jd = sanitizeUserMessage(rawJd);
 
-Given this candidate's resume:
-${JSON.stringify(resumeData, null, 2)}
+  if (jd.length < 250) {
+    return { error: 'Too short' } as unknown as MatchResult;
+  }
 
-And this job description:
-${jd}
+  if (jd.length > 5000) {
+    return { error: 'Too long' } as unknown as MatchResult;
+  }
 
-BEFORE PROCEEDING (CRITICAL):
-- Analyse user query, it must be a valid job description and resume and have a valid JD structure: position/title, description, responsibilities/tasks, and tech stack
-- If the user query doesn't look like a job description, return a JSON object with the following structure: { "error": "Invalid JD" }
-- If the JD is valid and can be proceeded, make a fast evaluation, if it it relevant to my domain knowledge. Examples: 
-  - JD: "Software Engineer" --> true (perfect)
-  - JD: "Looking for a skilled engineer with experience in Python and AWS, and a strong interest in blockchain" --> true
-  - JD: "Experienced driver" --> false
-  - JD: "Architect" --> false
-- If the result is false, return a JSON object with the following structure: { "error": "Not relevant" } 
-
-
-1. Analyze the JD, extract:
-- Position title
-- MUST HAVE skills - "Required", "Must have", "Essential", "Mandatory" (not "Nice to have"), mentioned multiple times or emphasized
-- Key responsibilities action verbs and domain keywords
-- Tech stack - specific technologies mentioned
-- Industry/domain keywords - company-specific terminology
-
-
-2. JD Relevance Check
-
-**Before proceeding, validate overall match:**
-
-2.1. For EACH must-have skill from JD:
-- Check if skill exists in Consolidated Resume
-- Create list: MATCHED must-haves vs MISSING must-haves
-
-2.2. Overall Relevance Score
-Calculate: (Total matched JD keywords / Total JD keywords) * 100 = Relevance %
-Assign: "Strong Match" if > 80%, "High Match" if > 70%, "Good Match" if > 60%, Otherwise "Weak Match"
-
-Return a JSON response with this structure:
-{
-  "position": "AI Software Engineer",
-  "overallMatch": "Perfect Match" > 90% | "Strong Match" > 80% | "High Match" > 70% | "Good Match" > 60% | "Weak Match" < 60%,
-  "summary": "2-3 sentence summary of overall alignment",
-  "directMatches": ["skill1", "skill2", ...],
-  "missingMustHaveSkills": ["skill1", "skill2", ...],
-  "relatedExperience": [{"required": "skill", "related": "explanation"}, ...],
-  "transferableStrengths": ["strength1", "strength2", ...],
-  "quickLearnerNote": "Note about adaptability if needed",
-  "whyThisCandidate": ["point1", "point2", ...]
-}
-
-IMPORTANT: Always frame positively for the candidate. Find related/transferable experience for any non-exact matches. Emphasize problem solving, adaptability, and learning speed, skills. Return only the JSON object, no additional text.`;
-
-  const completion = await anthropic.messages.create({
-    model: 'claude-haiku-4-5-20251001',
-    max_tokens: 4096,
-    system: systemPrompt,
-    messages: [{ role: 'user', content: 'Analyze the match' }],
+  const response = await fetch(LAMBDA_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ rawJd: jd }),
   });
 
-  const block = completion.content[0];
-  const text = block?.type === 'text' ? block.text : '{}';
-  const jsonMatch = text.match(/\{[\s\S]*}/);
-  return JSON.parse(jsonMatch ? jsonMatch[0] : '{}');
+  if (!response.ok) {
+    const body = await response.json().catch(() => ({}));
+    throw new Error(`API error ${response.status}: ${body.error ?? 'unknown'}`);
+  }
+
+  return response.json();
+};
+
+export interface ChatUsage {
+  input: number;
+  output: number;
+}
+
+export const callAnthropicChat = async (
+  message: string,
+  history: ChatMessage[],
+): Promise<{ message: string; usage?: ChatUsage }> => {
+  const sanitized = sanitizeUserMessage(message);
+
+  const response = await fetch(LAMBDA_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ type: 'chat', message: sanitized, history }),
+  });
+
+  if (!response.ok) {
+    const body = await response.json().catch(() => ({}));
+    throw new Error(`API error ${response.status}: ${body.error ?? 'unknown'}`);
+  }
+
+  return response.json();
 };
