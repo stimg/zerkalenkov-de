@@ -60,3 +60,18 @@ The API server uses Bun's built-in server capabilities:
 - Always use semicolons at the end of statements
 - Use arrow functions everywhere possible instead of function declarations
 - React components must be typed arrow functions: `export const Foo: React.FC<Props> = ({ ... }) => { ... }`
+
+## Commit Message Format
+
+```
+<header — max 128 chars>
+
+- brief change 1
+- brief change 2
+- brief change N
+```
+
+Rules:
+- The header (first line) must not exceed 128 characters
+- The header is followed by a blank line
+- The body is a bullet list summarising what changed
