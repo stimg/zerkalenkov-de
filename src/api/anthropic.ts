@@ -1,4 +1,9 @@
-import { sanitizeJD } from './sanitize';
+import { sanitizeUserMessage } from './sanitize';
+
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
 
 export interface MatchResult {
   position: string;
@@ -15,8 +20,8 @@ export interface MatchResult {
 
 const LAMBDA_URL = import.meta.env.VITE_LAMBDA_URL as string;
 
-export const callAnthropic = async (rawJd: string): Promise<MatchResult> => {
-  const jd = sanitizeJD(rawJd);
+export const callAnthropicJDMatcher = async (rawJd: string): Promise<MatchResult> => {
+  const jd = sanitizeUserMessage(rawJd);
 
   if (jd.length < 250) {
     return { error: 'Too short' } as unknown as MatchResult;
@@ -30,6 +35,31 @@ export const callAnthropic = async (rawJd: string): Promise<MatchResult> => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ rawJd: jd }),
+  });
+
+  if (!response.ok) {
+    const body = await response.json().catch(() => ({}));
+    throw new Error(`API error ${response.status}: ${body.error ?? 'unknown'}`);
+  }
+
+  return response.json();
+};
+
+export interface ChatUsage {
+  input: number;
+  output: number;
+}
+
+export const callAnthropicChat = async (
+  message: string,
+  history: ChatMessage[],
+): Promise<{ message: string; usage?: ChatUsage }> => {
+  const sanitized = sanitizeUserMessage(message);
+
+  const response = await fetch(LAMBDA_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ type: 'chat', message: sanitized, history }),
   });
 
   if (!response.ok) {

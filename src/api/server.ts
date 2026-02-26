@@ -1,8 +1,8 @@
 import OpenAI from 'openai';
 import Anthropic from '@anthropic-ai/sdk';
 import resumeText from '../data/resume.txt' with { type: 'text' };
-import { sanitizeJD } from './sanitize';
-import { buildSystemPrompt } from "@/api/prompts.ts";
+import { sanitizeUserMessage } from './sanitize';
+import { buildJDMSystemPrompt } from "@/api/prompts.ts";
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -93,7 +93,7 @@ Be professional, concise, and helpful. Speak in first person as if you are Alexe
           });
         }
 
-        const jd = sanitizeJD(rawJd);
+        const jd = sanitizeUserMessage(rawJd);
 
         if (jd.length < 250) {
           return new Response(JSON.stringify({ error: 'Too short' }), {
@@ -110,7 +110,7 @@ Be professional, concise, and helpful. Speak in first person as if you are Alexe
         const completion = await anthropic.messages.create({
           model: 'claude-haiku-4-5-20251001',
           max_tokens: 4096,
-          system: buildSystemPrompt(jd),
+          system: buildJDMSystemPrompt(jd),
           messages: [{ role: 'user', content: 'Analyze the match' }],
         });
 

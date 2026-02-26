@@ -1,6 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { buildSystemPrompt } from "../src/api/prompts";
-import { sanitizeJD } from "../src/api/sanitize";
+import { buildJDMSystemPrompt, buildChatSystemPrompt } from "../src/api/prompts";
+import { sanitizeUserMessage } from "../src/api/sanitize";
 import type { MatchResult } from "../src/api/anthropic";
 
 const anthropic = new Anthropic({
@@ -39,29 +39,59 @@ const isValidResult = (v: unknown): v is MatchResult => {
   );
 };
 
-const RATE_LIMIT_RPM = 2;
-const rateStore = new Map<string, { count: number; resetAt: number }>();
+const MATCH_RATE_LIMIT_RPM = 2;
+const CHAT_RATE_LIMIT_RPM = 20;
 
-const checkRateLimit = (ip: string): boolean => {
-  const now = Date.now();
-  const entry = rateStore.get(ip);
-
-  if (!entry || now >= entry.resetAt) {
-    rateStore.set(ip, { count: 1, resetAt: now + 60_000 });
+const makeRateLimiter = (rpm: number) => {
+  const store = new Map<string, { count: number; resetAt: number }>();
+  return (ip: string): boolean => {
+    const now = Date.now();
+    const entry = store.get(ip);
+    if (!entry || now >= entry.resetAt) {
+      store.set(ip, { count: 1, resetAt: now + 60_000 });
+      return true;
+    }
+    if (entry.count >= rpm) return false;
+    entry.count++;
     return true;
-  }
-
-  if (entry.count >= RATE_LIMIT_RPM) return false;
-
-  entry.count++;
-  return true;
+  };
 };
 
+const checkMatchRateLimit = makeRateLimiter(MATCH_RATE_LIMIT_RPM);
+const checkChatRateLimit = makeRateLimiter(CHAT_RATE_LIMIT_RPM);
+
 const corsHeaders = {
-  'Access-Control-Allow-Origin': `https://www.zerkalenkov.de`,
+  'Access-Control-Allow-Origin': `*`,
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Content-Type': 'application/json',
+};
+
+interface ChatHistoryItem {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+const handleChat = async (message: string, history: ChatHistoryItem[]): Promise<{ message: string; usage: { input: number; output: number } }> => {
+  const safeHistory = (history ?? [])
+    .filter((m) => (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+    .slice(-6);
+
+  const completion = await anthropic.messages.create({
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 1024,
+    system: buildChatSystemPrompt(),
+    messages: [
+      ...safeHistory,
+      { role: 'user', content: message },
+    ],
+  });
+
+  const block = completion.content[0];
+  return {
+    message: block?.type === 'text' ? block.text : '',
+    usage: { input: completion.usage.input_tokens, output: completion.usage.output_tokens },
+  };
 };
 
 export const handler = async (event: {
@@ -74,7 +104,48 @@ export const handler = async (event: {
   }
 
   const ip = event.requestContext?.http?.sourceIp ?? 'unknown';
-  if (!checkRateLimit(ip)) {
+  const body = JSON.parse(event.body ?? '{}');
+  const { type } = body;
+
+  // Chat endpoint
+  if (type === 'chat') {
+    if (!checkChatRateLimit(ip)) {
+      return {
+        statusCode: 429,
+        headers: corsHeaders,
+        body: JSON.stringify({ error: 'Too many requests' }),
+      };
+    }
+
+    try {
+      const { message, history } = body;
+
+      if (typeof message !== 'string' || !message.trim()) {
+        return {
+          statusCode: 400,
+          headers: corsHeaders,
+          body: JSON.stringify({ error: 'Missing message' }),
+        };
+      }
+
+      const result = await handleChat(message, history ?? []);
+      return {
+        statusCode: 200,
+        headers: corsHeaders,
+        body: JSON.stringify(result),
+      };
+    } catch (error) {
+      console.error('Lambda chat error:', error instanceof Error ? error.message : String(error));
+      return {
+        statusCode: 500,
+        headers: corsHeaders,
+        body: JSON.stringify({ error: 'Processing failed' }),
+      };
+    }
+  }
+
+  // JD match endpoint (default)
+  if (!checkMatchRateLimit(ip)) {
     return {
       statusCode: 429,
       headers: corsHeaders,
@@ -83,7 +154,7 @@ export const handler = async (event: {
   }
 
   try {
-    const { rawJd } = JSON.parse(event.body ?? '{}');
+    const { rawJd } = body;
 
     if (typeof rawJd !== 'string' || !rawJd.trim()) {
       return {
@@ -93,7 +164,7 @@ export const handler = async (event: {
       };
     }
 
-    const jd = sanitizeJD(rawJd);
+    const jd = sanitizeUserMessage(rawJd);
 
     if (jd.length < 250) {
       return {
@@ -114,7 +185,7 @@ export const handler = async (event: {
     const completion = await anthropic.messages.create({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 4096,
-      system: buildSystemPrompt(jd),
+      system: buildJDMSystemPrompt(jd),
       messages: [{ role: 'user', content: 'Analyze the match' }],
     });
 
