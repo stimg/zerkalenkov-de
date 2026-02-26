@@ -23,7 +23,9 @@
       "mcp__chrome-devtools__list_pages",
       "mcp__ide__getDiagnostics",
       "Bash(ls /Users/zerkalenkov/Documents/Projects/zerkalenkov-de/.env*)",
-      "Bash(git -C /Users/zerkalenkov/Documents/Projects/zerkalenkov-de log --oneline --all -- .env 2>/dev/null | head -5)"
+      "Bash(git -C /Users/zerkalenkov/Documents/Projects/zerkalenkov-de log --oneline --all -- .env 2>/dev/null | head -5)",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs"
     ]
   }
 }

@@ -4,7 +4,7 @@ import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { useIsMobile } from '@/hooks/useMediaQuery';
-import { callAnthropic, type MatchResult } from '@/api/anthropic';
+import { callAnthropicJDMatcher, type MatchResult } from '@/api/anthropic';
 
 const RATE_LIMIT = 3;
 const RATE_WINDOW_MS = 5 * 60 * 1000;
@@ -82,7 +82,7 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
     setIsAnalyzing(true);
 
     try {
-      const data = await callAnthropic(jd);
+      const data = await callAnthropicJDMatcher(jd);
       // Only count against quota when the request actually reached Lambda
       // (client-side length guards return early without hitting the backend)
       if (data.error !== 'Too short' && data.error !== 'Too long') {
@@ -323,15 +323,15 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
           )}
 
           <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-800">
-            <Button variant="primary" size="sm" onClick={handleCopySummary}>
+            <Button variant="primary" size="md" onClick={handleCopySummary}>
               <Copy className="w-4 h-4" />
               Copy Summary
             </Button>
-            <Button variant="outline" size="sm" onClick={() => { onClose(); onChatOpen(); }}>
+            <Button variant="outline" size="md" onClick={() => { onClose(); onChatOpen(); }}>
               <MessageSquare className="w-4 h-4" />
               Ask Follow-up
             </Button>
-            <Button variant="ghost" size="sm" onClick={handleReset}>
+            <Button variant="ghost" size="md" onClick={handleReset}>
               <RotateCcw className="w-4 h-4" />
               Try Another JD
             </Button>
