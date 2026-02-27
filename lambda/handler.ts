@@ -61,10 +61,14 @@ const checkMatchRateLimit = makeRateLimiter(MATCH_RATE_LIMIT_RPM);
 const checkChatRateLimit = makeRateLimiter(CHAT_RATE_LIMIT_RPM);
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': `*`,
+  'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Content-Type': 'application/json',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains',
+  'Content-Security-Policy': "default-src 'none'",
 };
 
 interface ChatHistoryItem {

@@ -19,11 +19,15 @@ const server = Bun.serve({
   async fetch(req) {
     const url = new URL(req.url);
 
-    // CORS headers
+    // CORS + security headers
     const corsHeaders = {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'Strict-Transport-Security': 'max-age=63072000; includeSubDomains',
+      'Content-Security-Policy': "default-src 'none'",
     };
 
     if (req.method === 'OPTIONS') {
