@@ -15,7 +15,7 @@ interface ChatPanelProps {
 export const ChatPanel: React.FC<ChatPanelProps> = ({isOpen, onClose}) => {
   const [input, setInput] = useState('');
   const [isMinimized, setIsMinimized] = useState(false);
-  const {messages, isLoading, sendMessage} = useChat();
+  const {messages, isLoading, isStreaming, sendMessage} = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const isMobile = useIsMobile();
@@ -33,7 +33,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({isOpen, onClose}) => {
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    await sendMessage(input);
+    void sendMessage(input);
     setInput('');
   };
 
@@ -129,6 +129,9 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({isOpen, onClose}) => {
                   prose-h3:text-md prose-h4:text-md prose-strong:text-sm prose-code:text-sm prose-code:text-primary-400
                   prose-pre:bg-gray-200 dark:prose-pre:bg-black/40 prose-pre:rounded prose-pre:p-2 prose-pre:text-sm">
                     <Markdown>{message.content}</Markdown>
+                    {isStreaming && message.id === messages[messages.length - 1]?.id && (
+                      <span className="inline-block w-0.5 h-4 bg-current opacity-70 animate-pulse align-middle ml-0.5" />
+                    )}
                   </div>
                 )}
                 <div className="flex items-center justify-between gap-3 mt-1">
@@ -143,7 +146,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({isOpen, onClose}) => {
             </div>
           ))}
 
-          {isLoading && (
+          {isLoading && !isStreaming && (
             <div className="flex gap-3 justify-start">
               <div className="bg-gray-100 dark:bg-[#1e1e2e] rounded-lg p-3">
                 <Loader2 className="w-5 h-5 animate-spin"/>
@@ -164,13 +167,13 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({isOpen, onClose}) => {
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
               placeholder="Type your question..."
               className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e2e] focus:outline-none focus:ring-2 focus:ring-primary-500"
-              disabled={isLoading}
+              disabled={isLoading || isStreaming}
             />
             <Button
               variant="primary"
               size="md"
               onClick={handleSend}
-              disabled={!input.trim() || isLoading}
+              disabled={!input.trim() || isLoading || isStreaming}
             >
               {isLoading ? <Loader2 className="w-4 h-4 animate-spin"/> : <Send className="w-4 h-4"/>}
             </Button>

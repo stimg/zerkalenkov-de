@@ -3,6 +3,26 @@ import { buildJDMSystemPrompt, buildChatSystemPrompt } from "../src/api/prompts"
 import { sanitizeUserMessage } from "../src/api/sanitize";
 import type { MatchResult } from "../src/api/anthropic";
 
+// awslambda is a global available in Node.js 18+ Lambda runtime.
+// Requires InvokeMode: RESPONSE_STREAM on the Lambda Function URL.
+declare const awslambda: {
+  streamifyResponse(
+    handler: (event: LambdaEvent, responseStream: NodeJS.WritableStream, context: unknown) => Promise<void>
+  ): unknown;
+  HttpResponseStream: {
+    from(
+      responseStream: NodeJS.WritableStream,
+      metadata: { statusCode?: number; headers?: Record<string, string> }
+    ): NodeJS.WritableStream;
+  };
+};
+
+type LambdaEvent = {
+  requestContext?: { http?: { method?: string; sourceIp?: string } };
+  headers?: Record<string, string>;
+  body?: string;
+};
+
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
   maxRetries: 0,
@@ -60,15 +80,29 @@ const makeRateLimiter = (rpm: number) => {
 const checkMatchRateLimit = makeRateLimiter(MATCH_RATE_LIMIT_RPM);
 const checkChatRateLimit = makeRateLimiter(CHAT_RATE_LIMIT_RPM);
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
+const baseHeaders = {
+  // 'Access-Control-Allow-Origin': '*', --> Configure CORS headers on AWS Lambda Function URL
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
-  'Content-Type': 'application/json',
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
   'Strict-Transport-Security': 'max-age=63072000; includeSubDomains',
   'Content-Security-Policy': "default-src 'none'",
+};
+
+// Sends a complete JSON response via the Lambda response stream.
+// Must be called at most once per request.
+const respond = (
+  responseStream: NodeJS.WritableStream,
+  statusCode: number,
+  body: unknown,
+) => {
+  const out = awslambda.HttpResponseStream.from(responseStream, {
+    statusCode,
+    headers: { ...baseHeaders, 'Content-Type': 'application/json' },
+  });
+  out.write(JSON.stringify(body));
+  out.end();
 };
 
 interface ChatHistoryItem {
@@ -76,116 +110,90 @@ interface ChatHistoryItem {
   content: string;
 }
 
-const handleChat = async (message: string, history: ChatHistoryItem[]): Promise<{ message: string; usage: { input: number; output: number } }> => {
-  const safeHistory = (history ?? [])
-    .filter((m) => (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
-    .slice(-6);
-
-  const completion = await anthropic.messages.create({
-    model: 'claude-haiku-4-5-20251001',
-    max_tokens: 1024,
-    system: buildChatSystemPrompt(),
-    messages: [
-      ...safeHistory,
-      { role: 'user', content: message },
-    ],
-  });
-
-  const block = completion.content[0];
-  return {
-    message: block?.type === 'text' ? block.text : '',
-    usage: { input: completion.usage.input_tokens, output: completion.usage.output_tokens },
-  };
-};
-
-export const handler = async (event: {
-  requestContext?: { http?: { method?: string; sourceIp?: string } };
-  headers?: Record<string, string>;
-  body?: string;
-}) => {
+export const handler = awslambda.streamifyResponse(async (event: LambdaEvent, responseStream, _context) => {
   if (event.requestContext?.http?.method === 'OPTIONS') {
-    return { statusCode: 200, headers: corsHeaders, body: '' };
+    awslambda.HttpResponseStream.from(responseStream, { statusCode: 200, headers: baseHeaders }).end();
+    return;
   }
 
   const ip = event.requestContext?.http?.sourceIp ?? 'unknown';
-  const body = JSON.parse(event.body ?? '{}');
+  const body = JSON.parse(event.body ?? '{}') as Record<string, unknown>;
   const { type } = body;
 
-  // Chat endpoint
+  // ── Chat endpoint — streams NDJSON chunks ──────────────────────────────────
   if (type === 'chat') {
     if (!checkChatRateLimit(ip)) {
-      return {
-        statusCode: 429,
-        headers: corsHeaders,
-        body: JSON.stringify({ error: 'Too many requests' }),
-      };
+      respond(responseStream, 429, { error: 'Too many requests' });
+      return;
     }
+
+    const { message, history } = body as { message: unknown; history: unknown };
+
+    if (typeof message !== 'string' || !message.trim()) {
+      respond(responseStream, 400, { error: 'Missing message' });
+      return;
+    }
+
+    const safeHistory = ((history ?? []) as ChatHistoryItem[])
+      .filter((m) => (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+      .slice(-6);
+
+    const out = awslambda.HttpResponseStream.from(responseStream, {
+      statusCode: 200,
+      headers: { ...baseHeaders, 'Content-Type': 'application/x-ndjson' },
+    });
 
     try {
-      const { message, history } = body;
+      const stream = anthropic.messages.stream({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1024,
+        system: buildChatSystemPrompt(),
+        messages: [...safeHistory, { role: 'user', content: message }],
+      });
 
-      if (typeof message !== 'string' || !message.trim()) {
-        return {
-          statusCode: 400,
-          headers: corsHeaders,
-          body: JSON.stringify({ error: 'Missing message' }),
-        };
+      for await (const chunk of stream) {
+        if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
+          out.write(JSON.stringify({ t: 'd', v: chunk.delta.text }) + '\n');
+        }
       }
 
-      const result = await handleChat(message, history ?? []);
-      return {
-        statusCode: 200,
-        headers: corsHeaders,
-        body: JSON.stringify(result),
-      };
+      const final = await stream.finalMessage();
+      out.write(JSON.stringify({ t: 'u', v: { i: final.usage.input_tokens, o: final.usage.output_tokens } }) + '\n');
     } catch (error) {
-      console.error('Lambda chat error:', error instanceof Error ? error.message : String(error));
-      return {
-        statusCode: 500,
-        headers: corsHeaders,
-        body: JSON.stringify({ error: 'Processing failed' }),
-      };
+      console.error('Lambda chat stream error:', error instanceof Error ? error.message : String(error));
+      out.write(JSON.stringify({ t: 'e', v: 'Processing failed' }) + '\n');
+    } finally {
+      out.end();
     }
+    return;
   }
 
-  // JD match endpoint (default)
+  // ── JD match endpoint — single JSON response ───────────────────────────────
   if (!checkMatchRateLimit(ip)) {
-    return {
-      statusCode: 429,
-      headers: corsHeaders,
-      body: JSON.stringify({ error: 'Too many requests' }),
-    };
+    respond(responseStream, 429, { error: 'Too many requests' });
+    return;
+  }
+
+  const { rawJd } = body as { rawJd: unknown };
+
+  if (typeof rawJd !== 'string' || !rawJd.trim()) {
+    respond(responseStream, 400, { error: 'Missing jd field' });
+    return;
+  }
+
+  const jd = sanitizeUserMessage(rawJd);
+
+  if (jd.length < 250) {
+    respond(responseStream, 400, { error: 'Too short' });
+    return;
+  }
+
+  if (jd.length > 5000) {
+    respond(responseStream, 400, { error: 'Too long' });
+    return;
   }
 
   try {
-    const { rawJd } = body;
-
-    if (typeof rawJd !== 'string' || !rawJd.trim()) {
-      return {
-        statusCode: 400,
-        headers: corsHeaders,
-        body: JSON.stringify({ error: 'Missing jd field' }),
-      };
-    }
-
-    const jd = sanitizeUserMessage(rawJd);
-
-    if (jd.length < 250) {
-      return {
-        statusCode: 400,
-        headers: corsHeaders,
-        body: JSON.stringify({ error: 'Too short' }),
-      };
-    }
-
-    if (jd.length > 5000) {
-      return {
-        statusCode: 400,
-        headers: corsHeaders,
-        body: JSON.stringify({ error: 'Too long' }),
-      };
-    }
-
     const completion = await anthropic.messages.create({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 4096,
@@ -195,11 +203,12 @@ export const handler = async (event: {
 
     const block = completion.content[0];
     const text = block?.type === 'text' ? block.text : '';
-
     const jsonMatch = text.match(/\{[\s\S]*}/);
+
     if (!jsonMatch) {
       console.error('Lambda error: no JSON found in LLM response');
-      return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: 'Processing failed' }) };
+      respond(responseStream, 500, { error: 'Processing failed' });
+      return;
     }
 
     let parsed: unknown;
@@ -207,25 +216,19 @@ export const handler = async (event: {
       parsed = JSON.parse(jsonMatch[0]);
     } catch {
       console.error('Lambda error: failed to parse LLM JSON');
-      return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: 'Processing failed' }) };
+      respond(responseStream, 500, { error: 'Processing failed' });
+      return;
     }
 
     if (!isValidResult(parsed)) {
       console.error('Lambda error: LLM response failed schema validation', parsed);
-      return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: 'Processing failed' }) };
+      respond(responseStream, 500, { error: 'Processing failed' });
+      return;
     }
 
-    return {
-      statusCode: 200,
-      headers: corsHeaders,
-      body: JSON.stringify(parsed),
-    };
+    respond(responseStream, 200, parsed);
   } catch (error) {
     console.error('Lambda error:', error instanceof Error ? error.message : String(error));
-    return {
-      statusCode: 500,
-      headers: corsHeaders,
-      body: JSON.stringify({ error: 'Processing failed' }),
-    };
+    respond(responseStream, 500, { error: 'Processing failed' });
   }
-};
+});
