@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { callAnthropicChat, type ChatUsage } from '@/api/anthropic';
+import { callAnthropicChatStream, type ChatUsage } from '@/api/anthropic';
 
 export interface Message {
   id: string;
@@ -12,6 +12,7 @@ export interface Message {
 export function useChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const sendMessage = useCallback(async (content: string) => {
@@ -26,24 +27,39 @@ export function useChat() {
     setIsLoading(true);
     setError(null);
 
+    const assistantId = `${Date.now() + 1}`;
+    let firstChunk = true;
+
     try {
       const history = messages.map(({ role, content: c }) => ({ role, content: c }));
-      const { message: responseText, usage } = await callAnthropicChat(content, history);
 
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: responseText,
-        timestamp: new Date(),
-        usage,
-      };
+      const { usage } = await callAnthropicChatStream(content, history, (chunk) => {
+        if (firstChunk) {
+          firstChunk = false;
+          // Add the assistant placeholder on first chunk so spinner gives way to text
+          setMessages((prev) => [
+            ...prev,
+            { id: assistantId, role: 'assistant', content: chunk, timestamp: new Date() },
+          ]);
+          setIsLoading(false);
+          setIsStreaming(true);
+        } else {
+          setMessages((prev) =>
+            prev.map((m) => (m.id === assistantId ? { ...m, content: m.content + chunk } : m))
+          );
+        }
+      });
 
-      setMessages((prev) => [...prev, assistantMessage]);
+      // Attach usage to the completed message
+      setMessages((prev) =>
+        prev.map((m) => (m.id === assistantId ? { ...m, usage } : m))
+      );
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       console.error('Chat error:', err);
     } finally {
       setIsLoading(false);
+      setIsStreaming(false);
     }
   }, [messages]);
 
@@ -55,6 +71,7 @@ export function useChat() {
   return {
     messages,
     isLoading,
+    isStreaming,
     error,
     sendMessage,
     clearMessages,
