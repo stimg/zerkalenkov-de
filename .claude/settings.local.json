@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(bash)",
+      "Bash(~/.bun/bin/bun create:*)",
+      "Bash(~/.bun/bin/bun init:*)",
+      "Bash(~/.bun/bin/bun add:*)",
+      "Bash(~/.bun/bin/bun run:*)",
+      "Bash(~/.bun/bin/bun remove:*)",
+      "Bash(~/.bun/bin/bunx tailwindcss:*)",
+      "Bash(bunx tsc:*)",
+      "Bash(npx tsc:*)",
+      "WebFetch(domain:reactbits.dev)",
+      "WebSearch",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd professional SVG tech logos and enhance Hero section visuals\n\n- Create TechLogos component with SVG logos for all 12 technologies \\(React, TypeScript, Next.js, Node.js, Python, OpenAI, LangChain, AWS, Docker, PostgreSQL, MongoDB, Redis\\)\n- Replace emoji icons with scalable SVG logos in TechStack\n- Implement moving signal animations in NeuralNetwork showing sparks traveling along connections\n- Add dynamic node and connection highlighting with color transitions\n- Fix Button hover effects to properly work with gradient backgrounds\n- Adjust TechStack spacing and slow down animation speed\n- Update primary color palette with purple theme variations\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(bun:*)",
+      "Bash(git commit:*)",
+      "mcp__chrome-devtools__list_pages",
+      "mcp__ide__getDiagnostics",
+      "Bash(ls /Users/zerkalenkov/Documents/Projects/zerkalenkov-de/.env*)",
+      "Bash(git -C /Users/zerkalenkov/Documents/Projects/zerkalenkov-de log --oneline --all -- .env 2>/dev/null | head -5)",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs"
+    ]
+  }
+}
