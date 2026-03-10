@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { buildJDMSystemPrompt, buildChatSystemPrompt } from "../src/api/prompts";
-import { sanitizeUserMessage } from "../src/api/sanitize";
-import type { MatchResult } from "../src/api/anthropic";
+import { buildJDMSystemPrompt, buildChatSystemPrompt } from "@/api/prompts.ts";
+import { sanitizeUserMessage } from "@/api/sanitize.ts";
+import type { MatchResult } from "@/api/anthropic.ts";
 
 // awslambda is a global available in Node.js 18+ Lambda runtime.
 // Requires InvokeMode: RESPONSE_STREAM on the Lambda Function URL.
@@ -135,7 +135,7 @@ export const handler = awslambda.streamifyResponse(async (event: LambdaEvent, re
     }
 
     const safeHistory = ((history ?? []) as ChatHistoryItem[])
-      .filter((m) => (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+      .filter((m) => (m.role === 'user' || m.role === 'assistant') && m.content)
       .slice(-6);
 
     const out = awslambda.HttpResponseStream.from(responseStream, {

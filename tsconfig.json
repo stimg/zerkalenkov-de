@@ -33,6 +33,16 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "lambda"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "out",
+    "build",
+    "public",
+    "coverage",
+    ".idea",
+    ".claude",
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
