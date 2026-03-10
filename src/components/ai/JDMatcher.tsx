@@ -6,6 +6,19 @@ import { Badge } from '@/components/ui/Badge';
 import { useIsMobile } from '@/hooks/useMediaQuery';
 import { callAnthropicJDMatcher, type MatchResult } from '@/api/anthropic';
 
+const ANALYSIS_STEPS: Array<{ field: string | null; label: string }> = [
+  { field: null,                    label: 'Analysing...' },
+  { field: 'position',              label: 'Identifying position...' },
+  { field: 'overallMatch',          label: 'Calculating JD relevance...' },
+  { field: 'summary',               label: 'Creating short summary...' },
+  { field: 'directMatches',         label: 'Checking direct matches...' },
+  { field: 'missingMustHaveSkills', label: 'Identifying skill gaps...' },
+  { field: 'relatedExperience',     label: 'Finding related experience...' },
+  { field: 'transferableStrengths', label: 'Assessing transferable strengths...' },
+  { field: 'quickLearnerNote',      label: 'Summarising strengths...' },
+  { field: 'whyThisCandidate',      label: 'Building candidate summary...' },
+];
+
 const RATE_LIMIT = 3;
 const RATE_WINDOW_MS = 5 * 60 * 1000;
 const STORAGE_KEY = 'jd_submission_timestamps';
@@ -72,6 +85,7 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
   const [jd, setJd] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<MatchResult | null>(null);
+  const [streamingText, setStreamingText] = useState('');
   const isMobile = useIsMobile();
   const { isLimited, timeRemaining, submissionsLeft, recordSubmission, refresh } = useJDRateLimit();
 
@@ -80,9 +94,12 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
     if (refresh()) return;
 
     setIsAnalyzing(true);
+    setStreamingText('');
 
     try {
-      const data = await callAnthropicJDMatcher(jd);
+      const data = await callAnthropicJDMatcher(jd, (chunk) => {
+        setStreamingText((prev) => prev + chunk);
+      });
       // Only count against quota when the request actually reached Lambda
       // (client-side length guards return early without hitting the backend)
       if (data.error !== 'Too short' && data.error !== 'Too long') {
@@ -96,6 +113,7 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
       setResult({ error: 'API Error' } as unknown as MatchResult);
     } finally {
       setIsAnalyzing(false);
+      setStreamingText('');
     }
   };
 
@@ -118,7 +136,31 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
       fullScreen={isMobile}
       className={isMobile ? '' : 'max-w-3xl'}
     >
-      {!result ? (
+      {isAnalyzing ? (
+        <div className="space-y-2 py-2">
+          {ANALYSIS_STEPS.filter(
+            (step) => step.field === null || streamingText.includes(`"${step.field}"`)
+          ).map((step, i, visible) => {
+            const isActive = i === visible.length - 1;
+            return (
+              <div
+                key={step.label}
+                className={`flex items-center gap-2 text-sm transition-opacity duration-300 ${
+                  isActive
+                    ? 'text-gray-800 dark:text-gray-200'
+                    : 'text-gray-400 dark:text-gray-600'
+                }`}
+              >
+                {isActive
+                  ? <Loader2 className="w-4 h-4 animate-spin shrink-0" />
+                  : <CheckCircle className="w-4 h-4 shrink-0" />
+                }
+                <span>{step.label}</span>
+              </div>
+            );
+          })}
+        </div>
+      ) : !result ? (
         <div className="space-y-6">
           <p className="text-gray-600 dark:text-gray-400">
             Paste a job description to see how Alexey's experience aligns with the requirements.
@@ -155,17 +197,10 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
                 variant="primary"
                 size="md"
                 onClick={handleAnalyze}
-                disabled={!jd.trim() || isAnalyzing}
+                disabled={!jd.trim()}
                 className="w-auto mt-4"
               >
-                {isAnalyzing ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    Analyzing...
-                  </>
-                ) : (
-                  'Analyze Match'
-                )}
+                Analyze Match
               </Button>
             </div>
           )}
