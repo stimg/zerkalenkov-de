@@ -137,7 +137,7 @@ export const JDMatcher: React.FC<JDMatcherProps> = ({ isOpen, onClose, onChatOpe
       className={isMobile ? '' : 'max-w-3xl'}
     >
       {isAnalyzing ? (
-        <div className="space-y-2 py-2">
+        <div className="min-h-[60vh] space-y-2 pt-2 pb-16">
           {ANALYSIS_STEPS.filter(
             (step) => step.field === null || streamingText.includes(`"${step.field}"`)
           ).map((step, i, visible) => {
