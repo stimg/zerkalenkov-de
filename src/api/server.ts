@@ -85,57 +85,75 @@ Be professional, concise, and helpful. Speak in first person as if you are Alexe
       }
     }
 
-    // JD Match endpoint
+    // JD Match endpoint — streams NDJSON chunks
     if (url.pathname === '/api/match' && req.method === 'POST') {
-      try {
-        const { jd: rawJd } = await req.json();
+      const { jd: rawJd } = await req.json().catch(() => ({}));
 
-        if (!rawJd?.trim()) {
-          return new Response(JSON.stringify({ error: 'Missing jd field' }), {
-            status: 400,
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          });
-        }
-
-        const jd = sanitizeUserMessage(rawJd);
-
-        if (jd.length < 250) {
-          return new Response(JSON.stringify({ error: 'Too short' }), {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          });
-        }
-
-        if (jd.length > 3000) {
-          return new Response(JSON.stringify({ error: 'Too long' }), {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          });
-        }
-
-        const completion = await anthropic.messages.create({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 4096,
-          system: buildJDMSystemPrompt(jd),
-          messages: [{ role: 'user', content: 'Analyze the match' }],
-        });
-
-        const block = completion.content[0];
-        const text = block?.type === 'text' ? block.text : '{}';
-        const jsonMatch = text.match(/\{[\s\S]*}/);
-        const result = JSON.parse(jsonMatch ? jsonMatch[0] : '{}');
-
-        return new Response(JSON.stringify(result), {
+      if (!rawJd?.trim()) {
+        return new Response(JSON.stringify({ error: 'Missing jd field' }), {
+          status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
-      } catch (error) {
-        console.error('Match error:', error);
-        return new Response(
-          JSON.stringify({ error: 'Failed to process request' }),
-          {
-            status: 500,
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          }
-        );
       }
+
+      const jd = sanitizeUserMessage(rawJd);
+
+      if (jd.length < 250) {
+        return new Response(JSON.stringify({ error: 'Too short' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      if (jd.length > 3000) {
+        return new Response(JSON.stringify({ error: 'Too long' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      const encoder = new TextEncoder();
+      const body = new ReadableStream({
+        async start(controller) {
+          try {
+            const stream = anthropic.messages.stream({
+              model: 'claude-haiku-4-5-20251001',
+              max_tokens: 4096,
+              system: buildJDMSystemPrompt(jd),
+              messages: [{ role: 'user', content: 'Analyze the match' }],
+            });
+
+            let fullText = '';
+            for await (const chunk of stream) {
+              if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
+                fullText += chunk.delta.text;
+                controller.enqueue(encoder.encode(JSON.stringify({ t: 'd', v: chunk.delta.text }) + '\n'));
+              }
+            }
+
+            const jsonMatch = fullText.match(/\{[\s\S]*}/);
+            let parsed: unknown = null;
+            if (jsonMatch) {
+              try { parsed = JSON.parse(jsonMatch[0]); } catch { /* falls through */ }
+            }
+
+            if (parsed && typeof parsed === 'object') {
+              controller.enqueue(encoder.encode(JSON.stringify({ t: 'r', v: parsed }) + '\n'));
+            } else {
+              controller.enqueue(encoder.encode(JSON.stringify({ t: 'e', v: 'Processing failed' }) + '\n'));
+            }
+          } catch (error) {
+            console.error('Match stream error:', error);
+            controller.enqueue(encoder.encode(JSON.stringify({ t: 'e', v: 'Processing failed' }) + '\n'));
+          } finally {
+            controller.close();
+          }
+        },
+      });
+
+      return new Response(body, {
+        headers: { ...corsHeaders, 'Content-Type': 'application/x-ndjson' },
+      });
     }
 
     return new Response('Not Found', { status: 404, headers: corsHeaders });

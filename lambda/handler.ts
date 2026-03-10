@@ -168,7 +168,7 @@ export const handler = awslambda.streamifyResponse(async (event: LambdaEvent, re
     return;
   }
 
-  // ── JD match endpoint — single JSON response ───────────────────────────────
+  // ── JD match endpoint — streams NDJSON chunks ─────────────────────────────
   if (!checkMatchRateLimit(ip)) {
     respond(responseStream, 429, { error: 'Too many requests' });
     return;
@@ -193,42 +193,43 @@ export const handler = awslambda.streamifyResponse(async (event: LambdaEvent, re
     return;
   }
 
+  const out = awslambda.HttpResponseStream.from(responseStream, {
+    statusCode: 200,
+    headers: { ...baseHeaders, 'Content-Type': 'application/x-ndjson' },
+  });
+
   try {
-    const completion = await anthropic.messages.create({
+    const stream = anthropic.messages.stream({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 4096,
       system: buildJDMSystemPrompt(jd),
       messages: [{ role: 'user', content: 'Analyze the match' }],
     });
 
-    const block = completion.content[0];
-    const text = block?.type === 'text' ? block.text : '';
-    const jsonMatch = text.match(/\{[\s\S]*}/);
-
-    if (!jsonMatch) {
-      console.error('Lambda error: no JSON found in LLM response');
-      respond(responseStream, 500, { error: 'Processing failed' });
-      return;
+    let fullText = '';
+    for await (const chunk of stream) {
+      if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
+        fullText += chunk.delta.text;
+        out.write(JSON.stringify({ t: 'd', v: chunk.delta.text }) + '\n');
+      }
     }
 
-    let parsed: unknown;
-    try {
-      parsed = JSON.parse(jsonMatch[0]);
-    } catch {
-      console.error('Lambda error: failed to parse LLM JSON');
-      respond(responseStream, 500, { error: 'Processing failed' });
-      return;
+    const jsonMatch = fullText.match(/\{[\s\S]*}/);
+    let parsed: unknown = null;
+    if (jsonMatch) {
+      try { parsed = JSON.parse(jsonMatch[0]); } catch { /* falls through to error */ }
     }
 
-    if (!isValidResult(parsed)) {
-      console.error('Lambda error: LLM response failed schema validation', parsed);
-      respond(responseStream, 500, { error: 'Processing failed' });
-      return;
+    if (isValidResult(parsed)) {
+      out.write(JSON.stringify({ t: 'r', v: parsed }) + '\n');
+    } else {
+      console.error('Lambda error: invalid or unparseable LLM response');
+      out.write(JSON.stringify({ t: 'e', v: 'Processing failed' }) + '\n');
     }
-
-    respond(responseStream, 200, parsed);
   } catch (error) {
     console.error('Lambda error:', error instanceof Error ? error.message : String(error));
-    respond(responseStream, 500, { error: 'Processing failed' });
+    out.write(JSON.stringify({ t: 'e', v: 'Processing failed' }) + '\n');
+  } finally {
+    out.end();
   }
 });
