@@ -1,6 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { buildJDMSystemPrompt, buildChatSystemPrompt } from "@/api/prompts.ts";
-import { sanitizeUserMessage } from "@/api/sanitize.ts";
+import { sanitizeUserInput } from "@/api/sanitize.ts";
 import type { MatchResult } from "@/api/anthropic.ts";
 
 // awslambda is a global available in Node.js 18+ Lambda runtime.
@@ -181,7 +181,7 @@ export const handler = awslambda.streamifyResponse(async (event: LambdaEvent, re
     return;
   }
 
-  const jd = sanitizeUserMessage(rawJd);
+  const jd = sanitizeUserInput(rawJd);
 
   if (jd.length < 250) {
     respond(responseStream, 400, { error: 'Too short' });

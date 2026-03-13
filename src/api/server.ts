@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 import Anthropic from '@anthropic-ai/sdk';
 import resumeText from '../data/resume.txt' with { type: 'text' };
-import { sanitizeUserMessage } from './sanitize';
+import { sanitizeUserInput } from './sanitize';
 import { buildJDMSystemPrompt } from "@/api/prompts.ts";
 
 const anthropic = new Anthropic({
@@ -96,7 +96,7 @@ Be professional, concise, and helpful. Speak in first person as if you are Alexe
         });
       }
 
-      const jd = sanitizeUserMessage(rawJd);
+      const jd = sanitizeUserInput(rawJd);
 
       if (jd.length < 250) {
         return new Response(JSON.stringify({ error: 'Too short' }), {

@@ -1,4 +1,4 @@
-import { sanitizeUserMessage } from './sanitize';
+import { sanitizeUserInput } from './sanitize';
 
 export interface ChatMessage {
   role: 'user' | 'assistant';
@@ -71,7 +71,7 @@ export const callAnthropicJDMatcher = async (
   rawJd: string,
   onChunk?: (text: string) => void,
 ): Promise<MatchResult> => {
-  const jd = sanitizeUserMessage(rawJd);
+  const jd = sanitizeUserInput(rawJd);
 
   if (jd.length < 250) return { error: 'Too short' } as unknown as MatchResult;
   if (jd.length > 5000) return { error: 'Too long' } as unknown as MatchResult;
@@ -106,7 +106,7 @@ export const callAnthropicChatStream = async (
   const response = await fetch(LAMBDA_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ type: 'chat', message: sanitizeUserMessage(message), history }),
+    body: JSON.stringify({ type: 'chat', message: sanitizeUserInput(message), history }),
   });
 
   await checkResponse(response);

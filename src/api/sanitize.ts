@@ -18,7 +18,7 @@ const INJECTION_PATTERNS = [
   /jailbreak/i,
 ];
 
-export const sanitizeUserMessage = (raw: string): string => {
+export const sanitizeUserInput = (raw: string): string => {
   // Detect injection attempts before any stripping
   for (const pattern of INJECTION_PATTERNS) {
     if (pattern.test(raw)) {
